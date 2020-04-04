@@ -28,5 +28,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Technologies used and their documentation
 Angular: https://angular.io
+
 Ngrx: https://ngrx.io (see also Redux docs: https://redux.js.org/)
+
 Rxjs: https://rxjs.dev

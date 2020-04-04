@@ -1,0 +1,9 @@
+<p>patient-list works!</p>
+<button (click)="addPatientClicked()">Add patient</button>
+<ul>
+    <li *ngFor="let patient of patients$ | async">
+        {{patient.firstName}} {{patient.lastName}}
+
+        <button (click)="deletePatient(patient)">delete</button>
+    </li>
+</ul>

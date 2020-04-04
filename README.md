@@ -13,13 +13,14 @@ No PouchDB instance has been used in this case.
 environment.ts and environment.prod.ts have been added to .gitignore
 
 Before building, add a file environments/environment.ts with the following settings:
-
+```
 export const environment = {
   production: false,
   apiUrl: 'couchdb url',
   username: 'couchdb username',
   password: 'couchdb password'
 };
+```
 
 ## Development server
 

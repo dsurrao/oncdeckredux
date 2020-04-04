@@ -9,4 +9,5 @@ export interface Patient {
     contactFirstName: string;
     contactLastName: string;
     contactPhoneNumber: string;
+    dateCreatedMs: number;
 }

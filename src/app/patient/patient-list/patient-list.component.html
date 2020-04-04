@@ -1,5 +1,11 @@
 <p>patient-list works!</p>
-<button (click)="addPatientClicked()">Add patient</button>
+
+<form>
+    <input type="text" placeholder="First Name" #firstName>
+    <input type="text" placeholder="Last Name" #lastName>
+    <button (click)="addPatientClicked(firstName.value, lastName.value)">Add patient</button>
+</form>
+
 <ul>
     <li *ngFor="let patient of patients$ | async">
         {{patient.firstName}} {{patient.lastName}}

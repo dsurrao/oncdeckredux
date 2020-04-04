@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { PatientService } from '../services/patient.service';
 
@@ -15,6 +14,19 @@ export class PatientEffects {
                 .pipe(
                     map(patients => ({ type: 'Fetch Patients Success',
                         payload: patients })),
+                    catchError(() => EMPTY)
+                )
+            )
+        )
+    );
+    
+    addPatient$ = createEffect(
+        () => this.actions$.pipe(
+            ofType('Add Patient'),
+            mergeMap(action => this.patientService.putPatient(action['payload'])
+                .pipe(
+                    map(patient => ({ type: 'Add Patient Success', 
+                                        payload: patient })),
                     catchError(() => EMPTY)
                 )
             )

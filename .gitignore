@@ -45,4 +45,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# do not check in urls and credentials
 /src/environments/environment.ts
+/src/environments/environment.prod.ts

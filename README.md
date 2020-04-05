@@ -12,7 +12,7 @@ No PouchDB instance has been used in this case.
 
 environment.ts and environment.prod.ts have been added to .gitignore
 
-Before building, add a file environments/environment.ts with the following settings:
+Before building, add a file src/environments/environment.ts with the following settings:
 ```
 export const environment = {
   production: false,
@@ -21,6 +21,7 @@ export const environment = {
   password: 'couchdb password'
 };
 ```
+Similarly, for a production environment, add src/environments/environment.prod.ts
 
 ## Development server
 

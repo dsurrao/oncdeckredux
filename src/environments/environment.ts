@@ -5,7 +5,7 @@
 // FILL IN DETAILS BELOW!
 export const environment = {
   production: false,
-  apiUrl: "",
+  apiUrl: "https://..",
   username: "",
   password: ""
 };

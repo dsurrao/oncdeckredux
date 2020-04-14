@@ -8,7 +8,7 @@ export const initialState: Patient[] = [];
 const _patientReducer = createReducer(initialState,
     on(fetchPatients, state => state),
     on(fetchPatientsSuccess, (state, { payload }) => 
-        [...state, ...payload]
+        [...payload]
     ),
     on(addPatientSuccess, (state, {payload}) => {
         // create a copy of state

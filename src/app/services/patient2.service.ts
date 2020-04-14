@@ -28,8 +28,8 @@ export class Patient2Service implements IPatientService {
       newPatient.dateCreatedMs = Date.now();
     }
     
-    // todo: fix
-    //this.patients.push(newPatient);
+    //this.patients.push(newPatient) does not work
+    this.patients = [...this.patients, newPatient];
 
     return of(newPatient);
   }

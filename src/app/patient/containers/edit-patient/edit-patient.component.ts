@@ -48,8 +48,8 @@ export class EditPatientComponent implements OnInit {
   createNewPatient(): Patient {
     return  {
       id: null,
-      firstName: 'amy', 
-      lastName: 'g',
+      firstName: '', 
+      lastName: '',
       gender: 'female',
       dob: null,
       town: '',

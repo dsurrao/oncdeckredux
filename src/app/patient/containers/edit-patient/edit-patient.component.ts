@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
-import { Patient } from '../../../app/interfaces/patient';
+import { Patient } from '../../../../app/interfaces/patient';
 import { Store } from '@ngrx/store';
-import { addPatient, fetchPatients } from "../patient.actions";
+import { addPatient, fetchPatients } from "../../patient.actions";
 import { map } from 'rxjs/operators';
 import { Observable, of } from "rxjs";
 
@@ -26,7 +26,8 @@ export class EditPatientComponent implements OnInit {
     if (patientId != null) {
       this.patient$ = this.store.pipe(
         map(store => {
-          return store.patients.find(patient => patient['id'] == patientId)
+          return Object.assign({}, 
+            store.patients.find(patient => patient['id'] == patientId));
         })
       );
     }

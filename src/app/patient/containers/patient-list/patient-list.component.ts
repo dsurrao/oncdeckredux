@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { mergeMap, mergeAll, map, last } from 'rxjs/operators';
-import { Store, select } from '@ngrx/store';
+import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Patient } from '../../interfaces/patient';
-import { addPatient, fetchPatients, deletePatient } from '../patient.actions';
+import { Patient } from '../../../interfaces/patient';
+import { addPatient, fetchPatients, deletePatient } from '../../patient.actions';
 
 /**
  * @title Patient list

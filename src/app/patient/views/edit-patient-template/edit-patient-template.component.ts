@@ -13,7 +13,8 @@ export class EditPatientTemplateComponent implements OnInit {
   @Output()
   onSave = new EventEmitter<Patient>();
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }

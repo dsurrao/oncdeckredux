@@ -28,16 +28,20 @@ export class Patient2Service implements IPatientService {
       newPatient.dateCreatedMs = Date.now();
     }
     
+    // todo: fix
     //this.patients.push(newPatient);
 
     return of(newPatient);
   }
 
   deletePatient(patientId: string): Observable<any> {
-    this.patients.splice(
-      this.patients.findIndex(patient => patient.id == patientId),
-      1
-    );
+    //todo: remove length check
+    if (this.patients.length > 0) {
+      this.patients.splice(
+        this.patients.findIndex(patient => patient.id == patientId),
+        1
+      );
+    }
     
     return of(true);
   }

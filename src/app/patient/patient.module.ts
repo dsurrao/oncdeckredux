@@ -9,10 +9,10 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { patientReducer } from './patient.reducers';
-import { PatientListComponent } from './patient-list/patient-list.component';
+import { PatientListComponent } from './containers/patient-list/patient-list.component';
 import { PatientEffects } from './patient.effects';
-import { EditPatientComponent } from './edit-patient/edit-patient.component';
-import { EditPatientTemplateComponent } from './edit-patient-template/edit-patient-template.component';
+import { EditPatientComponent } from './containers/edit-patient/edit-patient.component';
+import { EditPatientTemplateComponent } from './views/edit-patient-template/edit-patient-template.component';
 
 const routes: Routes = [
   {path: '', component: PatientListComponent},

@@ -1,0 +1,10 @@
+<h1>Edit patient</h1>
+<div>
+    <input type="text" placeholder="First Name" name="firstName"
+        [(ngModel)]="patient.firstName"/>
+    <input type="text" placeholder="Last Name" name="lastName" 
+        [(ngModel)]="patient.lastName"/>
+    <button (click)="save()">
+        Save
+    </button>
+</div>

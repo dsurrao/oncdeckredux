@@ -10,19 +10,25 @@ const _patientReducer = createReducer(initialState,
     on(fetchPatientsSuccess, (state, { payload }) => 
         [...state, ...payload]
     ),
-    on(addPatient, (state, {payload}) => 
-        [...state, payload]
-    ),
     on(addPatientSuccess, (state, {payload}) => {
         // create a copy of state
         let newState = [...state];
 
-        // replace added patient with permanent value
-        newState.splice(
-            newState.findIndex(patient => patient.id == payload.id),
-            1,
-            payload
-        );
+        let replaceIndex = newState.findIndex(
+            patient => patient.id == payload.id);
+        
+        if (replaceIndex >= 0) {
+            // replace patient with new value
+            newState.splice(
+                newState.findIndex(patient => patient.id == payload.id),
+                1,
+                payload
+            );
+        }
+        else {
+            newState = [...state, payload];
+        }
+        
         return newState;
     }),
     on(deletePatient, (state, {payload}) => {

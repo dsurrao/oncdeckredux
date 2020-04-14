@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { PatientService } from '../services/patient.service';
+import { Patient2Service } from '../services/patient2.service';
 
 @Injectable()
 export class PatientEffects {
@@ -47,6 +47,6 @@ export class PatientEffects {
 
     constructor(
         private actions$: Actions,
-        private patientService: PatientService
+        private patientService: Patient2Service
     ) {}
 }

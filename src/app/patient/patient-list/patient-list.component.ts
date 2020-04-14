@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { mergeMap, mergeAll, map, last } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Patient } from '../../interfaces/patient';
 import { addPatient, fetchPatients, deletePatient } from '../patient.actions';
 
+/**
+ * @title Patient list
+ */
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
@@ -14,7 +18,8 @@ export class PatientListComponent implements OnInit {
 
   patients$: Observable<Patient[]>;
 
-  constructor(private store: Store<{patients: []}>) { 
+  constructor(private store: Store<{patients: []}>, 
+    public dialog: MatDialog) { 
     // sort patients in reverse order of created date
     this.patients$ = store.pipe(
       map(store => {
@@ -25,10 +30,6 @@ export class PatientListComponent implements OnInit {
         })
       })
     );
-    
-    // this.patients$ = store.pipe(
-    //   select('patients'),
-    // );
   }
 
   ngOnInit(): void {
@@ -53,6 +54,7 @@ export class PatientListComponent implements OnInit {
   }
 
   deletePatient(patient: Patient) {
+    //window.alert("delete");
     this.store.dispatch(deletePatient({payload: patient.id}));
   }
 }

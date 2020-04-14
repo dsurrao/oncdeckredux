@@ -8,7 +8,7 @@ The data source is a CouchDB instance which the app accesses directly via the Co
 
 No PouchDB instance has been used in this case.
 
-## Configuration
+## Configuration and build
 
 environment.ts and environment.prod.ts have been added to .gitignore
 

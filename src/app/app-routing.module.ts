@@ -6,6 +6,9 @@ const routes: Routes = [
     mod => mod.PatientModule)}
 ];
 
+// todo: will this work?
+// { path: '',   redirectTo: '/heroes', pathMatch: 'full' },
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)

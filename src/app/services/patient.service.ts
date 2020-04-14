@@ -10,11 +10,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Patient } from '../interfaces/patient';
 import { environment } from '../../environments/environment';
 import { v4 as uuidv4 } from 'uuid';
+import { IPatientService } from './patient.service.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PatientService {
+export class PatientService implements IPatientService {
 
   httpOptions = {
     headers: new HttpHeaders({

@@ -1,5 +1,5 @@
 import {createReducer, on} from '@ngrx/store';
-import {fetchPatients, fetchPatientsSuccess, addPatient, 
+import {fetchPatients, fetchPatientsSuccess, 
     addPatientSuccess, deletePatient} from './patient.actions';
 import {Patient} from '../interfaces/patient';
 
@@ -20,7 +20,8 @@ const _patientReducer = createReducer(initialState,
         if (replaceIndex >= 0) {
             // replace patient with new value
             newState.splice(
-                newState.findIndex(patient => patient.id == payload.id),
+                newState.findIndex(patient => 
+                    patient.id == payload.id),
                 1,
                 payload
             );
@@ -34,7 +35,8 @@ const _patientReducer = createReducer(initialState,
     on(deletePatient, (state, {payload}) => {
         let newState = [...state];
         newState.splice(
-            newState.findIndex(patient => patient.id == payload),
+            newState.findIndex(patient => 
+                patient.id == payload),
             1
         );
         return newState;

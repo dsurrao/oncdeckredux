@@ -3,7 +3,7 @@
 <mat-action-list>
     <mat-list-item *ngFor="let patient of patients$ | async">
         <a matLine routerLink="edit_patient/{{patient.id}}">
-            {{patient.firstName}} {{patient.lastName}}</a>
+            {{patient.demog.firstName}} {{patient.demog.lastName}}</a>
         <button mat-list-item (click)="deletePatient(patient)"> Delete </button>
      </mat-list-item>
 </mat-action-list>

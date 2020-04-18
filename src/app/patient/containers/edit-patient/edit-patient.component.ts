@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { addPatient, fetchPatients } from "../../patient.actions";
 import { map } from 'rxjs/operators';
 import { Observable, of } from "rxjs";
+import { PatientDemog } from 'src/app/interfaces/patient-demog';
 
 @Component({
   selector: 'app-edit-patient',
@@ -26,8 +27,13 @@ export class EditPatientComponent implements OnInit {
     if (patientId != null) {
       this.patient$ = this.store.pipe(
         map(store => {
-          return Object.assign({}, 
-            store.patients.find(patient => patient['id'] == patientId));
+          let patient = store.patients.find(patient => {
+            let pt: Patient = patient;
+            return (pt.id == patientId);
+          });
+
+          // deep clone
+          return JSON.parse(JSON.stringify(patient));
         })
       );
     }
@@ -46,8 +52,7 @@ export class EditPatientComponent implements OnInit {
   }
 
   createNewPatient(): Patient {
-    return  {
-      id: null,
+    let demog: PatientDemog = {
       firstName: '', 
       lastName: '',
       gender: 'female',
@@ -56,7 +61,12 @@ export class EditPatientComponent implements OnInit {
       phoneNumber: '',
       contactFirstName: '',
       contactLastName: '',
-      contactPhoneNumber: '',
+      contactPhoneNumber: ''
+    };
+
+    return  {
+      id: null,
+      demog: demog,
       dateCreatedMs: Date.now()
     };
   }

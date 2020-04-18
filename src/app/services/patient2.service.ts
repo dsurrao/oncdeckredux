@@ -17,20 +17,26 @@ export class Patient2Service implements IPatientService {
   }
 
   getPatient(patientId: string): Observable<Patient> {
-    return of(this.patients.find(patient => patient.id == patientId));
+    return of(this.patients.find(patient => 
+      patient.id == patientId));
   }
 
   putPatient(patient: Patient): Observable<Patient> {
     let newPatient: Patient = Object.assign({}, patient);
 
-    if (newPatient.id == null) {
+    if (newPatient.id == null || newPatient.id == '') {
       newPatient.id = uuidv4();
       newPatient.dateCreatedMs = Date.now();
+      this.patients = [...this.patients, newPatient];
+    }
+    else {
+      let newPatients = [...this.patients];
+      let replaceIndex = newPatients.findIndex(
+        patient => patient.id == newPatient.id);
+      newPatients.splice(replaceIndex, 1, newPatient);
+      this.patients = newPatients;
     }
     
-    //this.patients.push(newPatient) does not work
-    this.patients = [...this.patients, newPatient];
-
     return of(newPatient);
   }
 
@@ -38,7 +44,8 @@ export class Patient2Service implements IPatientService {
     //todo: remove length check
     if (this.patients.length > 0) {
       this.patients.splice(
-        this.patients.findIndex(patient => patient.id == patientId),
+        this.patients.findIndex(patient => 
+          patient.id == patientId),
         1
       );
     }

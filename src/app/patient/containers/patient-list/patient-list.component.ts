@@ -35,23 +35,6 @@ export class PatientListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fetchPatients());
   }
-  
-  addPatientClicked(firstName: string, lastName:string) {
-    let patient = {
-      id: null,
-      firstName: firstName, 
-      lastName: lastName,
-      gender: 'female',
-      dob: null,
-      town: '',
-      phoneNumber: '',
-      contactFirstName: '',
-      contactLastName: '',
-      contactPhoneNumber: '',
-      dateCreatedMs: Date.now()
-    };
-    this.store.dispatch(addPatient({payload: patient}));
-  }
 
   deletePatient(patient: Patient) {
     //window.alert("delete");

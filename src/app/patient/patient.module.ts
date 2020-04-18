@@ -2,17 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
-import { patientReducer } from './patient.reducers';
 import { PatientListComponent } from './containers/patient-list/patient-list.component';
 import { PatientEffects } from './patient.effects';
 import { EditPatientComponent } from './containers/edit-patient/edit-patient.component';
 import { EditPatientTemplateComponent } from './views/edit-patient-template/edit-patient-template.component';
+import { ViewPatientTemplateComponent } from './views/view-patient-template/view-patient-template.component';
+import { ViewTemplateComponent } from './containers/view-template/view-template.component';
 
 const routes: Routes = [
   {path: '', component: PatientListComponent},
@@ -21,16 +20,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PatientListComponent, EditPatientComponent, EditPatientTemplateComponent],
+  declarations: [PatientListComponent, 
+    EditPatientComponent, 
+    EditPatientTemplateComponent, 
+    ViewPatientTemplateComponent, 
+    ViewTemplateComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    StoreModule.forRoot({ patients: patientReducer }),
-    // Instrumentation must be imported after importing StoreModule (config is optional)
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      //logOnly: environment.production, // Restrict extension to log-only mode
-    }),
     EffectsModule.forRoot([PatientEffects]),
     FormsModule,
     MatSliderModule,

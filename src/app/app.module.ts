@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { patientReducer } from './patient/patient.reducers';
+import { patientReducer } from './store/patient/patient.reducers';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       maxAge: 25, // Retains last 25 states
       //logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

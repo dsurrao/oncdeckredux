@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Patient } from '../../../../app/interfaces/patient';
 import { Store } from '@ngrx/store';
-import { addPatient, fetchPatients } from "../../patient.actions";
+import { addPatient, fetchPatients } from "../../../store/patient/patient.actions";
 import { map } from 'rxjs/operators';
 import { Observable, of } from "rxjs";
 import { PatientDemog } from 'src/app/interfaces/patient-demog';
@@ -53,10 +53,11 @@ export class EditPatientComponent implements OnInit {
 
   createNewPatient(): Patient {
     let demog: PatientDemog = {
-      firstName: '', 
+      firstName: '',
+      middleName: '', 
       lastName: '',
       gender: 'female',
-      dob: null,
+      dateOfBirth: null,
       town: '',
       phoneNumber: '',
       contactFirstName: '',

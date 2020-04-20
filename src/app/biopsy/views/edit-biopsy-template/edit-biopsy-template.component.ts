@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Biopsy } from 'src/app/interfaces/biopsy';
 
 @Component({
   selector: 'app-edit-biopsy-template',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-biopsy-template.component.css']
 })
 export class EditBiopsyTemplateComponent implements OnInit {
+  @Input()
+  biopsy: Biopsy;
+
+  @Output()
+  onSave = new EventEmitter<Biopsy>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  save() {
+    this.onSave.emit(this.biopsy);
+  }
 }

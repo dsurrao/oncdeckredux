@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Patient } from '../interfaces/patient';
+import { Patient } from '../../interfaces/patient';
 import { IPatientService } from './patient.service.interface';
 import { v4 as uuidv4 } from 'uuid';
 import { of } from 'rxjs';
@@ -41,14 +41,11 @@ export class Patient2Service implements IPatientService {
   }
 
   deletePatient(patientId: string): Observable<any> {
-    //todo: remove length check
-    if (this.patients.length > 0) {
-      this.patients.splice(
-        this.patients.findIndex(patient => 
-          patient.id == patientId),
-        1
-      );
-    }
+    this.patients = [...this.patients].splice(
+      this.patients.findIndex(patient => 
+        patient.id == patientId),
+      1
+    );
     
     return of(true);
   }

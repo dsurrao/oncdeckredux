@@ -6,12 +6,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { PatientListComponent } from './containers/patient-list/patient-list.component';
-import { PatientEffects } from './patient.effects';
+import { PatientEffects } from '../store/patient/patient.effects';
 import { EditPatientComponent } from './containers/edit-patient/edit-patient.component';
-import { EditPatientTemplateComponent } from './views/edit-patient-template/edit-patient-template.component';
-import { ViewPatientTemplateComponent } from './views/view-patient-template/view-patient-template.component';
-import { ViewTemplateComponent } from './containers/view-template/view-template.component';
+import { EditPatientTemplateComponent } from './templates/edit-patient-template/edit-patient-template.component';
+import { ViewPatientTemplateComponent } from './templates/view-patient-template/view-patient-template.component';
 
 const routes: Routes = [
   {path: '', component: PatientListComponent},
@@ -23,17 +24,18 @@ const routes: Routes = [
   declarations: [PatientListComponent, 
     EditPatientComponent, 
     EditPatientTemplateComponent, 
-    ViewPatientTemplateComponent, 
-    ViewTemplateComponent
+    ViewPatientTemplateComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    EffectsModule.forRoot([PatientEffects]),
+    EffectsModule.forFeature([PatientEffects]),
     FormsModule,
     MatSliderModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class PatientModule { }

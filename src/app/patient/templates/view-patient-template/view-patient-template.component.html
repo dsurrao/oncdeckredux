@@ -1,0 +1,9 @@
+{{patient.demog.firstName}} {{patient.demog.middleName}} {{patient.demog.lastName}}
+<br/>
+{{patient.demog.dateOfBirth}} {{patient.demog.gender}}
+
+<div *ngFor="let biopsy of patient.biopsies">
+    {{biopsy.dateScheduled}}<br/>
+    {{biopsy.facilityName}}<br/>
+    {{biopsy.providerName}}
+</div>

@@ -1,7 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import {fetchPatients, fetchPatientsSuccess, 
     addPatientSuccess, deletePatient} from './patient.actions';
-import {Patient} from '../interfaces/patient';
+import {Patient} from '../../interfaces/patient';
 
 export const initialState: Patient[] = [];
 

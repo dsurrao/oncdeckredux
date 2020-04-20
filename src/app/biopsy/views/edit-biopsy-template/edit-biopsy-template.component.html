@@ -1,1 +1,18 @@
-<p>edit-biopsy-template works!</p>
+<h1>Edit biopsy</h1>
+<div>
+    <input type="date" placeholder="Date Scheduled" name="dateScheduled" 
+    [(ngModel)]="biopsy.dateScheduled"/>
+    <br/>
+
+    <input type="text" placeholder="Facility Name" name="facilityName" 
+    [(ngModel)]="biopsy.facilityName"/>
+    <br/>
+
+    <input type="text" placeholder="Provider Name" name="providerName" 
+    [(ngModel)]="biopsy.providerName"/>
+    <br/>
+
+    <button (click)="save()">
+        Save
+    </button>
+</div>

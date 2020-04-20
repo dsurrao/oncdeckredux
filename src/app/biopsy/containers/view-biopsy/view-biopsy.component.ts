@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Patient } from 'src/app/interfaces/patient';
+import { Observable } from 'rxjs';
+import { Biopsy } from 'src/app/interfaces/biopsy';
 
 @Component({
   selector: 'app-view-biopsy',
@@ -6,10 +11,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-biopsy.component.css']
 })
 export class ViewBiopsyComponent implements OnInit {
+  biopsy$: Observable<Biopsy>;
 
-  constructor() { }
+  constructor(private store: Store<{patients: Patient[]}>,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    let biopsyId = this.activatedRoute.snapshot.paramMap.get('biopsyId');
   }
 
 }

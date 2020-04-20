@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Patient } from '../interfaces/patient';
+import { Patient } from '../../interfaces/patient';
 
 export interface IPatientService {
     getPatients(): Observable<Patient[]>;

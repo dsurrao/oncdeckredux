@@ -1,7 +1,7 @@
 // todo: create actions for failure
 
 import { createAction, props } from '@ngrx/store';
-import { Patient } from '../interfaces/patient';
+import { Patient } from '../../interfaces/patient';
 
 export const fetchPatients = createAction('Fetch Patients');
 

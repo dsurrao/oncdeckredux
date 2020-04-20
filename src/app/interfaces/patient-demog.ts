@@ -1,8 +1,9 @@
-export interface PatientDemog {
-    lastName: string;
+export interface PatientDemog {    
     firstName: string;
+    middleName: string;
+    lastName: string;
     gender: string;
-    dob: Date;
+    dateOfBirth: Date;
     town?: string;
     phoneNumber?: string;
     contactFirstName?: string;

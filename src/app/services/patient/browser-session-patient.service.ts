@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Patient } from '../../interfaces/patient';
-import { IPatientService } from './patient.service.interface';
-import { v4 as uuidv4 } from 'uuid';
 import { of } from 'rxjs';
+import { PatientService } from './patient.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class Patient2Service implements IPatientService {
+export class BrowserSessionPatientService extends PatientService {
+  patients: Patient[] = [{
+      id: 'abcd',
+      demog: {firstName: 'Robyn', lastName: 'Gal', gender: 'Female', 
+          dateOfBirth: '1999-01-20'},
+      dateCreatedMs: Date.now()
+  }];
 
-  patients: Patient[] = [];
+  constructor() {
+    super();
+  }
 
   getPatients(): Observable<Patient[]> {
     return of(this.patients);
@@ -25,7 +32,7 @@ export class Patient2Service implements IPatientService {
     let newPatient: Patient = Object.assign({}, patient);
 
     if (newPatient.id == null || newPatient.id == '') {
-      newPatient.id = uuidv4();
+      newPatient.id = this.generateId();
       newPatient.dateCreatedMs = Date.now();
       this.patients = [...this.patients, newPatient];
     }

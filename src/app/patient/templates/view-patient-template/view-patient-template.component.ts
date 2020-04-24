@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Patient } from 'src/app/interfaces/patient';
 
 @Component({
@@ -6,13 +6,10 @@ import { Patient } from 'src/app/interfaces/patient';
   templateUrl: './view-patient-template.component.html',
   styleUrls: ['./view-patient-template.component.css']
 })
-export class ViewPatientTemplateComponent implements OnInit {
+export class ViewPatientTemplateComponent {
   @Input()
   patient: Patient;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() { 
   }
-
 }

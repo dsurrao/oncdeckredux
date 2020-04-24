@@ -1,18 +1,22 @@
 <h1>Edit biopsy</h1>
-<div>
-    <input type="date" placeholder="Date Scheduled" name="dateScheduled" 
-    [(ngModel)]="biopsy.dateScheduled"/>
-    <br/>
+<form (ngSubmit)="save()" #biopsyForm="ngForm">
+    <mat-form-field class="patient-full-width">
+        <input matInput type="date" placeholder="Date Scheduled" name="dateScheduled" 
+        [(ngModel)]="biopsy.dateScheduled" required/>
+    </mat-form-field>
 
-    <input type="text" placeholder="Facility Name" name="facilityName" 
-    [(ngModel)]="biopsy.facilityName"/>
-    <br/>
+    <mat-form-field class="patient-full-width">
+        <input matInput type="text" placeholder="Facility Name" name="facilityName" 
+        [(ngModel)]="biopsy.facilityName" required/>
+    </mat-form-field>
 
-    <input type="text" placeholder="Provider Name" name="providerName" 
-    [(ngModel)]="biopsy.providerName"/>
-    <br/>
+    <mat-form-field class="patient-full-width">
+        <input matInput type="text" placeholder="Provider Name" name="providerName" 
+        [(ngModel)]="biopsy.providerName" required/>
+    </mat-form-field>
 
-    <button (click)="save()">
+    <button type="submit" mat-raised-button color="primary" 
+        [disabled]="!biopsyForm.form.valid">
         Save
     </button>
-</div>
+</form>

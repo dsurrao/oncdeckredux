@@ -1,9 +1,7 @@
-{{patient.demog.firstName}} {{patient.demog.middleName}} {{patient.demog.lastName}}
-<br/>
-{{patient.demog.dateOfBirth}} {{patient.demog.gender}}
-
-<div *ngFor="let biopsy of patient.biopsies">
-    {{biopsy.dateScheduled}}<br/>
-    {{biopsy.facilityName}}<br/>
-    {{biopsy.providerName}}
-</div>
+<span>
+    {{patient.demog.firstName}} {{patient.demog.middleName}} {{patient.demog.lastName}}
+    ({{patient.demog.dateOfBirth}} {{patient.demog.gender}})
+</span>
+<span class="example-fill-remaining-space"></span>
+<mat-icon aria-hidden="false" aria-label="Add patient" 
+    routerLink="../edit_patient">edit</mat-icon>

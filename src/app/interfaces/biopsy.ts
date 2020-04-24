@@ -3,5 +3,4 @@ export interface Biopsy {
     dateScheduled: Date;
     facilityName: string;
     providerName: string;
-    patientId: string;
 }

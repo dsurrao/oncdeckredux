@@ -1,17 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { patientReducer } from './store/patient/patient.reducers';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
+import { SidenavComponent } from './navmenu/sidenav/sidenav.component';
+import { ToolbarComponent } from './navmenu/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidenavComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -25,8 +34,15 @@ import { EffectsModule } from '@ngrx/effects';
       //logOnly: environment.production, // Restrict extension to log-only mode
     }),
     EffectsModule.forRoot([]),
+    MatListModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule
   ],
-  providers: [],
+  providers: [
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,6 +10,16 @@ export const fetchPatientsSuccess = createAction(
     props<{payload: Patient[]}>()
 );
 
+export const fetchPatient = createAction(
+    'Fetch Patient',
+    props<{payload: string}>()
+);
+
+export const fetchPatientSuccess = createAction(
+    'Fetch Patient Success',
+    props<{payload: Patient}>()
+);
+
 export const addPatient = createAction(
     'Add Patient',
     props<{payload: Patient}>());
@@ -27,3 +37,4 @@ export const deletePatient = createAction(
 export const deletePatientSuccess = createAction(
     'Delete Patient Success'
 );
+

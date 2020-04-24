@@ -4,24 +4,37 @@ import { EditBiopsyComponent } from './containers/edit-biopsy/edit-biopsy.compon
 import { ViewBiopsyComponent } from './containers/view-biopsy/view-biopsy.component';
 import { ViewBiopsyTemplateComponent } from './views/view-biopsy-template/view-biopsy-template.component';
 import { EditBiopsyTemplateComponent } from './views/edit-biopsy-template/edit-biopsy-template.component';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { BiopsyListComponent } from './containers/biopsy-list/biopsy-list.component';
+import { BiopsyListTemplateComponent } from './views/biopsy-list-template/biopsy-list-template.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
-  {path: 'view_biopsy/:biopsyId', component: ViewBiopsyComponent},
+  {path: '', component: BiopsyListComponent},
   {path: 'edit_biopsy', component: EditBiopsyComponent},
-  {path: 'edit_biopsy/:biopsyId', component: EditBiopsyComponent}
+  {path: 'edit_biopsy/:biopsyId', component: EditBiopsyComponent},
+  {path: 'view_biopsy/:biopsyId', component: ViewBiopsyComponent}
 ];
 
 @NgModule({
   declarations: [EditBiopsyComponent, 
     ViewBiopsyComponent, 
     ViewBiopsyTemplateComponent, 
-    EditBiopsyTemplateComponent
+    EditBiopsyTemplateComponent, 
+    BiopsyListComponent, BiopsyListTemplateComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(routes),
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule
   ]
 })
 export class BiopsyModule { }

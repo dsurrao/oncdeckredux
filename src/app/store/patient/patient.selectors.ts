@@ -1,6 +1,9 @@
 import {createSelector } from '@ngrx/store';
 import { AppState } from './patient.reducers';
 
+export const getSearchCriteria = 
+    (state: {patients: AppState}) => state.patients.searchCriteria;
+
 export const selectAllPatients = 
     (state: {patients: AppState}) => state.patients.patientList;
 
@@ -17,3 +20,4 @@ export const selectPatient = createSelector(
     selectOnePatient,
     (patient) => patient
 );
+

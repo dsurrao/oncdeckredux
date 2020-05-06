@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { Patient } from '../../../interfaces/patient';
-import { fetchPatients, deletePatient } from '../../../store/patient/patient.actions';
 import { Title } from '@angular/platform-browser';
-import { selectPatients } from 'src/app/store/patient/patient.selectors';
+import { selectPatients, getSearchCriteria } from 'src/app/store/patient/patient.selectors';
+import { fetchPatients } from 'src/app/store/patient/patient.actions';
+import { PatientSearchCriteria } from 'src/app/interfaces/patient-search-criteria';
+import { take } from 'rxjs/operators';
 
 /**
- * @title Patient list
+ * @title Patient List
  */
 @Component({
   selector: 'app-patient-list',
@@ -16,32 +18,23 @@ import { selectPatients } from 'src/app/store/patient/patient.selectors';
 })
 export class PatientListComponent implements OnInit {
   patients$: Observable<Patient[]>;
+  searchCriteria$: Observable<PatientSearchCriteria>;
+  subscription: Subscription;
   title: string;
 
-  constructor(private store: Store, 
-    private titleService: Title) {
-      this.title = titleService.getTitle();
-
-      // sort patients in reverse order of created date
-      // this.patients$ = store.pipe(
-      //   map(store => {
-      //     return [...store.patients].sort((a, b) => {
-      //       if (a.dateCreatedMs > b.dateCreatedMs) return 1
-      //       else if (a.dateCreatedMs == b.dateCreatedMs) return 0
-      //       else return -1;
-      //     })
-      //   })
-      // );
-
-      this.patients$ = store.pipe(select(selectPatients));
+  constructor(private store: Store, private titleService: Title) {
+    this.title = titleService.getTitle();
+    this.patients$ = this.store.pipe(select(selectPatients));    
   }
 
-  ngOnInit(): void {
-    this.store.dispatch(fetchPatients());
+  ngOnInit() {
+    this.searchCriteria$ = this.store.pipe(select(getSearchCriteria), take(1));
+    this.subscription = this.searchCriteria$.subscribe(searchCriteria =>
+      this.store.dispatch(fetchPatients({payload: searchCriteria}))
+    );
   }
 
-  deletePatient(patient: Patient) {
-    //window.alert("delete");
-    this.store.dispatch(deletePatient({payload: patient.id}));
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

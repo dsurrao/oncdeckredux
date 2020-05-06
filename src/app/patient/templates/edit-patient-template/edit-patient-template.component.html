@@ -26,7 +26,10 @@
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit" 
-    [disabled]="!patientForm.form.valid">
+        [disabled]="!patientForm.form.valid">
         Save
+    </button>
+    <button mat-raised-button (click)="cancel()">
+        Cancel
     </button>
 </form>

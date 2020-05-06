@@ -13,6 +13,9 @@ export class EditBiopsyTemplateComponent implements OnInit {
   @Output()
   onSave = new EventEmitter<Biopsy>();
 
+  @Output()
+  onCancel = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -20,5 +23,9 @@ export class EditBiopsyTemplateComponent implements OnInit {
 
   save() {
     this.onSave.emit(this.biopsy);
+  }
+
+  cancel() {
+    this.onCancel.emit();
   }
 }

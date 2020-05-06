@@ -1,0 +1,8 @@
+<h2>Filter List</h2>
+<form (ngSubmit)="save()">
+    <mat-checkbox type="checkbox" 
+        name="scheduledBiopsiesOnly"
+        [(ngModel)]="scheduledBiopsiesOnly"
+        (change)="save()">Scheduled biopsies
+    </mat-checkbox>
+</form>

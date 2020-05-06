@@ -21,13 +21,11 @@
 
         <!-- patient list menu -->
         <ng-template #listBlock>
-            <mat-nav-list>
-                <a mat-list-item routerLink="/">Back To Patient List</a>
-            </mat-nav-list>
+            <app-search-criteria></app-search-criteria>
         </ng-template>        
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content class="oncdeck_body">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

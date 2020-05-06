@@ -3,24 +3,49 @@ import { Observable } from 'rxjs';
 import { Patient } from '../../interfaces/patient';
 import { of } from 'rxjs';
 import { PatientService } from './patient.service';
+import { PatientSearchCriteria } from 'src/app/interfaces/patient-search-criteria';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrowserSessionPatientService extends PatientService {
-  patients: Patient[] = [{
+  patients: Patient[] = [
+    {
       id: 'abcd',
-      demog: {firstName: 'Robyn', lastName: 'Gal', gender: 'Female', 
+      demog: {firstName: 'PatientA', lastName: 'Smith', gender: 'Female', 
           dateOfBirth: '1999-01-20'},
+      biopsies: [{
+        id: null,
+        dateScheduled: new Date('2021-02-23'),
+        facilityName: 'ABC Hospital',
+        providerName: 'Dr. X'
+      }],
       dateCreatedMs: Date.now()
-  }];
+    },
+    {
+      id: 'abcd2',
+      demog: {firstName: 'PatientB', lastName: 'Jones', gender: 'Female', 
+        dateOfBirth: '2002-01-20'},
+      biopsies: [{
+        id: null,
+        dateScheduled: new Date('2020-05-01'),
+        facilityName: 'ABC Hospital',
+        providerName: 'Dr. Y'
+      }],
+      dateCreatedMs: Date.now()
+    }
+  ];
 
   constructor() {
     super();
   }
 
-  getPatients(): Observable<Patient[]> {
-    return of(this.patients);
+  getPatients(criteria?: PatientSearchCriteria): Observable<Patient[]> {
+    let filteredPatients: Patient[] = this.patients;
+    if (criteria != null) {
+      filteredPatients = this.applySearchCriteria(this.patients, criteria)
+    }
+    return of(filteredPatients);
   }
 
   getPatient(patientId: string): Observable<Patient> {

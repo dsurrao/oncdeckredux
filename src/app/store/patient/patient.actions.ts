@@ -2,8 +2,17 @@
 
 import { createAction, props } from '@ngrx/store';
 import { Patient } from '../../interfaces/patient';
+import { PatientSearchCriteria } from 'src/app/interfaces/patient-search-criteria';
 
-export const fetchPatients = createAction('Fetch Patients');
+export const createSearchCriteria = createAction(
+    'Create Search Criteria',
+    props<{payload: PatientSearchCriteria}>()
+);
+
+export const fetchPatients = createAction(
+    'Fetch Patients',
+    props<{payload: PatientSearchCriteria}>()
+);
 
 export const fetchPatientsSuccess = createAction(
     'Fetch Patients Success',

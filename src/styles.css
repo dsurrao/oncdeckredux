@@ -9,3 +9,12 @@ table { width: 100%; }
         Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
  }
+
+ .oncdeck_center {
+    text-align: center;
+}
+
+.oncdeck_body {
+    padding-top: 10px;
+    padding-left: 10px;
+}

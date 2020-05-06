@@ -37,8 +37,16 @@ export class EditPatientComponent implements OnInit {
       this.router.navigateByUrl('/patient/' + patient.id + '/view_patient');
     }
     else {
+        // todo: waiting for service to generate patient id
       this.router.navigateByUrl('/patient');
     }
+  }
+
+  cancel(): void {
+    this.router.navigateByUrl('/patient');
+
+    // this.router.navigateByUrl(
+    //   this.router.getCurrentNavigation().previousNavigation.finalUrl);
   }
 
   createNewPatient(): Patient {

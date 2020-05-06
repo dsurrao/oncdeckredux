@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { SidenavComponent } from './navmenu/sidenav/sidenav.component';
 import { ToolbarComponent } from './navmenu/toolbar/toolbar.component';
+import { PatientModule } from './patient/patient.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ToolbarComponent } from './navmenu/toolbar/toolbar.component';
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    PatientModule
   ],
   providers: [
     Title

@@ -11,7 +11,20 @@ export class PatientEffects {
     fetchPatients$ = createEffect(
         () => this.actions$.pipe(
             ofType('Fetch Patients'),
-            mergeMap(() => this.patientService.getPatients()
+            mergeMap(action => this.patientService.getPatients(action['payload'])
+                .pipe(
+                    map(patients => ({ type: 'Fetch Patients Success',
+                        payload: patients })),
+                    catchError(() => EMPTY)
+                )
+            )
+        )
+    );
+
+    createSearchCriteria$ = createEffect(
+        () => this.actions$.pipe(
+            ofType('Create Search Criteria'),
+            mergeMap(action => this.patientService.getPatients(action['payload'])
                 .pipe(
                     map(patients => ({ type: 'Fetch Patients Success',
                         payload: patients })),

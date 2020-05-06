@@ -12,7 +12,7 @@ export class PatientService implements IPatientService {
 
   constructor() { }
 
-  getPatients(): Observable<Patient[]> {    
+  getPatients(criteria?: PatientSearchCriteria): Observable<Patient[]> {    
     return of ([]);
   }
 
@@ -33,30 +33,38 @@ export class PatientService implements IPatientService {
     return uuidv4();
   }
 
-  searchPatients(criteria: PatientSearchCriteria): Observable<Patient[]>
-  {
-    let searchResults: Patient[] = [];
-
-    let subscription = this.getPatients().subscribe(patients => {
-      searchResults = this.applySearchCriteria(patients, criteria);
-    });
-    subscription.unsubscribe();
-
-    return of(searchResults);
-  }
-
   applySearchCriteria(patients: Patient[], 
     criteria: PatientSearchCriteria): Patient[]
   {
-    // todo: use lodash for deep cloning
-    let searchResults = [...patients];
+    let searchResults = patients;
 
-    if (searchResults.length > 0 && criteria.demog != null) {
-      if (criteria.demog.name != null) {
-        searchResults = searchResults.filter(patient => 
-          patient.demog.firstName.toLowerCase().indexOf(criteria.demog.name) != -1
-          || patient.demog.lastName.toLowerCase().indexOf(criteria.demog.name) != -1
-        );
+    if (searchResults.length > 0) {
+      if (criteria.demog != null) {
+        if (criteria.demog.name != null) {
+          searchResults = searchResults.filter(patient => 
+            patient.demog.firstName.toLowerCase().indexOf(criteria.demog.name) != -1
+            || patient.demog.lastName.toLowerCase().indexOf(criteria.demog.name) != -1
+          );
+        }
+      }
+
+      if (criteria.biopsies != null) {
+        if (criteria.biopsies.isScheduled) {
+          searchResults = searchResults.filter(patient => {
+            if (patient.biopsies != null) {
+              if (patient.biopsies.findIndex(biopsy => 
+                new Date(biopsy.dateScheduled) >= new Date()) != -1) {
+                return true;
+              }
+              else {
+                return false;
+              }
+            }
+            else {
+              return false;
+            }
+          });
+        }
       }
     }
 

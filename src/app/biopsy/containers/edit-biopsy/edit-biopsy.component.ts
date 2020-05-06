@@ -35,6 +35,10 @@ export class EditBiopsyComponent implements OnInit {
     this.router.navigateByUrl('/patient/' + this.patientId + '/view_patient');
   }
 
+  cancel() {
+    this.router.navigateByUrl('/patient/' + this.patientId + '/biopsy');
+  }
+
   createNewBiopsy(): Biopsy {
     return {
       id: null,

@@ -1,15 +1,1 @@
-<div style="display: flex;">
-    <h1>Patient List</h1>
-    <span class="example-fill-remaining-space"></span>
-    <mat-icon aria-hidden="false" aria-label="Add patient"
-        routerLink="/patient/new_patient">add</mat-icon>
-</div>
-
-<mat-action-list>
-    <mat-list-item *ngFor="let patient of patients$ | async">
-        <a matLine routerLink="{{patient.id}}/view_patient">
-            {{patient.demog.firstName}} {{patient.demog.lastName}}</a>
-        <button mat-list-item (click)="deletePatient(patient)"> Delete </button>
-     </mat-list-item>
-</mat-action-list>
- 
+<app-patient-list-template [patients]="patients$ | async"></app-patient-list-template>

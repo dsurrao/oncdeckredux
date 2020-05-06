@@ -16,6 +16,9 @@ export class EditPatientTemplateComponent implements OnInit {
   @Output()
   onSave = new EventEmitter<Patient>();
 
+  @Output()
+  onCancel = new EventEmitter();
+
   constructor() { 
   }
 
@@ -25,5 +28,9 @@ export class EditPatientTemplateComponent implements OnInit {
 
   save() {
     this.onSave.emit(this.patientClone);
+  }
+
+  cancel() {
+    this.onCancel.emit();
   }
 }

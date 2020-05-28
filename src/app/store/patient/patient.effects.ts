@@ -1,94 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
-import { BrowserSessionPatientService } from 'src/app/services/patient/browser-session-patient.service';
-import { BiopsyService } from 'src/app/services/biopsy/biopsy.service';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import * as patientActions from './patient.actions';
+import * as biopsyActions from '../biopsy/biopsy.actions';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class PatientEffects {
 
-    fetchPatients$ = createEffect(
-        () => this.actions$.pipe(
-            ofType('Fetch Patients'),
-            mergeMap(action => this.patientService.getPatients(action['payload'])
-                .pipe(
-                    map(patients => ({ type: 'Fetch Patients Success',
-                        payload: patients })),
-                    catchError(() => EMPTY)
-                )
-            )
-        )
-    );
+  /// navigate back to patient view after update
+  upsertPatient$ = createEffect(() => this.actions$.pipe(
+      ofType(patientActions.upsertPatient),
+      tap((action) => this.router.navigateByUrl('/patients/' 
+        + action.patient.id))
+    ),
+    { dispatch: false }
+  );
 
-    createSearchCriteria$ = createEffect(
-        () => this.actions$.pipe(
-            ofType('Create Search Criteria'),
-            mergeMap(action => this.patientService.getPatients(action['payload'])
-                .pipe(
-                    map(patients => ({ type: 'Fetch Patients Success',
-                        payload: patients })),
-                    catchError(() => EMPTY)
-                )
-            )
-        )
-    );
+  upsertBiopsy$ = createEffect(() => this.actions$.pipe(
+      ofType(biopsyActions.upsertBiopsy),
+      tap((action) => this.router.navigateByUrl('/patients/' 
+        + action.patientId))
+    ),
+    { dispatch: false }
+  );
 
-    // todo: create constants for action types
-    fetchPatient$ = createEffect(
-        () => this.actions$.pipe(
-            ofType('Fetch Patient'),
-            mergeMap(action => this.patientService.getPatient(action['payload'])
-                .pipe(
-                    map(patient => ({ type: 'Fetch Patient Success',
-                        payload: patient})),
-                    catchError(() => EMPTY)
-                )
-            )
-        )
-    );
-    
-    addPatient$ = createEffect(
-        () => this.actions$.pipe(
-            ofType('Add Patient'),
-            mergeMap(action => this.patientService.putPatient(action['payload'])
-                .pipe(
-                    map(patient => ({ type: 'Add Patient Success', 
-                                        payload: patient })),
-                    catchError(() => EMPTY)
-                )
-            )
-        )
-    );
-    
-    deletePatient$ = createEffect(
-        () => this.actions$.pipe(
-            ofType('Delete Patient'),
-            mergeMap(action => this.patientService.deletePatient(action['payload'])
-                .pipe(
-                    map(result => ({ type: 'Delete Patient Success' })),
-                    catchError(() => EMPTY)
-                )
-            )
-        )
-    );
+  constructor(private actions$: Actions,
+    private router: Router) {}
 
-    addBiopsy$ = createEffect(
-        () => this.actions$.pipe(
-            ofType('Add Biopsy'),
-            mergeMap(action => this.biopsyService.putBiopsy(action['payload'])
-                .pipe(
-                    map(payload => ({ type: 'Add Biopsy Success', 
-                                        payload: payload })),
-                    catchError(() => EMPTY)
-                )
-            )
-        )
-    );
-
-    constructor(
-        private actions$: Actions,
-        private patientService: BrowserSessionPatientService,
-        private biopsyService: BiopsyService
-    ) {}
 }

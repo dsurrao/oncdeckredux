@@ -1,30 +1,53 @@
 import { createAction, props } from '@ngrx/store';
-import { Biopsy } from 'src/app/interfaces/biopsy';
+import { Update } from '@ngrx/entity';
 
-// payload: patientId
-export const fetchBiopsies = createAction('Fetch Biopsies',
-    props<{payload: string}>()
+import { Biopsy } from '../../models/biopsy.model';
+
+export const loadBiopsys = createAction(
+  '[Biopsy/API] Load Biopsys', 
+  props<{ biopsys: Biopsy[] }>()
 );
 
-export const fetchBiopsiesSuccess = createAction('Fetch Biopsies Success',
-    props<{payload: {biopsies: Biopsy[], patientId: string}}>()
+export const addBiopsy = createAction(
+  '[EditBiopsyComponent] Add Biopsy',
+  props<{ patientId: string, biopsy: Biopsy }>()
 );
 
-// todo: add failure actions
-
-// payload: biopsyId
-export const fetchBiopsy = createAction('Fetch Biopsy',
-    props<{payload: string}>()
+export const upsertBiopsy = createAction(
+  '[EditBiopsyComponent] Upsert Biopsy',
+  props<{ patientId: string, biopsy: Biopsy }>()
 );
 
-export const fetchBiopsySuccess = createAction('Fetch Biopsy Success',
-    props<{payload: Biopsy}>()
+export const addBiopsys = createAction(
+  '[Biopsy/API] Add Biopsys',
+  props<{ biopsys: Biopsy[] }>()
 );
 
-export const addBiopsy = createAction('Add Biopsy',
-    props<{payload: {biopsy: Biopsy, patientId: string}}>()
+export const upsertBiopsys = createAction(
+  '[Biopsy/API] Upsert Biopsys',
+  props<{ biopsys: Biopsy[] }>()
 );
 
-export const addBiopsySuccess = createAction('Add Biopsy Success',
-    props<{payload: {biopsy: Biopsy, patientId: string}}>()
+export const updateBiopsy = createAction(
+  '[Biopsy/API] Update Biopsy',
+  props<{ biopsy: Update<Biopsy> }>()
+);
+
+export const updateBiopsys = createAction(
+  '[Biopsy/API] Update Biopsys',
+  props<{ biopsys: Update<Biopsy>[] }>()
+);
+
+export const deleteBiopsy = createAction(
+  '[Biopsy/API] Delete Biopsy',
+  props<{ id: string }>()
+);
+
+export const deleteBiopsys = createAction(
+  '[Biopsy/API] Delete Biopsys',
+  props<{ ids: string[] }>()
+);
+
+export const clearBiopsys = createAction(
+  '[Biopsy/API] Clear Biopsys'
 );

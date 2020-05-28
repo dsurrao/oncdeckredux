@@ -1,0 +1,4 @@
+<app-toolbar-template [appTitle]="appTitle" 
+    [selectedPatient]="selectedPatient$ | async"
+    [searchCriteria]="searchCriteria$ | async"
+    (onSaveSearchCriteria)="saveSearchCriteria($event)"></app-toolbar-template>

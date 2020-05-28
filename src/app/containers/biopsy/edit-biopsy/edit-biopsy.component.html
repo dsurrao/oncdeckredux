@@ -1,0 +1,4 @@
+<app-edit-biopsy-template [biopsy]="biopsy$ | async" 
+    [patientId]="patientId"
+    (onSave)="save($event)"
+    (onCancel)="cancel()"></app-edit-biopsy-template>

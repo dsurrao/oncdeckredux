@@ -1,0 +1,25 @@
+<h1>Edit biopsy</h1>
+<form (ngSubmit)="save()" #biopsyForm="ngForm">
+    <mat-form-field class="patient-full-width">
+        <input matInput type="date" placeholder="Date Scheduled" name="dateScheduled" 
+        [(ngModel)]="dateScheduled" required/>
+    </mat-form-field>
+
+    <mat-form-field class="patient-full-width">
+        <input matInput type="text" placeholder="Facility Name" name="facilityName" 
+        [(ngModel)]="facilityName" required/>
+    </mat-form-field>
+
+    <mat-form-field class="patient-full-width">
+        <input matInput type="text" placeholder="Provider Name" name="providerName" 
+        [(ngModel)]="providerName" required/>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" 
+        [disabled]="!biopsyForm.form.valid">
+        Save
+    </button>
+    <button mat-raised-button (click)="cancel()">
+        Cancel
+    </button>
+</form>

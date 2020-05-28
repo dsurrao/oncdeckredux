@@ -1,0 +1,17 @@
+<div>
+    <h1>
+        {{patient.firstName}} {{patient.middleName}} 
+        {{patient.lastName}}
+        <mat-icon aria-hidden="false" aria-label="Add patient" 
+            routerLink="/patients/{{patient.id}}/edit">edit</mat-icon>
+    </h1>
+    <h2>{{patient.dateOfBirth}}, {{patient.gender}}</h2>
+
+    <ul>
+        <li *ngFor="let biopsy of biopsies">
+            {{biopsy.facilityName}}
+        </li>
+    </ul>
+
+    <a routerLink="/patients/{{patient.id}}/biopsies/new">add biopsy</a>
+</div>

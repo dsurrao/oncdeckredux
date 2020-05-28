@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "oncdeckredux"
+  "defaultProject": "oncdeckredux",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

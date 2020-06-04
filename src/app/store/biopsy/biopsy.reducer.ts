@@ -1,6 +1,6 @@
 import { createReducer, on, createSelector, createFeatureSelector } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Biopsy } from '../../models/biopsy.model';
+import { Biopsy } from '../../models/biopsy/biopsy.model';
 import * as BiopsyActions from './biopsy.actions';
 
 export const biopsiesFeatureKey = 'biopsies';

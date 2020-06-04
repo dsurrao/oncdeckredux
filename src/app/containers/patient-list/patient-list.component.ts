@@ -8,7 +8,7 @@ import * as fromPatients from '../../store/patient/patient.reducer';
 import * as fromBiopsy from '../../store/biopsy/biopsy.reducer';
 import * as fromSearchCriteria from '../../store/search-criteria/search-criteria.reducer';
 import { map } from 'rxjs/operators';
-import { Biopsy } from 'src/app/models/biopsy.model';
+import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 
 /**
  * @title Patient List
@@ -42,7 +42,7 @@ export class PatientListComponent {
           if (searchCriteria.biopsies.isScheduled) {
             patients = patients.filter(p => p.biopsies.find(
               biopsyId => biopsies.find(
-                b => b.id == biopsyId && Date.parse(b.dateScheduled) > Date.now()) != undefined));
+                b => b.id == biopsyId && Date.parse(b.scheduledDate) > Date.now()) != undefined));
           }
         }
         return patients;

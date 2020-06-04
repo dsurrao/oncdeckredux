@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Patient } from 'src/app/models/patient.model';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-edit-patient-template',
@@ -42,12 +41,6 @@ export class EditPatientTemplateComponent implements OnInit {
   }
 
   save() {
-    if (this.id == '' || this.id == null) {
-      this.id = uuidv4();
-    }
-    if (this.dateCreatedMs == null) {
-      this.dateCreatedMs = Date.now();
-    }
     this.onSave.emit({
       id: this.id,
       firstName: this.firstName,

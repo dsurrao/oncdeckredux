@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-table { width: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-size: larger;}
+table { width: 100%; font-size: larger; }
 
 .example-fill-remaining-space {
     /* This fills the remaining space, by using flexbox. 
@@ -17,4 +18,34 @@ table { width: 100%; }
 .oncdeck_body {
     padding-top: 10px;
     padding-left: 10px;
+}
+
+.patient-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+.patient-full-width {
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.spacer {
+    height: 20px;
+}
+
+mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+
+.showInline {
+    display: inline;
+}
+
+.hide {
+    display: none;
 }

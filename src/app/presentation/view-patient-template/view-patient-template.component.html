@@ -7,11 +7,16 @@
     </h1>
     <h2>{{patient.dateOfBirth}}, {{patient.gender}}</h2>
 
-    <ul>
-        <li *ngFor="let biopsy of biopsies">
-            {{biopsy.facilityName}}
-        </li>
-    </ul>
+    <h2>Biopsies</h2>
+    <mat-action-list>
+        <mat-list-item *ngFor="let biopsy of biopsies">
+            <a matLine routerLink="/patients/{{patient.id}}/biopsies/{{biopsy.id}}">
+                {{biopsy.facilityName}},
+                {{biopsy.providerName}},
+                {{biopsy.dateScheduled}}
+            </a>
+         </mat-list-item>
+    </mat-action-list>
 
-    <a routerLink="/patients/{{patient.id}}/biopsies/new">add biopsy</a>
+    <a routerLink="/patients/{{patient.id}}/biopsies/new">Add Biopsy</a>
 </div>

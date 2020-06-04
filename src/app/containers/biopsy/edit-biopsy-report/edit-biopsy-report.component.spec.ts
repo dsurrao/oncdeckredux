@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditBiopsyTemplateComponent } from './edit-biopsy-template.component';
+import { EditBiopsyReportComponent } from './edit-biopsy-report.component';
 
-describe('EditBiopsyTemplateComponent', () => {
-  let component: EditBiopsyTemplateComponent;
-  let fixture: ComponentFixture<EditBiopsyTemplateComponent>;
+describe('EditBiopsyReportComponent', () => {
+  let component: EditBiopsyReportComponent;
+  let fixture: ComponentFixture<EditBiopsyReportComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditBiopsyTemplateComponent ]
+      declarations: [ EditBiopsyReportComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditBiopsyTemplateComponent);
+    fixture = TestBed.createComponent(EditBiopsyReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -34,3 +34,9 @@ Angular: https://angular.io
 Ngrx: https://ngrx.io (see also Redux docs: https://redux.js.org/)
 
 Rxjs: https://rxjs.dev
+
+Build app for deployment to github pages:
+ng build --prod --output-path docs --base-href /oncdeckredux/
+
+Website:
+https://dsurrao.github.io/oncdeckredux/

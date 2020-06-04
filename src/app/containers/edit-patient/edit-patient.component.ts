@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Store, select } from '@ngrx/store';
 import { Observable } from "rxjs";
+import { v4 as uuidv4 } from 'uuid';
 import { Patient } from 'src/app/models/patient.model';
 import * as patientActions from '../../store/patient/patient.actions';
 import * as fromPatient from '../../store/patient/patient.reducer';
@@ -27,6 +28,15 @@ export class EditPatientComponent implements OnInit {
   }
   
   save(patient: Patient): void {
+    /// todo: move this into service
+    if (patient.id == '' || patient.id == null) {
+      patient.id = uuidv4();
+    }
+
+    if (patient.dateCreatedMs == null) {
+      patient.dateCreatedMs = Date.now();
+    }
+    
     this.store.dispatch(patientActions.upsertPatient({ patient: patient }));
   }
 

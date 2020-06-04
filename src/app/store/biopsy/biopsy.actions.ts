@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { Biopsy } from '../../models/biopsy.model';
+import { Biopsy } from '../../models/biopsy/biopsy.model';
 
 export const loadBiopsys = createAction(
   '[Biopsy/API] Load Biopsys', 

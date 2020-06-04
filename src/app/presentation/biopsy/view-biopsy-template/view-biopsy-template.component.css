@@ -1,0 +1,7 @@
+mat-grid-tile {
+    background: lightblue;
+}
+
+td.title {
+    text-align: end; width: 50%; font-weight: bold;
+}

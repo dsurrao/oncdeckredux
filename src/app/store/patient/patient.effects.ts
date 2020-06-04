@@ -20,7 +20,7 @@ export class PatientEffects {
   upsertBiopsy$ = createEffect(() => this.actions$.pipe(
       ofType(biopsyActions.upsertBiopsy),
       tap((action) => this.router.navigateByUrl('/patients/' 
-        + action.patientId))
+        + action.patientId + '/biopsies/' + action.biopsy.id))
     ),
     { dispatch: false }
   );

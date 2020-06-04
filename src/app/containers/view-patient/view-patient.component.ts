@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Patient } from 'src/app/models/patient.model';
 import * as fromPatient from 'src/app/store/patient/patient.reducer';
 import * as fromBiopsy from 'src/app/store/biopsy/biopsy.reducer';
-import { Biopsy } from 'src/app/models/biopsy.model';
+import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 import { mergeMap } from 'rxjs/operators';
 
 @Component({

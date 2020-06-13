@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Store, select } from '@ngrx/store';
 import { Observable } from "rxjs";
 import { v4 as uuidv4 } from 'uuid';
-import { Patient } from 'src/app/models/patient.model';
+import { Patient } from 'src/app/models/common/patient.model';
 import * as patientActions from '../../store/patient/patient.actions';
 import * as fromPatient from '../../store/patient/patient.reducer';
 

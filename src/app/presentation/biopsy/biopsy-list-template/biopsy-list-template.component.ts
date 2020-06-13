@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Patient } from 'src/app/interfaces/patient';
+import { Patient } from 'src/app/models/common/patient.model';
 
 @Component({
   selector: 'app-biopsy-list-template',

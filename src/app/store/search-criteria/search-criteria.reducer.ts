@@ -1,5 +1,5 @@
 import { createReducer, on, createSelector, createFeatureSelector } from "@ngrx/store";
-import { PatientSearchCriteria } from '../../models/patient-search-criteria.model';
+import { PatientSearchCriteria } from '../../models/common/patient-search-criteria.model';
 import * as searchCriteriaActions from './search-criteria.actions';
 
 export const searchCriteriaFeatureKey = 'searchCriteria';

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { PatientSearchCriteria } from '../../models/patient-search-criteria.model';
+import { PatientSearchCriteria } from '../../models/common/patient-search-criteria.model';
 
 export const loadSearchCriteria = createAction(
   '[SearchCriteria] Load SearchCriteria'

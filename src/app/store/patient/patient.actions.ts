@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Patient } from '../../models/patient.model';
+import { Patient } from '../../models/common/patient.model';
 
 export const loadPatients = createAction(
   '[Patient/API] Load Patients', 

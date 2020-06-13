@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 import * as fromPatient from 'src/app/store/patient/patient.reducer';
 import * as fromBiopsy from 'src/app/store/biopsy/biopsy.reducer';
-import { Patient } from 'src/app/models/patient.model';
+import { Patient } from 'src/app/models/common/patient.model';
 
 @Component({
   selector: 'app-view-biopsy',

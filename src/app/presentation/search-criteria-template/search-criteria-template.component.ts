@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { PatientSearchCriteria } from 'src/app/models/patient-search-criteria.model';
+import { PatientSearchCriteria } from 'src/app/models/common/patient-search-criteria.model';
 
 @Component({
   selector: 'app-search-criteria-template',

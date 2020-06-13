@@ -1,15 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { BiopsyTypeEnum } from '../../../models/biopsy/biopsy-type-enum';
-import { BiopsySiteEnum } from 'src/app/models/biopsy/biopsy-site-enum';
-import { BiopsyHistologyEnum } from 'src/app/models/biopsy/biopsy-histology-enum';
-import { BiopsyGradeEnum } from 'src/app/models/biopsy/biopsy-grade-enum';
-import { BiopsyReceptorStatusEnum } from 'src/app/models/biopsy/biopsy-receptor-status-enum';
-import { BiopsyReceptorStrengthEnum } from 'src/app/models/biopsy/biopsy-receptor-strength-enum';
-import { Her2TestEnum } from 'src/app/models/biopsy/her2-test-enum';
-import { LymphNodeLocationEnum } from 'src/app/models/biopsy/lymph-node-location-enum';
-import { SideEnum } from 'src/app/models/side-enum';
-import { BiopsyLviStatusEnum } from 'src/app/models/biopsy/biopsy-lvi-status-enum';
+import { BiopsyTypeEnum } from '../../../models/enums/biopsy-type.enum';
+import { BiopsySiteEnum } from 'src/app/models/enums/biopsy-site.enum';
+import { HistologyEnum } from 'src/app/models/enums/histology.enum';
+import { GradeEnum } from 'src/app/models/enums/grade.enum';
+import { ReceptorStatusEnum } from 'src/app/models/enums/receptor-status.enum';
+import { ReceptorStrengthEnum } from 'src/app/models/enums/receptor-strength.enum';
+import { Her2TestEnum } from 'src/app/models/enums/her2-test.enum';
+import { LymphNodeLocationEnum } from 'src/app/models/enums/lymph-node-location-enum';
+import { SideEnum } from 'src/app/models/enums/side.enum';
+import { LviStatusEnum } from 'src/app/models/enums/lvi-status.enum';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 
 @Component({
@@ -80,11 +80,11 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   /// references to the enum types
   biopsyTypeEnum = BiopsyTypeEnum;
   biopsySiteEnum = BiopsySiteEnum;
-  biopsyHistologyEnum = BiopsyHistologyEnum;
-  biopsyGradeEnum = BiopsyGradeEnum;
-  biopsyLviStatusEnum = BiopsyLviStatusEnum;
-  biopsyReceptorStatusEnum = BiopsyReceptorStatusEnum;
-  biopsyReceptorStrengthEnum = BiopsyReceptorStrengthEnum;
+  biopsyHistologyEnum = HistologyEnum;
+  biopsyGradeEnum = GradeEnum;
+  biopsyLviStatusEnum = LviStatusEnum;
+  biopsyReceptorStatusEnum = ReceptorStatusEnum;
+  biopsyReceptorStrengthEnum = ReceptorStrengthEnum;
   her2TestEnum = Her2TestEnum;
   lymphNodeLocationEnum = LymphNodeLocationEnum;
   sideEnum = SideEnum;

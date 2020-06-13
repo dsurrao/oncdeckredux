@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Patient } from 'src/app/models/patient.model';
+import { Patient } from 'src/app/models/common/patient.model';
 
 @Component({
   selector: 'app-edit-patient-template',

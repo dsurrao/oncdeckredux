@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, Input, Output, EventEmitter, 
   OnChanges, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { PatientSearchCriteria } from 'src/app/models/patient-search-criteria.model';
-import { Patient } from 'src/app/models/patient.model';
+import { PatientSearchCriteria } from 'src/app/models/common/patient-search-criteria.model';
+import { Patient } from 'src/app/models/common/patient.model';
 
 @Component({
   selector: 'app-toolbar-template',

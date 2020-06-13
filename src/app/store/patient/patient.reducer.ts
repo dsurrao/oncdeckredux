@@ -1,9 +1,10 @@
 import { createReducer, on, createSelector, createFeatureSelector } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as _ from 'lodash';
-import { Patient } from '../../models/patient.model';
+import { Patient } from '../../models/common/patient.model';
 import * as PatientActions from './patient.actions';
 import * as BiopsyActions from '../biopsy/biopsy.actions';
+import * as AppointmentActions from '../appointment/appointment.actions';
 
 export const patientsFeatureKey = 'patients';
 
@@ -59,6 +60,7 @@ export const reducer = createReducer(
   ),
   on(BiopsyActions.upsertBiopsy,
     (state, action) => {
+      // append biopsy id for specified patient
       const patient: Patient = _.cloneDeep(state.entities[action.patientId]);
       if (patient.biopsies == null) {
         patient.biopsies = [];
@@ -66,9 +68,19 @@ export const reducer = createReducer(
       patient.biopsies.push(action.biopsy.id);
       return {...state, entities: {...state.entities, [action.patientId]: patient}};
     }
+  ),
+  on(AppointmentActions.upsertAppointment,
+    (state, action) => {
+      // append appointment id for specified patient
+      const patient: Patient = _.cloneDeep(state.entities[action.patientId]);
+      if (patient.appointmentIds == null) {
+        patient.appointmentIds = [];
+      }
+      patient.appointmentIds.push(action.appointment.id);
+      return {...state, entities: {...state.entities, [action.patientId]: patient}};
+    }
   )
 );
-
 
 export const {
   selectIds,

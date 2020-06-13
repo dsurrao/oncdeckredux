@@ -38,6 +38,18 @@ import { EffectsModule } from '@ngrx/effects';
 import { PatientEffects } from './store/patient/patient.effects';
 import { EditBiopsyReportComponent } from './containers/biopsy/edit-biopsy-report/edit-biopsy-report.component';
 import { EditBiopsyReportTemplateComponent } from './presentation/biopsy/edit-biopsy-report-template/edit-biopsy-report-template.component';
+import { EditSurgicalPathologyTemplateComponent } from './presentation/surgery/edit-surgical-pathology-template/edit-surgical-pathology-template.component';
+import { EditAppointmentTemplateComponent } from './presentation/appointment/edit-appointment-template/edit-appointment-template.component';
+import { ViewAppointmentTemplateComponent } from './presentation/appointment/view-appointment-template/view-appointment-template.component';
+import { ViewSurgicalPathologyTemplateComponent } from './presentation/surgery/view-surgical-pathology-template/view-surgical-pathology-template.component';
+import { EditAppointmentComponent } from './containers/appointment/edit-appointment/edit-appointment.component';
+import { ViewAppointmentComponent } from './containers/appointment/view-appointment/view-appointment.component';
+import { ViewSurgicalPathologyComponent } from './containers/surgery/view-surgical-pathology/view-surgical-pathology.component';
+import { EditSurgicalPathologyComponent } from './containers/surgery/edit-surgical-pathology/edit-surgical-pathology.component';
+import { EditProcedureComponent } from './containers/procedure/edit-procedure/edit-procedure.component';
+import { ViewProcedureComponent } from './containers/procedure/view-procedure/view-procedure.component';
+import { ViewProcedureTemplateComponent } from './presentation/procedure/view-procedure-template/view-procedure-template.component';
+import { EditProcedureTemplateComponent } from './presentation/procedure/edit-procedure-template/edit-procedure-template.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +67,19 @@ import { EditBiopsyReportTemplateComponent } from './presentation/biopsy/edit-bi
     ViewBiopsyComponent,
     ViewBiopsyTemplateComponent,
     EditBiopsyReportComponent,
-    EditBiopsyReportTemplateComponent
+    EditBiopsyReportTemplateComponent,
+    EditSurgicalPathologyTemplateComponent,
+    EditAppointmentTemplateComponent,
+    ViewAppointmentTemplateComponent,
+    ViewSurgicalPathologyTemplateComponent,
+    EditAppointmentComponent,
+    ViewAppointmentComponent,
+    ViewSurgicalPathologyComponent,
+    EditSurgicalPathologyComponent,
+    EditProcedureComponent,
+    ViewProcedureComponent,
+    ViewProcedureTemplateComponent,
+    EditProcedureTemplateComponent
   ],
   imports: [
     BrowserModule,

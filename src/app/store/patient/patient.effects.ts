@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import * as patientActions from './patient.actions';
-import * as biopsyActions from '../biopsy/biopsy.actions';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import * as patientActions from './patient.actions';
+import * as biopsyActions from '../biopsy/biopsy.actions';
+import * as appointmentActions from '../appointment/appointment.actions';
 
 @Injectable()
 export class PatientEffects {
@@ -23,6 +24,14 @@ export class PatientEffects {
         + action.patientId + '/biopsies/' + action.biopsy.id))
     ),
     { dispatch: false }
+  );
+
+  upsertAppointment$ = createEffect(() => this.actions$.pipe(
+      ofType(appointmentActions.upsertAppointment),
+      tap((action) => this.router.navigateByUrl('/patients/'
+        + action.patientId))
+    ),
+    { dispatch: false}
   );
 
   constructor(private actions$: Actions,

@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/docs
 # Only exists if Bazel was run
 /bazel-out
 
@@ -45,6 +46,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# do not check in urls and credentials
-/src/environments/environment.ts
+# do not check in production urls and credentials
 /src/environments/environment.prod.ts

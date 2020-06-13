@@ -2,26 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
-This Angular app has VERY basic functionality of displaying a list of patients, and allows adding to and deleting from the list.
+This Angular app has basic functionality of displaying a list of patients, and allows adding to and deleting from the list.
 
-The data source is a CouchDB instance which the app accesses directly via the CouchDB HTTP API.
+**See wiki page for more details**
 
-No PouchDB instance has been used in this case.
+https://github.com/dsurrao/oncdeckredux/wiki
 
-## Configuration and build
 
-environment.ts and environment.prod.ts have been added to .gitignore
-
-Before building, add a file `src/environments/environment.ts` with the following settings:
+## Building and deploying to Github pages
+Build app for deployment to github pages:
 ```
-export const environment = {
-  production: false,
-  apiUrl: 'couchdb url',
-  username: 'couchdb username',
-  password: 'couchdb password'
-};
+ng build --prod --output-path docs --base-href /oncdeckredux/
 ```
-Similarly, for a production environment, add `src/environments/environment.prod.ts`
+
+Site: https://dsurrao.github.io/oncdeckredux/
 
 ## Development server
 
@@ -35,8 +29,15 @@ Ngrx: https://ngrx.io (see also Redux docs: https://redux.js.org/)
 
 Rxjs: https://rxjs.dev
 
-Build app for deployment to github pages:
-ng build --prod --output-path docs --base-href /oncdeckredux/
 
-Website:
-https://dsurrao.github.io/oncdeckredux/
+Delete github folder
+
+In the command-line, navigate to your local repository.
+Ensure you are in the default branch:
+git checkout master
+The rm -r command will recursively remove your folder:
+git rm -r folder-name
+Commit the change:
+git commit -m "Remove duplicated directory"
+Push the change to your remote repository:
+git push origin master

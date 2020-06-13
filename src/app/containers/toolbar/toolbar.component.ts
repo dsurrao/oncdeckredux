@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, EMPTY, of } from 'rxjs';
-import { PatientSearchCriteria } from 'src/app/models/patient-search-criteria.model';
+import { PatientSearchCriteria } from 'src/app/models/common/patient-search-criteria.model';
 import * as fromPatient from 'src/app/store/patient/patient.reducer';
 import * as searchCriteriaActions from 'src/app/store/search-criteria/search-criteria.actions';
 import * as fromSearchCriteria from 'src/app/store/search-criteria/search-criteria.reducer';
-import { Patient } from 'src/app/models/patient.model';
+import { Patient } from 'src/app/models/common/patient.model';
 import { Router, RouterEvent, Event, NavigationEnd } from '@angular/router';
 import { mergeMap, filter } from 'rxjs/operators';
 

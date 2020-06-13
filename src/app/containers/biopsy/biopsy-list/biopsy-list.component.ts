@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Patient } from 'src/app/models/patient.model';
+import { Patient } from 'src/app/models/common/patient.model';
 
 @Component({
   selector: 'app-biopsy-list',

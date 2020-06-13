@@ -1,0 +1,252 @@
+<h1>Surgical Pathology Report</h1>
+
+<form [formGroup]="surgicalPathologyForm" (ngSubmit)="onSubmit()">
+    <mat-vertical-stepper>
+        <mat-step label="Scheduling">
+            <mat-radio-group formControlName="type">
+                <mat-radio-button value="Lumpectomy">
+                    Lumpectomy
+                </mat-radio-button>
+                <mat-radio-button value="ModifiedRadicalMastectomy">
+                    Modified Radical Mastectomy
+                </mat-radio-button>
+                <mat-radio-button value="Other">
+                    Other
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <div class="spacer"></div>
+
+            <mat-form-field>
+                <input matInput type="date" formControlName="reportDate"
+                    placeholder="Report Date"/>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <input matInput type="text" formControlName="lymphNodeDissectionType" 
+                    placeholder="Lymph Node Dissection Type"/>
+            </mat-form-field>
+
+            <div>
+                <button mat-button matStepperNext type="button">Next</button>
+            </div>
+        </mat-step>
+
+        <mat-step label="Histology">
+            <div formGroupName="histology">
+                <mat-radio-group formControlName="histology">
+                    <mat-radio-button value="{{histologyEnum.InvasiveDuctalCarcinoma}}" >
+                        {{histologyEnum.InvasiveDuctalCarcinoma}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{histologyEnum.InvasiveLobularCarcinoma}}" >
+                        {{histologyEnum.InvasiveLobularCarcinoma}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{histologyEnum.DuctalCarcinomaInSitu}}" >
+                        {{histologyEnum.DuctalCarcinomaInSitu}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{histologyEnum.LobularCarcinomaInSitu}}" >
+                        {{histologyEnum.LobularCarcinomaInSitu}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{histologyEnum.Other}}" >
+                        {{histologyEnum.Other}}
+                    </mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Histology (Other)" 
+                        formControlName="histologyOther"/>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious type="button">Back</button>
+                    <button mat-button matStepperNext type="button">Next</button>
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step label="ER Receptor">
+            <div formGroupName="receptors">
+                <div formGroupName="erReceptor">
+                    <mat-radio-group formControlName="status" aria-label="Estrogen Receptor">
+                        <mat-radio-button value="{{receptorStatusEnum.Positive}}" >
+                            ER+
+                        </mat-radio-button>
+                        <mat-radio-button value="{{receptorStatusEnum.Negative}}" >
+                            ER-
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                    <div class="spacer"></div>
+
+                    <mat-radio-group formControlName="strength"  aria-label="ER strength">
+                        <mat-radio-button value="{{receptorStrengthEnum.Strong}}" >
+                            {{receptorStrengthEnum.Strong}}
+                        </mat-radio-button>
+                        <mat-radio-button value="{{receptorStrengthEnum.Moderate}}" >
+                            {{receptorStrengthEnum.Moderate}}
+                        </mat-radio-button>
+                        <mat-radio-button value="{{receptorStrengthEnum.Weak}}" >
+                            {{receptorStrengthEnum.Weak}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                    <div>
+                        <button mat-button matStepperPrevious type="button">Back</button>
+                        <button mat-button matStepperNext type="button">Next</button>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step label="PR Receptor">
+            <div formGroupName="receptors">
+                <div formGroupName="prReceptor">
+                    <mat-radio-group formControlName="status" 
+                        aria-label="Progesterone Receptor">
+                        <mat-radio-button value="{{receptorStatusEnum.Positive}}" >
+                            PR+
+                        </mat-radio-button>
+                        <mat-radio-button value="{{receptorStatusEnum.Negative}}" >
+                            PR-
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                    <div class="spacer"></div>
+
+                    <mat-radio-group formControlName="strength" 
+                        aria-label="PR strength">
+                        <mat-radio-button value="{{receptorStrengthEnum.Strong}}" >
+                            {{receptorStrengthEnum.Strong}}
+                        </mat-radio-button>
+                        <mat-radio-button value="{{receptorStrengthEnum.Moderate}}" >
+                            {{receptorStrengthEnum.Moderate}}
+                        </mat-radio-button>
+                        <mat-radio-button value="{{receptorStrengthEnum.Weak}}" >
+                            {{receptorStrengthEnum.Weak}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                    <div>
+                        <button mat-button matStepperPrevious type="button">Back</button>
+                        <button mat-button matStepperNext type="button">Next</button>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step label="HER2 Receptor">
+            <div formGroupName="receptors">
+                <div formGroupName="her2Receptor">
+                    <mat-radio-group formControlName="status" 
+                        aria-label="Human Endothelial Growth Receptor 2">
+                        <mat-radio-button value="{{receptorStatusEnum.Positive}}" >
+                            HER2+
+                        </mat-radio-button>
+                        <mat-radio-button value="{{receptorStatusEnum.Negative}}" >
+                            HER2-
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                    <div class="spacer"></div>
+
+                    <mat-radio-group formControlName="test" 
+                        aria-label="Human Endothelial Growth Receptor 2">
+                        <mat-radio-button value="{{her2TestEnum.IHC}}" >
+                            {{her2TestEnum.IHC}}
+                        </mat-radio-button>
+                        <mat-radio-button value="{{her2TestEnum.FISH}}">
+                            {{her2TestEnum.FISH}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <div>
+                    <button mat-button matStepperPrevious type="button">Back</button>
+                    <button mat-button matStepperNext type="button">Next</button>
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step label="Grade">
+            <div formGroupName="features">
+                <mat-radio-group aria-label="Grade"  formControlName="grade">
+                    <mat-radio-button value="{{gradeEnum.Grade1}}">
+                        {{gradeEnum.Grade1}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{gradeEnum.Grade2}}">
+                        {{gradeEnum.Grade2}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{gradeEnum.Grade3}}">
+                        {{gradeEnum.Grade3}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{gradeEnum.UnableToGrade}}">
+                        {{gradeEnum.UnableToGrade}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{gradeEnum.NoGradeGiven}}" >
+                        {{gradeEnum.NoGradeGiven}}
+                    </mat-radio-button>
+                </mat-radio-group>
+
+                <div>
+                    <button mat-button matStepperPrevious type="button">Back</button>
+                    <button mat-button matStepperNext type="button">Next</button>
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step label="LVI">
+            <div formGroupName="features">
+                <mat-radio-group aria-label="LVI" formControlName="lvi">
+                    <mat-radio-button value="{{lviStatusEnum.Positive}}" >
+                        {{lviStatusEnum.Positive}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{lviStatusEnum.Negative}}" >
+                        {{lviStatusEnum.Negative}}
+                    </mat-radio-button>
+                    <mat-radio-button value="{{lviStatusEnum.NotDetermined}}" >
+                        {{lviStatusEnum.NotDetermined}}
+                    </mat-radio-button>
+                </mat-radio-group>
+                <div>
+                    <button mat-button matStepperPrevious type="button">Back</button>
+                    <button mat-button matStepperNext type="button">Next</button>
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step label="Surgical Margins">
+            <div formGroupName="surgicalMargins">
+                <mat-radio-group formControlName="margin">
+                    <mat-radio-button value="Negative" >
+                        Negative/No Ink on Tumor
+                    </mat-radio-button>
+                    <mat-radio-button value="FocallyPositive" >
+                        Focally Positive
+                    </mat-radio-button>
+                    <mat-radio-button value="FocallyNegative" >
+                        Focally Negative
+                    </mat-radio-button>
+                </mat-radio-group>
+                
+                <mat-radio-group formControlName="side">
+                    <mat-radio-button value="Left" >
+                        Left
+                    </mat-radio-button>
+                    <mat-radio-button value="Rigth" >
+                        Right
+                    </mat-radio-button>
+                </mat-radio-group>
+                <div>
+                    <button mat-button matStepperPrevious type="button">Back</button>
+                    <button mat-button matStepperNext type="button">Next</button>
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step label="Done">
+            <div>
+                <button mat-button type="submit">Submit</button>
+                <button mat-button type="button">Cancel</button>
+            </div>
+        </mat-step>
+
+    </mat-vertical-stepper>
+</form>

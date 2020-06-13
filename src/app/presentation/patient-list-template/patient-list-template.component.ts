@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Patient } from '../../models/patient.model';
+import { Patient } from '../../models/common/patient.model';
 
 @Component({
   selector: 'app-patient-list-template',

@@ -1,8 +1,8 @@
-import { BiopsySite } from './biopsy-site';
-import { BiopsyHistology } from './biopsy-histology';
-import { BiopsyReceptors } from './biopsy-receptors';
-import { BiopsyFeatures } from './biopsy-features';
-import { BiopsyTypeEnum } from './biopsy-type-enum';
+import { BiopsySite } from './biopsy-site.model';
+import { Histology } from '../common/histology.model';
+import { Receptors } from '../common/receptors.model';
+import { Features } from '../common/features.model';
+import { BiopsyTypeEnum } from '../enums/biopsy-type.enum';
 
 export interface Biopsy {
   id: string;
@@ -14,7 +14,7 @@ export interface Biopsy {
   pathologyReportDate?: string;
   type?: BiopsyTypeEnum;
   site?: BiopsySite;
-  histology?: BiopsyHistology;
-  receptors?: BiopsyReceptors;
-  features?: BiopsyFeatures;
+  histology?: Histology;
+  receptors?: Receptors;
+  features?: Features;
 }

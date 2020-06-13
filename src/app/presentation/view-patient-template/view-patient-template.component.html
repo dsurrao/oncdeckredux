@@ -7,6 +7,17 @@
     </h1>
     <h2>{{patient.dateOfBirth}}, {{patient.gender}}</h2>
 
+    <h2>Appointments</h2>
+    <mat-action-list>
+        <mat-list-item *ngFor="let appointment of appointments">
+            <a matLine routerLink="/patients/{{patient.id}}/appointments/{{appointment.id}}/edit">
+                {{appointment.facility}},
+                {{appointment.providerName}},
+                {{appointment.startDate}}
+            </a>
+         </mat-list-item>
+    </mat-action-list>
+
     <h2>Biopsies</h2>
     <mat-action-list>
         <mat-list-item *ngFor="let biopsy of biopsies">
@@ -18,5 +29,13 @@
          </mat-list-item>
     </mat-action-list>
 
-    <a routerLink="/patients/{{patient.id}}/biopsies/new">Add Biopsy</a>
+    <a routerLink="/patients/{{patient.id}}/appointments/new">Add Appointment</a>
+    <br/>
+    <a routerLink="/patients/{{patient.id}}/procedures/new">Add Procedure</a>
+    <br/>
+    <a routerLink="/patients/{{patient.id}}/biopsies/new">Add Biopsy Report</a>
+    <br/>
+    <a routerLink="/patients/{{patient.id}}/surgical_pathologies/new">
+        Add Surgical Pathology Report
+    </a>
 </div>

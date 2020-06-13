@@ -1,0 +1,54 @@
+<h1>Edit Appointment</h1>
+
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput type="date" formControlName="startDate"
+            placeholder="Start Date"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" formControlName="facility"
+            placeholder="Facility Name"/>
+    </mat-form-field>
+
+    <mat-radio-group formControlName="appointmentType">
+        <mat-radio-button value="{{biopsyTypeEnum.FineNeedleAspiration}}">
+            {{biopsyTypeEnum.FineNeedleAspiration}}
+        </mat-radio-button>
+        <mat-radio-button value="{{biopsyTypeEnum.CoreNeedleBiopsy}}">
+            {{biopsyTypeEnum.CoreNeedleBiopsy}}
+        </mat-radio-button>
+        <mat-radio-button value="{{biopsyTypeEnum.IncisionalBiopsy}}">
+            {{biopsyTypeEnum.IncisionalBiopsy}}
+        </mat-radio-button>
+        <mat-radio-button value="{{biopsyTypeEnum.ExcisionalBiopsy}}">
+            {{biopsyTypeEnum.ExcisionalBiopsy}}
+        </mat-radio-button>
+        <mat-radio-button value="{{surgeryTypeEnum.Lumpectomy}}">
+            {{surgeryTypeEnum.Lumpectomy}}
+        </mat-radio-button>
+        <mat-radio-button value="{{surgeryTypeEnum.ModifiedRadicalMastectomy}}">
+            {{surgeryTypeEnum.ModifiedRadicalMastectomy}}
+        </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field>
+        <input matInput type="text" formControlName="contactPerson"
+            placeholder="Contact Person"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" formControlName="providerName"
+            placeholder="Provider Name"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" formControlName="providerType"
+            placeholder="Provider Type"/>
+    </mat-form-field>
+
+    <div>
+        <button mat-button type="submit">Submit</button>
+        <button mat-button type="button">Cancel</button>
+    </div>
+</form>

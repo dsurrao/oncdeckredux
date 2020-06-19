@@ -3,7 +3,6 @@ import { FormBuilder } from '@angular/forms';
 import { Appointment } from 'src/app/models/appointment.model';
 import { BiopsyTypeEnum } from 'src/app/models/enums/biopsy-type.enum';
 import { SurgeryTypeEnum } from 'src/app/models/enums/surgery-type.enum';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-edit-appointment-template',

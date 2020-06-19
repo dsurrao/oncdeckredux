@@ -38,13 +38,13 @@ export class PatientListComponent {
         let patients: Patient[] = ps[0];
         let biopsies: Biopsy[] = ps[1];
         let searchCriteria: PatientSearchCriteria = ps[2];
-        if (searchCriteria.biopsies != null) {
-          if (searchCriteria.biopsies.isScheduled) {
-            patients = patients.filter(p => p.biopsies.find(
-              biopsyId => biopsies.find(
-                b => b.id == biopsyId && Date.parse(b.scheduledDate) > Date.now()) != undefined));
-          }
-        }
+        // if (searchCriteria.biopsies != null) {
+        //   if (searchCriteria.biopsies.isScheduled) {
+        //     patients = patients.filter(p => p.biopsies.find(
+        //       biopsyId => biopsies.find(
+        //         b => b.id == biopsyId && Date.parse(b.scheduledDate) > Date.now()) != undefined));
+        //   }
+        // }
         return patients;
       })
     );

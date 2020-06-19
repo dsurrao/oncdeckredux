@@ -3,7 +3,7 @@
 <form [formGroup]="surgicalPathologyForm" (ngSubmit)="onSubmit()">
     <mat-vertical-stepper>
         <mat-step label="Scheduling">
-            <mat-radio-group formControlName="type">
+            <mat-radio-group formControlName="surgeryType">
                 <mat-radio-button value="Lumpectomy">
                     Lumpectomy
                 </mat-radio-button>

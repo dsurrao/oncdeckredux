@@ -1,1 +1,19 @@
-<p>view-appointment-template works!</p>
+id: {{appointment.id}}<br/>
+startDate: {{appointment.startDate}}<br/>
+facility: {{appointment.facility}}<br/>
+contactPerson: {{appointment.contactPerson}}<br/>
+appointmentType: {{appointment.appointmentType}}<br/>
+providerName: {{appointment.providerName}}<br/>
+providerType: {{appointment.providerType}}<br/>
+
+<a routerLink="edit">edit</a>
+<br/>
+<a [routerLink]=
+    "['../../biopsies/new', {appointmentId: appointment.id}]">
+    Enter Biopsy Report
+</a>
+<br/>
+<a [routerLink]=
+    "['../../surgical_pathologies/new', {appointmentId: appointment.id}]">
+    Enter Surgical Pathology Report
+</a>

@@ -14,7 +14,7 @@ export const addProcedure = createAction(
 
 export const upsertProcedure = createAction(
   '[Procedure/API] Upsert Procedure',
-  props<{ procedure: Procedure }>()
+  props<{ patientId: string, procedure: Procedure }>()
 );
 
 export const addProcedures = createAction(

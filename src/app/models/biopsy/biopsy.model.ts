@@ -6,13 +6,8 @@ import { BiopsyTypeEnum } from '../enums/biopsy-type.enum';
 
 export interface Biopsy {
   id: string;
-  scheduledDate: string;
-  facilityName: string;
-  contactPerson?: string;
-  providerName?: string;
-  procedureDate?: string;
+  procedureId: string;
   pathologyReportDate?: string;
-  type?: BiopsyTypeEnum;
   site?: BiopsySite;
   histology?: Histology;
   receptors?: Receptors;

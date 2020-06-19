@@ -64,11 +64,6 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   })
 
   biopsyForm = this.fb.group({
-    scheduledDate: [null],
-    facilityName: [null],
-    contactPerson: [null],
-    providerName: [null],
-    procedureDate: [null],
     pathologyReportDate: [null],
     type: [null],
     site: this.siteFormGroup,
@@ -182,10 +177,6 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   }
 
   onBiopsyFormSubmit(): void {
-    let updatedBiopsy: Biopsy = this.biopsyForm.value;
-    updatedBiopsy.id = this.biopsy.id;
-    this.onSaveBiopsy.emit(updatedBiopsy);
-    
-    //console.log(this.biopsyForm.value);
+    this.onSaveBiopsy.emit(this.biopsyForm.value);
   }
 }

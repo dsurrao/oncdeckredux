@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HistologyEnum } from 'src/app/models/enums/histology.enum';
 import { LviStatusEnum } from 'src/app/models/enums/lvi-status.enum';
@@ -6,6 +6,7 @@ import { ReceptorStatusEnum } from 'src/app/models/enums/receptor-status.enum';
 import { GradeEnum } from 'src/app/models/enums/grade.enum';
 import { Her2TestEnum } from 'src/app/models/enums/her2-test.enum';
 import { ReceptorStrengthEnum } from 'src/app/models/enums/receptor-strength.enum';
+import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
 
 @Component({
   selector: 'app-edit-surgical-pathology-template',
@@ -13,6 +14,12 @@ import { ReceptorStrengthEnum } from 'src/app/models/enums/receptor-strength.enu
   styleUrls: ['./edit-surgical-pathology-template.component.css']
 })
 export class EditSurgicalPathologyTemplateComponent implements OnInit {
+  @Input()
+  surgicalPathology: SurgicalPathology;
+
+  @Output()
+  onSave = new EventEmitter<SurgicalPathology>();
+
   histologyFormGroup = this.fb.group({
     histology: [''],
     histologyOther: ['']
@@ -50,7 +57,7 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
   });
 
   surgicalPathologyForm = this.fb.group({
-    type: [''],
+    surgeryType: [''],
     reportDate: [''],
     lymphNodeDissectionType: [''],
     histology: this.histologyFormGroup,
@@ -72,5 +79,6 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
   }
 
   onSubmit(): void { 
+    this.onSave.emit(this.surgicalPathologyForm.value);
   }
 }

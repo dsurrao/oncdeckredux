@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on, createSelector, createFeatureSelector } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as ProcedureActions from './procedure.actions';
 import { Procedure } from 'src/app/models/procedure.model';
@@ -47,7 +47,7 @@ export const reducer = createReducer(
   ),
   on(ProcedureActions.clearProcedures,
     state => adapter.removeAll(state)
-  ),
+  )
 );
 
 
@@ -57,3 +57,27 @@ export const {
   selectAll,
   selectTotal,
 } = adapter.getSelectors();
+
+export const selectProcedures = createSelector(
+  createFeatureSelector(proceduresFeatureKey),
+  selectAll
+);
+
+export const selectProcedure = createSelector(
+  selectProcedures,
+  (procedures: Procedure[], props: {id: string}) => 
+    procedures.find(p => p.id == props.id)
+);
+
+export const selectProceduresSubset = createSelector(
+  selectProcedures,
+  (procedures: Procedure[], props: {ids: string[]}) =>
+    procedures.filter(p => props.ids.indexOf(p.id) != -1)
+);
+
+export const selectProcedureByAppointment = createSelector(
+  selectProcedures,
+  (procedures: Procedure[], props: {id: string}) =>
+    procedures.find(p => p.appointmentId == props.id)
+);
+

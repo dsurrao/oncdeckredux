@@ -13,14 +13,6 @@ export const adapter: EntityAdapter<Biopsy> = createEntityAdapter<Biopsy>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
-  entities: 
-    {
-      "101": {id: "101", dateScheduled: "2020-01-01", facilityName: "Butaro", 
-        providerName: "Melinda M."},
-      "102": {id: "102", dateScheduled: "2020-07-01", facilityName: "Pari", 
-        providerName: "Caroline K."}
-    },
-    ids: ["101", "102"]
 });
 
 export const reducer = createReducer(

@@ -1,7 +1,8 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on, createFeatureSelector, createSelector } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as SurgicalPathologyActions from './surgical-pathology.actions';
 import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
+import { isDataSource } from '@angular/cdk/collections';
 
 export const surgicalPathologiesFeatureKey = 'surgicalPathologies';
 
@@ -57,3 +58,20 @@ export const {
   selectAll,
   selectTotal,
 } = adapter.getSelectors();
+
+export const selectSurgicalPathologies = createSelector(
+  createFeatureSelector(surgicalPathologiesFeatureKey),
+  selectAll
+);
+
+export const selectSurgicalPathology = createSelector(
+  selectSurgicalPathologies,
+  (surgicalPathologies, props) => surgicalPathologies.find(
+    s => s.id == props.id)
+);
+
+export const selectSurgicalPathologiesSubset = createSelector(
+  selectSurgicalPathologies,
+  (surgicalPathologies: SurgicalPathology[], props: { ids: string[]}) => 
+    surgicalPathologies.filter(s => props.ids.indexOf(s.id) != -1)
+)

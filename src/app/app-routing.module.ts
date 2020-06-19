@@ -47,7 +47,6 @@ const routes: Routes = [
   { path: 'patients/:patientId/procedures/:procedureId/edit', 
     component: EditProcedureComponent, pathMatch: 'full'},
     
-  // todo: support query string params
   { path: 'patients/:patientId/surgical_pathologies/new', 
     component: EditSurgicalPathologyComponent, pathMatch: 'full'},
   { path: 'patients/:patientId/surgical_pathologies/:pathologyId', 

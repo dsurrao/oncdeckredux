@@ -14,7 +14,7 @@ export const addSurgicalPathology = createAction(
 
 export const upsertSurgicalPathology = createAction(
   '[SurgicalPathology/API] Upsert SurgicalPathology',
-  props<{ surgicalPathology: SurgicalPathology }>()
+  props<{ patientId: string, surgicalPathology: SurgicalPathology }>()
 );
 
 export const addSurgicalPathologys = createAction(

@@ -1,2 +1,7 @@
-<app-edit-biopsy-report-template [biopsy]="biopsy$ | async"
-    (onSaveBiopsy)="saveBiopsy($event)"></app-edit-biopsy-report-template>
+<app-view-appointment-template
+    [appointment]="appointment$ | async">    
+</app-view-appointment-template>
+<app-edit-biopsy-report-template 
+    [biopsy]="biopsy$ | async"
+    (onSaveBiopsy)="saveBiopsy($event)">
+</app-edit-biopsy-report-template>

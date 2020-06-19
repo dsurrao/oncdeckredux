@@ -5,6 +5,8 @@ import { Patient } from '../../models/common/patient.model';
 import * as PatientActions from './patient.actions';
 import * as BiopsyActions from '../biopsy/biopsy.actions';
 import * as AppointmentActions from '../appointment/appointment.actions';
+import * as SurgicalPathologyActions from '../surgery/surgical-pathology.actions';
+import * as ProcedureActions from '../procedure/procedure.actions';
 
 export const patientsFeatureKey = 'patients';
 
@@ -19,9 +21,9 @@ export const initialState: State = adapter.getInitialState({
   entities: 
     {
       "51": {id: "51", firstName: "Ya", lastName: "Le", gender: "F", 
-        dateOfBirth: "2000-02-02", biopsies: ["101"], dateCreatedMs: Date.now()},
+        dateOfBirth: "2000-02-02", biopsies: [], dateCreatedMs: Date.now()},
       "52": {id: "52", firstName: "Jane", lastName: "Dia", gender: "F",
-      dateOfBirth: "2000-03-01", biopsies: ["102"], dateCreatedMs: Date.now()}
+      dateOfBirth: "2000-03-01", biopsies: [], dateCreatedMs: Date.now()}
     },
     ids: ["51", "52"]
 });
@@ -66,18 +68,39 @@ export const reducer = createReducer(
         patient.biopsies = [];
       }
       patient.biopsies.push(action.biopsy.id);
-      return {...state, entities: {...state.entities, [action.patientId]: patient}};
+      return adapter.upsertOne(patient, state);
+      //return {...state, entities: {...state.entities, [action.patientId]: patient}};
     }
   ),
   on(AppointmentActions.upsertAppointment,
     (state, action) => {
       // append appointment id for specified patient
-      const patient: Patient = _.cloneDeep(state.entities[action.patientId]);
+      let patient: Patient = _.cloneDeep(state.entities[action.patientId]);
       if (patient.appointmentIds == null) {
         patient.appointmentIds = [];
       }
       patient.appointmentIds.push(action.appointment.id);
-      return {...state, entities: {...state.entities, [action.patientId]: patient}};
+      return adapter.upsertOne(patient, state);
+    }
+  ),
+  on(SurgicalPathologyActions.upsertSurgicalPathology,
+    (state, action) => {
+      let patient: Patient = _.cloneDeep(state.entities[action.patientId]);
+      if (patient.surgicalPathologyIds == null) {
+        patient.surgicalPathologyIds = [];
+      }
+      patient.surgicalPathologyIds.push(action.surgicalPathology.id);
+      return adapter.upsertOne(patient, state);
+    }
+  ),
+  on(ProcedureActions.upsertProcedure,
+    (state, action) => {
+      let patient: Patient = _.cloneDeep(state.entities[action.patientId]);
+      if (patient.procedureIds == null) {
+        patient.procedureIds = [];
+      }
+      patient.procedureIds.push(action.procedure.id);
+      return adapter.upsertOne(patient, state);
     }
   )
 );

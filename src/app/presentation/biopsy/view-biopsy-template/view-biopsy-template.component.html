@@ -10,31 +10,8 @@
     </thead>
     <tbody>
         <tr>
-            <td class="title">Scheduled Date</td>
-            <td>{{biopsy.scheduledDate}}</td>
-        </tr>
-        <tr>
-            <td class="title">Facility Name</td>
-            <td>{{biopsy.facilityName}}</td></tr>
-        <tr>
-            <td class="title">Contact Person</td>
-            <td>{{biopsy.contactPerson}}</td>
-        </tr>
-        <tr>
-            <td class="title">Provider Name</td>
-            <td>{{biopsy.providerName}}</td>
-        </tr>
-        <tr>
-            <td class="title">Procedure Date</td>
-            <td>{{biopsy.procedureDate}}</td>
-        </tr>
-        <tr>
             <td class="title">Pathology Report Date</td>
             <td>{{biopsy.pathologyReportDate}}</td>
-        </tr>
-        <tr>
-            <td class="title">Biopsy Type</td>
-            <td>{{biopsy.type}}</td>
         </tr>
         <tr *ngIf="biopsy.site != null && biopsy.site.site != null">
             <td class="title">Site</td>

@@ -10,7 +10,7 @@
     <h2>Appointments</h2>
     <mat-action-list>
         <mat-list-item *ngFor="let appointment of appointments">
-            <a matLine routerLink="/patients/{{patient.id}}/appointments/{{appointment.id}}/edit">
+            <a matLine routerLink="/patients/{{patient.id}}/appointments/{{appointment.id}}">
                 {{appointment.facility}},
                 {{appointment.providerName}},
                 {{appointment.startDate}}
@@ -22,9 +22,29 @@
     <mat-action-list>
         <mat-list-item *ngFor="let biopsy of biopsies">
             <a matLine routerLink="/patients/{{patient.id}}/biopsies/{{biopsy.id}}">
-                {{biopsy.facilityName}},
-                {{biopsy.providerName}},
-                {{biopsy.dateScheduled}}
+                {{biopsy.site.site}},
+                {{biopsy.procedureDate}}
+            </a>
+         </mat-list-item>
+    </mat-action-list>
+
+    <h2>Surgical Pathologies</h2>
+    <mat-action-list>
+        <mat-list-item *ngFor="let surgicalPathology of surgicalPathologies">
+            <a matLine routerLink=
+                "/patients/{{patient.id}}/surgical_pathologies/{{surgicalPathology.id}}">
+                {{surgicalPathology.surgeryType}},
+                {{surgicalPathology.reportDate}}
+            </a>
+         </mat-list-item>
+    </mat-action-list>
+
+    <h2>Procedures</h2>
+    <mat-action-list>
+        <mat-list-item *ngFor="let procedure of procedures">
+            <a matLine routerLink="/patients/{{patient.id}}/procedures/{{procedure.id}}">
+                {{procedure.id}},
+                {{procedure.status}}
             </a>
          </mat-list-item>
     </mat-action-list>

@@ -1,1 +1,6 @@
-<p>edit-surgical-pathology works!</p>
+<app-view-appointment-template [appointment]="appointment$ | async"> 
+</app-view-appointment-template>
+<app-edit-surgical-pathology-template
+    [surgicalPathology]="surgicalPathology$ | async"
+    (onSave)="onSave($event)">
+</app-edit-surgical-pathology-template>

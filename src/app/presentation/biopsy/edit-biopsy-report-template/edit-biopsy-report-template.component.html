@@ -2,58 +2,11 @@
 
 <form [formGroup]="biopsyForm" (ngSubmit)="onBiopsyFormSubmit()">
     <mat-vertical-stepper>
-        <mat-step label="Scheduling">
-            <mat-radio-group formControlName="type">
-                <mat-radio-button value="{{biopsyTypeEnum.FineNeedleAspiration}}">
-                    {{biopsyTypeEnum.FineNeedleAspiration}}
-                </mat-radio-button>
-                <mat-radio-button value="{{biopsyTypeEnum.CoreNeedleBiopsy}}">
-                    {{biopsyTypeEnum.CoreNeedleBiopsy}}
-                </mat-radio-button>
-                <mat-radio-button value="{{biopsyTypeEnum.IncisionalBiopsy}}">
-                    {{biopsyTypeEnum.IncisionalBiopsy}}
-                </mat-radio-button>
-                <mat-radio-button value="{{biopsyTypeEnum.ExcisionalBiopsy}}">
-                    {{biopsyTypeEnum.ExcisionalBiopsy}}
-                </mat-radio-button>
-            </mat-radio-group>
-
-            <div class="spacer"></div>
-
-            <mat-form-field>
-                <input matInput type="date" formControlName="scheduledDate"
-                    placeholder="Scheduled Date"/>
-            </mat-form-field>
-            
-            <mat-form-field>
-                <input matInput type="text" formControlName="facilityName" 
-                    placeholder="Facility Name"/>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput type="text" formControlName="contactPerson" 
-                    placeholder="Contact Person"/>
-            </mat-form-field>
-
-            <div>
-                <button mat-button>Save schedule only</button>
-                <button mat-button matStepperNext type="button">Next</button>
-            </div>
-        </mat-step>
-
         <mat-step label="Report">
-            <mat-form-field>
-                <input matInput type="date" formControlName="procedureDate"
-                    placeholder="Procedure Date"/>
-            </mat-form-field>
             <mat-form-field>
                 <input matInput type="date" formControlName="pathologyReportDate"
                     placeholder="Pathology Report Date"/>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput type="text" formControlName="providerName" 
-                    placeholder="Provider Name"/>
-            </mat-form-field>
-            
+            </mat-form-field>            
             <div>
                 <button mat-button matStepperPrevious type="button">Back</button>
                 <button mat-button matStepperNext type="button">Next</button>

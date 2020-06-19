@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Procedure } from 'src/app/models/procedure.model';
 
 @Component({
   selector: 'app-view-procedure-template',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-procedure-template.component.css']
 })
 export class ViewProcedureTemplateComponent implements OnInit {
+  @Input()
+  procedure: Procedure;
 
   constructor() { }
 

@@ -5,12 +5,10 @@ import { Observable } from 'rxjs';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 import * as fromPatient from 'src/app/store/patient/patient.reducer';
 import * as fromBiopsy from 'src/app/store/biopsy/biopsy.reducer';
-import * as fromProcedure from 'src/app/store/procedure/procedure.reducer';
 import * as fromAppointment from 'src/app/store/appointment/appointment.reducer';
 import { Patient } from 'src/app/models/common/patient.model';
 import { Appointment } from 'src/app/models/appointment.model';
 import { mergeMap, map } from 'rxjs/operators';
-import { Procedure } from 'src/app/models/procedure.model';
 
 @Component({
   selector: 'app-view-biopsy',
@@ -33,10 +31,7 @@ export class ViewBiopsyComponent implements OnInit {
 
     this.appointment$ = this.biopsy$.pipe(
       mergeMap(biopsy => 
-        this.store.select(fromProcedure.selectProcedure, { id: biopsy.procedureId}).pipe(
-          mergeMap(procedure => this.store.select(fromAppointment.selectAppointment, 
-            { id: procedure.appointmentId }))
-        )
+        this.store.select(fromAppointment.selectAppointment, { id: biopsy.appointmentId})
       )
     );
   }

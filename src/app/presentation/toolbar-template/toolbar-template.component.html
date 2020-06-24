@@ -8,6 +8,31 @@
         <span class="example-fill-remaining-space"></span>
         <span>{{subTitle}}</span>
         <span class="example-fill-remaining-space"></span>
+        
+        <div *ngIf="selectedPatient != null; else listBlockMenu">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>add</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item 
+                    routerLink="/patients/{{selectedPatient.id}}/appointments/new">
+                    Appointment</button>
+                <button mat-menu-item 
+                    routerLink="/patients/{{selectedPatient.id}}/biopsies/new">
+                    Biopsy Report</button>
+                <button mat-menu-item 
+                    routerLink="/patients/{{selectedPatient.id}}/surgical_pathologies/new">
+                    Surgical Pathology Report</button>
+            </mat-menu>
+        </div>
+        <ng-template #listBlockMenu>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>add</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/patients/new">Patient</button>
+            </mat-menu>
+        </ng-template>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-sidenav-container"

@@ -1,0 +1,25 @@
+mat-card {
+    min-height:80%; 
+    width: 90%;
+}
+
+.no-information {
+    font-style: italic;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.item {
+    flex: 1 400px;
+    min-height: 200px;
+    margin: 5px;
+}
+
+.wide-item {
+    flex: 2 400px;
+    min-height: 200px;
+    margin: 5px;
+}

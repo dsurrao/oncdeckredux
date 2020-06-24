@@ -14,6 +14,9 @@ export class ViewBiopsyTemplateComponent implements OnInit {
   @Input()
   biopsy: Biopsy;
 
+  @Input()
+  isEmbedded: boolean;
+
   constructor() { }
 
   ngOnInit(): void {

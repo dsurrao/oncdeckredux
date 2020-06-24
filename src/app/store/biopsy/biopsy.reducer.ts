@@ -71,4 +71,11 @@ export const selectBiopsiesSubset = createSelector(
   selectBiopsies,
   (biopsies: Biopsy[], props) => 
     biopsies.filter(b => props.biopsyIds.indexOf(b.id) != -1)
+      .sort((a, b) => b.pathologyReportDate.localeCompare(a.pathologyReportDate))
+)
+
+export const selectBiopsyByAppointment = createSelector(
+  selectBiopsies,
+  (biopsies: Biopsy[], props: { appointmentId: string }) => 
+    biopsies.find(b => b.appointmentId == props.appointmentId)
 )

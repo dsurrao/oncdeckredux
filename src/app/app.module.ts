@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule, MatCard } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -46,10 +48,6 @@ import { EditAppointmentComponent } from './containers/appointment/edit-appointm
 import { ViewAppointmentComponent } from './containers/appointment/view-appointment/view-appointment.component';
 import { ViewSurgicalPathologyComponent } from './containers/surgery/view-surgical-pathology/view-surgical-pathology.component';
 import { EditSurgicalPathologyComponent } from './containers/surgery/edit-surgical-pathology/edit-surgical-pathology.component';
-import { EditProcedureComponent } from './containers/procedure/edit-procedure/edit-procedure.component';
-import { ViewProcedureComponent } from './containers/procedure/view-procedure/view-procedure.component';
-import { ViewProcedureTemplateComponent } from './presentation/procedure/view-procedure-template/view-procedure-template.component';
-import { EditProcedureTemplateComponent } from './presentation/procedure/edit-procedure-template/edit-procedure-template.component';
 
 @NgModule({
   declarations: [
@@ -75,11 +73,7 @@ import { EditProcedureTemplateComponent } from './presentation/procedure/edit-pr
     EditAppointmentComponent,
     ViewAppointmentComponent,
     ViewSurgicalPathologyComponent,
-    EditSurgicalPathologyComponent,
-    EditProcedureComponent,
-    ViewProcedureComponent,
-    ViewProcedureTemplateComponent,
-    EditProcedureTemplateComponent
+    EditSurgicalPathologyComponent
   ],
   imports: [
     BrowserModule,
@@ -89,12 +83,14 @@ import { EditProcedureTemplateComponent } from './presentation/procedure/edit-pr
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatRadioModule,
     MatSidenavModule,
     MatStepperModule,

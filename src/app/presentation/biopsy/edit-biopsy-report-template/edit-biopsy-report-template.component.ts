@@ -11,6 +11,7 @@ import { LymphNodeLocationEnum } from 'src/app/models/enums/lymph-node-location-
 import { SideEnum } from 'src/app/models/enums/side.enum';
 import { LviStatusEnum } from 'src/app/models/enums/lvi-status.enum';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
+import { ProcedureStatusEnum } from 'src/app/models/enums/procedure-status.enum';
 
 @Component({
   selector: 'app-edit-biopsy-report-template',
@@ -66,6 +67,8 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   biopsyForm = this.fb.group({
     pathologyReportDate: [null],
     type: [null],
+    status: [null],
+    statusReason: [null],
     site: this.siteFormGroup,
     histology: this.histologyFormGroup,
     receptors: this.receptorFormGroup,
@@ -83,6 +86,7 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   her2TestEnum = Her2TestEnum;
   lymphNodeLocationEnum = LymphNodeLocationEnum;
   sideEnum = SideEnum;
+  procedureStatusEnum = ProcedureStatusEnum;
 
   constructor(private fb: FormBuilder) { }
 

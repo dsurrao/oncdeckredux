@@ -7,6 +7,7 @@ import { GradeEnum } from 'src/app/models/enums/grade.enum';
 import { Her2TestEnum } from 'src/app/models/enums/her2-test.enum';
 import { ReceptorStrengthEnum } from 'src/app/models/enums/receptor-strength.enum';
 import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
+import { ProcedureStatusEnum } from 'src/app/models/enums/procedure-status.enum';
 
 @Component({
   selector: 'app-edit-surgical-pathology-template',
@@ -59,6 +60,8 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
   surgicalPathologyForm = this.fb.group({
     surgeryType: [''],
     reportDate: [''],
+    status: [null],
+    statusReason: [null],
     lymphNodeDissectionType: [''],
     histology: this.histologyFormGroup,
     receptors: this.receptorFormGroup,
@@ -72,6 +75,7 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
   receptorStrengthEnum = ReceptorStrengthEnum;
   gradeEnum = GradeEnum;
   her2TestEnum = Her2TestEnum;
+  procedureStatusEnum = ProcedureStatusEnum;
 
   constructor(private fb: FormBuilder) { }
 

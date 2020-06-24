@@ -6,7 +6,6 @@ import * as PatientActions from './patient.actions';
 import * as BiopsyActions from '../biopsy/biopsy.actions';
 import * as AppointmentActions from '../appointment/appointment.actions';
 import * as SurgicalPathologyActions from '../surgery/surgical-pathology.actions';
-import * as ProcedureActions from '../procedure/procedure.actions';
 
 export const patientsFeatureKey = 'patients';
 
@@ -90,16 +89,6 @@ export const reducer = createReducer(
         patient.surgicalPathologyIds = [];
       }
       patient.surgicalPathologyIds.push(action.surgicalPathology.id);
-      return adapter.upsertOne(patient, state);
-    }
-  ),
-  on(ProcedureActions.upsertProcedure,
-    (state, action) => {
-      let patient: Patient = _.cloneDeep(state.entities[action.patientId]);
-      if (patient.procedureIds == null) {
-        patient.procedureIds = [];
-      }
-      patient.procedureIds.push(action.procedure.id);
       return adapter.upsertOne(patient, state);
     }
   )

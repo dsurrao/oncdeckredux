@@ -12,14 +12,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewSurgicalPathologyComponent implements OnInit {
   surgicalPathology$: Observable<SurgicalPathology>;
+  patientId: string;
 
   constructor(private store: Store,
     private route: ActivatedRoute) {       
   }
 
   ngOnInit(): void {
+    this.patientId = this.route.snapshot.paramMap.get(
+      "patientId");
     let surgicalPathologyId = this.route.snapshot.paramMap.get(
-      "pathologyId");
+      "surgicalPathologyId");
     this.surgicalPathology$ = this.store.select(
       fromSurgicalPathology.selectSurgicalPathology,
       { id: surgicalPathologyId }

@@ -1,23 +1,86 @@
-id: {{surgicalPathology.id}}<br/>
-procedureId: {{surgicalPathology.procedureId}}<br/>
-reportDate: {{surgicalPathology.reportDate}}<br/>
-
-surgeryType: {{surgicalPathology.surgeryType.type}}<br/>
-surgeryTypeOther: {{surgicalPathology.surgeryType.typeOther}}<br/>
-
-lymphNodeDissectionType: {{surgicalPathology.lymphNodeDissectionType}}<br/>
-
-histology: {{surgicalPathology.histology.histology}}<br/>
-histologyOther: {{surgicalPathology.histology.histologyOther}}<br/>
-
-er receptor status: {{surgicalPathology.receptors.erReceptor.status}}<br/>
-er receptor strength: {{surgicalPathology.receptors.erReceptor.strength}}<br/>
-pr receptor status: {{surgicalPathology.receptors.prReceptor.status}}<br/>
-pr receptor strength: {{surgicalPathology.receptors.prReceptor.strength}}<br/>
-her2 receptor status: {{surgicalPathology.receptors.her2Receptor.status}}<br/>
-her2 receptor test: {{surgicalPathology.receptors.her2Receptor.test}}<br/>
-
-grade: {{surgicalPathology.features.grade}}<br/>
-lvi: {{surgicalPathology.features.lvi}}<br/>
-
-surgicalMargins: {{surgicalPathology.surgicalMargins}}<br/>
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">
+                Surgical Pathology Report
+                <span [ngSwitch]="isEmbedded">
+                    <a routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}" 
+                        *ngSwitchCase="true">
+                        <mat-icon>info</mat-icon>
+                    </a>
+                    <a routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}/edit" 
+                        *ngSwitchDefault>
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                </span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="title">Report Date</td>
+            <td>{{surgicalPathology.reportDate}}</td>
+        </tr>
+        <tr>
+            <td class="title">Status</td>
+            <td>{{surgicalPathology.status}}</td>
+        </tr>
+        <tr>
+            <td class="title">Status Reason</td>
+            <td>{{surgicalPathology.statusReason}}</td>
+        </tr>
+        <tr>
+            <td class="title">Surgery Type</td>
+            <td>{{surgicalPathology.surgeryType.type}}</td>
+        </tr>
+        <tr>
+            <td class="title">Surgery Type (Other)</td>
+            <td>{{surgicalPathology.surgeryType.typeOther}}</td>
+        </tr>
+        <tr>
+            <td class="title">Lymph Node Dissection Type</td>
+            <td>{{surgicalPathology.lymphNodeDissectionType}}</td>
+        </tr>
+        <tr>
+            <td class="title">Histology</td>
+            <td>{{surgicalPathology.histology.histology}}</td>
+        </tr>
+        <tr>
+            <td class="title">Histology (Other)</td>
+            <td>{{surgicalPathology.histology.histologyOther}}</td>
+        </tr>
+        <tr>
+            <td class="title">ER Receptor</td>
+            <td>
+                {{surgicalPathology.receptors.erReceptor.status}}, 
+                {{surgicalPathology.receptors.erReceptor.strength}}
+            </td>
+        </tr>
+        <tr>
+            <td class="title">PR Receptor</td>
+            <td>
+                {{surgicalPathology.receptors.prReceptor.status}}, 
+                {{surgicalPathology.receptors.prReceptor.strength}}
+            </td>
+        </tr>
+        <tr>
+            <td class="title">HER2 Receptor</td>
+            <td>
+                {{surgicalPathology.receptors.her2Receptor.status}}, 
+                {{surgicalPathology.receptors.her2Receptor.test}}
+            </td>
+        </tr>
+        <tr>
+            <td class="title">Grade</td>
+            <td>{{surgicalPathology.features.grade}}</td>
+        </tr>
+        <tr>
+            <td class="title">LVI</td>
+            <td>{{surgicalPathology.features.lvi}}</td>
+        </tr>
+        <tr>
+            <td class="title">Surgical Margins</td>
+            <td>{{surgicalPathology.surgicalMargins}}</td>
+        </tr>
+    </tbody>
+</table>

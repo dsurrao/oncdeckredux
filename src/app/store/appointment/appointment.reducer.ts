@@ -73,4 +73,5 @@ export const selectAppointmentsSubset = createSelector(
   selectAppointments,
   (appointments: Appointment[], props) =>
     appointments.filter(a => props.appointmentIds.indexOf(a.id) != -1)
+      .sort((a, b) => b.startDate.localeCompare(a.startDate))
 )

@@ -5,11 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import {v4 as uuidv4 } from 'uuid';
 import * as fromBiopsy from 'src/app/store/biopsy/biopsy.reducer';
 import * as fromAppointment from 'src/app/store/appointment/appointment.reducer';
-import * as fromProcedure from 'src/app/store/procedure/procedure.reducer';
 import * as biopsyActions from 'src/app/store/biopsy/biopsy.actions';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 import { Appointment } from 'src/app/models/appointment.model';
-import { Procedure } from 'src/app/models/procedure.model';
 
 @Component({
   selector: 'app-edit-biopsy-report',
@@ -19,14 +17,10 @@ import { Procedure } from 'src/app/models/procedure.model';
 export class EditBiopsyReportComponent implements OnInit, OnDestroy {
   biopsy$: Observable<Biopsy>;
   appointment$: Observable<Appointment>;
-  procedure$: Observable<Procedure>;
   biopsyId: string;
   patientId: string;
-  procedureId: string;
   appointmentId: string;
-  subscription: Subscription;
   biopsySubscription: Subscription;
-  procedureSubscription: Subscription;
 
   constructor(private store: Store, private route: ActivatedRoute) { }
 
@@ -40,18 +34,10 @@ export class EditBiopsyReportComponent implements OnInit, OnDestroy {
 
       this.biopsySubscription 
         = this.biopsy$.subscribe(b => {
-          this.procedureId = b.procedureId;
-
-          this.procedure$ = this.store.select(fromProcedure.selectProcedure,
-            { id: this.procedureId });
-          
-          this.procedureSubscription = this.procedure$.subscribe(p => {
-            this.appointmentId = p.appointmentId;
-
-            this.appointment$ = this.store.select(fromAppointment.selectAppointment,
-              { id: this.appointmentId });
+          this.appointmentId = b.appointmentId
+          this.appointment$ = this.store.select(fromAppointment.selectAppointment, 
+            { id: this.appointmentId });
           });
-        });
     }
     else {
       /// todo: move this to service
@@ -62,19 +48,12 @@ export class EditBiopsyReportComponent implements OnInit, OnDestroy {
 
       this.appointment$ = this.store.select(fromAppointment.selectAppointment,
         { id: this.appointmentId });
-
-      this.procedure$ = this.store.select(fromProcedure.selectProcedureByAppointment,
-        { id: this.appointmentId });
-
-      this.procedureSubscription = this.procedure$.subscribe(procedure => {
-        this.procedureId = procedure.id;
-      });
     }
   }
 
   saveBiopsy(biopsy: Biopsy) {
     biopsy.id = this.biopsyId;
-    biopsy.procedureId = this.procedureId;
+    biopsy.appointmentId = this.appointmentId;
     
     this.store.dispatch(biopsyActions.upsertBiopsy({ patientId: this.patientId, 
       biopsy: biopsy }));
@@ -83,10 +62,6 @@ export class EditBiopsyReportComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.biopsySubscription != null) {
       this.biopsySubscription.unsubscribe();
-    }
-
-    if (this.procedureSubscription != null) {
-      this.procedureSubscription.unsubscribe();
     }
   }
 }

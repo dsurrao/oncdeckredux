@@ -8,8 +8,6 @@ import { BiopsyListComponent } from './containers/biopsy/biopsy-list/biopsy-list
 import { EditBiopsyReportComponent } from './containers/biopsy/edit-biopsy-report/edit-biopsy-report.component';
 import { EditAppointmentComponent } from './containers/appointment/edit-appointment/edit-appointment.component';
 import { ViewAppointmentComponent } from './containers/appointment/view-appointment/view-appointment.component';
-import { EditProcedureComponent } from './containers/procedure/edit-procedure/edit-procedure.component';
-import { ViewProcedureComponent } from './containers/procedure/view-procedure/view-procedure.component';
 import { EditSurgicalPathologyComponent } from './containers/surgery/edit-surgical-pathology/edit-surgical-pathology.component';
 import { ViewSurgicalPathologyComponent } from './containers/surgery/view-surgical-pathology/view-surgical-pathology.component';
 
@@ -39,19 +37,12 @@ const routes: Routes = [
     component: ViewAppointmentComponent, pathMatch: 'full'},
   { path: 'patients/:patientId/appointments/:appointmentId/edit', 
     component: EditAppointmentComponent, pathMatch: 'full'},
-
-  { path: 'patients/:patientId/procedures/new', 
-    component: EditProcedureComponent, pathMatch: 'full'},
-  { path: 'patients/:patientId/procedures/:procedureId', 
-    component: ViewProcedureComponent, pathMatch: 'full'},
-  { path: 'patients/:patientId/procedures/:procedureId/edit', 
-    component: EditProcedureComponent, pathMatch: 'full'},
     
   { path: 'patients/:patientId/surgical_pathologies/new', 
     component: EditSurgicalPathologyComponent, pathMatch: 'full'},
-  { path: 'patients/:patientId/surgical_pathologies/:pathologyId', 
+  { path: 'patients/:patientId/surgical_pathologies/:surgicalPathologyId', 
     component: ViewSurgicalPathologyComponent, pathMatch: 'full'},
-  { path: 'patients/:patientId/surgical_pathologies/:pathologyId/edit', 
+  { path: 'patients/:patientId/surgical_pathologies/:surgicalPathologyId/edit', 
     component: EditSurgicalPathologyComponent, pathMatch: 'full'},
 ];
 

@@ -3,15 +3,18 @@ import { Histology } from '../common/histology.model';
 import { Receptors } from '../common/receptors.model';
 import { Features } from '../common/features.model';
 import { SurgicalMarginsEnum } from '../enums/surgical-margins.enum';
+import { ProcedureStatusEnum } from '../enums/procedure-status.enum';
 
 export interface SurgicalPathology {
     id: string;
-    procedureId: string;
+    appointmentId?: string;
+    status: ProcedureStatusEnum;
+    statusReason?: string;
     reportDate: string;
-    surgeryType: SurgeryType
-    lymphNodeDissectionType: string;
-    histology: Histology;
-    receptors: Receptors;
-    features: Features;
-    surgicalMargins: SurgicalMarginsEnum
+    surgeryType?: SurgeryType
+    lymphNodeDissectionType?: string;
+    histology?: Histology;
+    receptors?: Receptors;
+    features?: Features;
+    surgicalMargins?: SurgicalMarginsEnum
 }

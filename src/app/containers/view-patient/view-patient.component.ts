@@ -7,12 +7,10 @@ import * as fromPatient from 'src/app/store/patient/patient.reducer';
 import * as fromBiopsy from 'src/app/store/biopsy/biopsy.reducer';
 import * as fromAppointment from 'src/app/store/appointment/appointment.reducer';
 import * as fromSurgicalPathology from 'src/app/store/surgery/surgical-pathology.reducer';
-import * as fromProcedure from 'src/app/store/procedure/procedure.reducer';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 import { mergeMap } from 'rxjs/operators';
 import { Appointment } from 'src/app/models/appointment.model';
 import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
-import { Procedure } from 'src/app/models/procedure.model';
 
 @Component({
   selector: 'app-view-patient',
@@ -24,8 +22,7 @@ export class ViewPatientComponent implements OnInit {
   appointments$: Observable<Appointment[]>;
   biopsies$: Observable<Biopsy[]>;
   surgicalPathologies$: Observable<SurgicalPathology[]>;
-  procedures$: Observable<Procedure[]>;
-
+  
   constructor(private store: Store,
     private router: Router,
     private route: ActivatedRoute) {      
@@ -59,15 +56,6 @@ export class ViewPatientComponent implements OnInit {
         this.store.select(
           fromSurgicalPathology.selectSurgicalPathologiesSubset, 
           { ids: patient.surgicalPathologyIds})
-      )
-    );
-
-    this.procedures$ = this.store.select(
-      fromPatient.selectPatient, { id: patientId }).pipe(
-      mergeMap(patient =>
-        this.store.select(
-          fromProcedure.selectProceduresSubset, 
-          { ids: patient.procedureIds})
       )
     );
   }

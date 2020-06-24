@@ -1,4 +1,5 @@
-<app-view-appointment-template [appointment]="appointment$ | async">
+<app-view-appointment-template [appointment]="appointment$ | async"
+    [isEmbedded]="true">
 </app-view-appointment-template>
 <app-view-biopsy-template [patientId]="patientId" 
     [biopsy]="biopsy$ | async"></app-view-biopsy-template>

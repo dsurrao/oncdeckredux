@@ -1,61 +1,114 @@
-<div>
+<div style="padding: 10px">
     <h1>
-        {{patient.firstName}} {{patient.middleName}} 
-        {{patient.lastName}}
-        <mat-icon aria-hidden="false" aria-label="Add patient" 
+        {{patient.firstName}} {{patient.middleName}} {{patient.lastName}}
+                    {{patient.dateOfBirth}}, {{patient.gender}}
+        <mat-icon aria-hidden="false" aria-label="Edit patient" 
             routerLink="/patients/{{patient.id}}/edit">edit</mat-icon>
     </h1>
-    <h2>{{patient.dateOfBirth}}, {{patient.gender}}</h2>
-
-    <h2>Appointments</h2>
-    <mat-action-list>
-        <mat-list-item *ngFor="let appointment of appointments">
-            <a matLine routerLink="/patients/{{patient.id}}/appointments/{{appointment.id}}">
-                {{appointment.facility}},
-                {{appointment.providerName}},
-                {{appointment.startDate}}
-            </a>
-         </mat-list-item>
-    </mat-action-list>
-
-    <h2>Biopsies</h2>
-    <mat-action-list>
-        <mat-list-item *ngFor="let biopsy of biopsies">
-            <a matLine routerLink="/patients/{{patient.id}}/biopsies/{{biopsy.id}}">
-                {{biopsy.site.site}},
-                {{biopsy.procedureDate}}
-            </a>
-         </mat-list-item>
-    </mat-action-list>
-
-    <h2>Surgical Pathologies</h2>
-    <mat-action-list>
-        <mat-list-item *ngFor="let surgicalPathology of surgicalPathologies">
-            <a matLine routerLink=
-                "/patients/{{patient.id}}/surgical_pathologies/{{surgicalPathology.id}}">
-                {{surgicalPathology.surgeryType}},
-                {{surgicalPathology.reportDate}}
-            </a>
-         </mat-list-item>
-    </mat-action-list>
-
-    <h2>Procedures</h2>
-    <mat-action-list>
-        <mat-list-item *ngFor="let procedure of procedures">
-            <a matLine routerLink="/patients/{{patient.id}}/procedures/{{procedure.id}}">
-                {{procedure.id}},
-                {{procedure.status}}
-            </a>
-         </mat-list-item>
-    </mat-action-list>
-
-    <a routerLink="/patients/{{patient.id}}/appointments/new">Add Appointment</a>
-    <br/>
-    <a routerLink="/patients/{{patient.id}}/procedures/new">Add Procedure</a>
-    <br/>
-    <a routerLink="/patients/{{patient.id}}/biopsies/new">Add Biopsy Report</a>
-    <br/>
-    <a routerLink="/patients/{{patient.id}}/surgical_pathologies/new">
-        Add Surgical Pathology Report
-    </a>
 </div>
+
+<section class="container">
+    
+    <mat-card class="item">
+        <mat-card-header>
+            <mat-card-title>Appointments</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="appointments.length > 0; else noAppointmentsBlock">
+                <app-view-appointment-template [appointment]="appointments[0]"
+                    [patientId]="patient.id" [isEmbedded]="true">
+                </app-view-appointment-template>
+            </div>
+            <ng-template #noAppointmentsBlock>
+                <div class="no-information">
+                    No appointments.
+                </div>                
+            </ng-template>                
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="item">
+        <mat-card-header>
+            <mat-card-title>Biopsy Reports</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="biopsies.length > 0; else noBiopsiesBlock">
+                <app-view-biopsy-template [patientId]="patient.id" 
+                    [biopsy]="biopsies[0]" [isEmbedded]="true">
+                </app-view-biopsy-template>
+            </div>
+            <ng-template #noBiopsiesBlock>
+                <div class="no-information">No biopsy reports.</div>
+            </ng-template>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="item">
+        <mat-card-header>
+            <mat-card-title>Surgical Pathology Reports</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="surgicalPathologies.length > 0; else noSurgicalPathologiesBlock">
+                <app-view-surgical-pathology-template [patientId]="patient.id" 
+                    [surgicalPathology]="surgicalPathologies[0]" [isEmbedded]="true">
+                </app-view-surgical-pathology-template>
+            </div>
+            <ng-template #noSurgicalPathologiesBlock>
+                <div class="no-information">
+                    No surgical pathology reports.
+                </div>
+            </ng-template>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="item">
+        <mat-card-header>
+            <mat-card-title>History</mat-card-title>
+        </mat-card-header>
+
+        <div *ngIf="appointments.length > 0">
+            <h2>Appointments</h2>
+            <mat-action-list>
+                <mat-list-item *ngFor="let appointment of appointments; index as i; first as isFirst">
+                    <div>
+                        <a matLine routerLink="/patients/{{patient.id}}/appointments/{{appointment.id}}">
+                            {{appointment.facility}},
+                            {{appointment.providerName}},
+                            {{appointment.startDate}}
+                        </a>
+                    </div>                    
+                </mat-list-item>
+            </mat-action-list>
+        </div>
+
+        <div *ngIf="biopsies.length > 0">
+            <h2>Biopsy Reports</h2>
+            <mat-action-list>
+                <mat-list-item *ngFor="let biopsy of biopsies; index as i; first as isFirst">
+                    <div>
+                        <a matLine routerLink="/patients/{{patient.id}}/biopsies/{{biopsy.id}}">
+                            {{biopsy.site.site}},
+                            {{biopsy.procedureDate}}
+                        </a>
+                    </div>                   
+                </mat-list-item>
+            </mat-action-list> 
+        </div>
+
+        <div *ngIf="surgicalPathologies.length > 0">
+            <h2>Surgical Pathology Reports</h2>
+            <mat-action-list>
+                <mat-list-item *ngFor="let surgicalPathology of surgicalPathologies; index as i; first as isFirst">
+                    <div>
+                        <a matLine routerLink=
+                            "/patients/{{patient.id}}/surgical_pathologies/{{surgicalPathology.id}}">
+                            {{surgicalPathology.surgeryType}},
+                            {{surgicalPathology.reportDate}}
+                        </a>
+                    </div>
+                </mat-list-item>
+            </mat-action-list> 
+        </div>
+    </mat-card>
+
+</section>

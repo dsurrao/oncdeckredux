@@ -74,4 +74,11 @@ export const selectSurgicalPathologiesSubset = createSelector(
   selectSurgicalPathologies,
   (surgicalPathologies: SurgicalPathology[], props: { ids: string[]}) => 
     surgicalPathologies.filter(s => props.ids.indexOf(s.id) != -1)
-)
+      .sort((a, b) => b.reportDate.localeCompare(a.reportDate))
+);
+
+export const selectSurgicalPathologyByAppointment = createSelector(
+  selectSurgicalPathologies,
+  (surgicalPathologies: SurgicalPathology[], props: { appointmentId: string }) => 
+    surgicalPathologies.find(s => s.appointmentId = props.appointmentId)
+);

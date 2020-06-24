@@ -21,6 +21,20 @@
                 <input matInput type="date" formControlName="reportDate"
                     placeholder="Report Date"/>
             </mat-form-field>
+
+            <mat-radio-group formControlName="status">
+                <mat-radio-button value="{{procedureStatusEnum.Completed}}">
+                    {{procedureStatusEnum.Completed}}
+                </mat-radio-button>
+                <mat-radio-button value="{{procedureStatusEnum.NotDone}}">
+                    {{procedureStatusEnum.NotDone}}
+                </mat-radio-button>
+            </mat-radio-group>
+            
+            <mat-form-field>
+                <input matInput type="text" formControlName="statusReason"
+                    placeholder="Status Reason"/>
+            </mat-form-field>
             
             <mat-form-field>
                 <input matInput type="text" formControlName="lymphNodeDissectionType" 

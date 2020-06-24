@@ -49,3 +49,7 @@ mat-radio-button ~ .mat-radio-button {
 .hide {
     display: none;
 }
+
+td.title {
+    text-align: end; width: 50%; font-weight: bold;
+}

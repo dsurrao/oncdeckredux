@@ -87,7 +87,9 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.surgicalPathologyForm.patchValue(this.surgicalPathology);
+    if (this.surgicalPathology != null) {
+      this.surgicalPathologyForm.patchValue(this.surgicalPathology);
+    }
   }
 
   onSubmit(): void { 

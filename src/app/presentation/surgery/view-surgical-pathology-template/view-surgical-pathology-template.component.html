@@ -4,14 +4,12 @@
             <th colspan="2">
                 Surgical Pathology Report
                 <span [ngSwitch]="isEmbedded">
-                    <a routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}" 
-                        *ngSwitchCase="true">
-                        <mat-icon>info</mat-icon>
-                    </a>
-                    <a routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}/edit" 
-                        *ngSwitchDefault>
-                        <mat-icon>edit</mat-icon>
-                    </a>
+                    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}" 
+                        *ngSwitchCase="true">info
+                    </mat-icon>
+                    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}/edit" 
+                        *ngSwitchDefault>edit
+                    </mat-icon>
                 </span>
             </th>
         </tr>

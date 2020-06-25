@@ -1,6 +1,8 @@
-<app-view-appointment-template [appointment]="appointment$ | async"> 
+<app-view-appointment-template [appointment]="appointment$ | async"
+    [isEmbedded]="true"> 
 </app-view-appointment-template>
 <app-edit-surgical-pathology-template
     [surgicalPathology]="surgicalPathology$ | async"
-    (onSave)="onSave($event)">
+    (onSubmitEmitter)="onSubmit($event)"
+    (onCancelEmitter)="onCancel()">
 </app-edit-surgical-pathology-template>

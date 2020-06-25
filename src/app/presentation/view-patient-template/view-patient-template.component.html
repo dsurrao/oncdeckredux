@@ -72,9 +72,9 @@
                 <mat-list-item *ngFor="let appointment of appointments; index as i; first as isFirst">
                     <div>
                         <a matLine routerLink="/patients/{{patient.id}}/appointments/{{appointment.id}}">
-                            {{appointment.facility}},
-                            {{appointment.providerName}},
-                            {{appointment.startDate}}
+                            {{appointment.startDate}},
+                            {{appointment.appointmentType}},
+                            {{appointment.facility}}
                         </a>
                     </div>                    
                 </mat-list-item>

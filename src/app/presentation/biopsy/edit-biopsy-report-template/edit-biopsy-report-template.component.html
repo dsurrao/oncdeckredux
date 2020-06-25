@@ -1,11 +1,11 @@
 <h1>Edit biopsy</h1>
 
-<form [formGroup]="biopsyForm" (ngSubmit)="onBiopsyFormSubmit()">
+<form [formGroup]="biopsyForm" (ngSubmit)="onSubmit()">
     <mat-vertical-stepper>
         <mat-step label="Report">
             <mat-form-field>
                 <input matInput type="date" formControlName="pathologyReportDate"
-                    placeholder="Pathology Report Date"/>
+                    placeholder="Pathology Report Date" required/>
             </mat-form-field>
             <mat-radio-group formControlName="status">
                 <mat-radio-button value="{{procedureStatusEnum.Completed}}">
@@ -285,6 +285,8 @@
 
         <mat-step label="Done">
             <div>
+                <!-- <button mat-button type="submit"
+                    [disabled]="!biopsyForm.valid">Submit</button> -->
                 <button mat-button type="submit">Submit</button>
                 <button mat-button type="button">Cancel</button>
             </div>

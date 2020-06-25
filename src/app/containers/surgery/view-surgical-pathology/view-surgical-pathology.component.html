@@ -1,3 +1,7 @@
+<app-view-appointment-template
+    [appointment]="appointment$ | async"
+    [isEmbedded]="true">
+</app-view-appointment-template>
 <app-view-surgical-pathology-template
     [surgicalPathology]="surgicalPathology$ | async"
     [patientId]="patientId">

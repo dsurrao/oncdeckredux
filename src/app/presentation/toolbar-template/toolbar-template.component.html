@@ -17,12 +17,12 @@
                 <button mat-menu-item 
                     routerLink="/patients/{{selectedPatient.id}}/appointments/new">
                     Appointment</button>
-                <button mat-menu-item 
+                <!-- <button mat-menu-item 
                     routerLink="/patients/{{selectedPatient.id}}/biopsies/new">
                     Biopsy Report</button>
                 <button mat-menu-item 
                     routerLink="/patients/{{selectedPatient.id}}/surgical_pathologies/new">
-                    Surgical Pathology Report</button>
+                    Surgical Pathology Report</button> -->
             </mat-menu>
         </div>
         <ng-template #listBlockMenu>
@@ -33,6 +33,14 @@
                 <button mat-menu-item routerLink="/patients/new">Patient</button>
             </mat-menu>
         </ng-template>
+
+        <a href="https://github.com/dsurrao/oncdeckredux/wiki" 
+                target="_blank"
+                style="color: inherit">
+            <button mat-icon-button> 
+                <mat-icon>help</mat-icon>
+            </button>
+        </a>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-sidenav-container"

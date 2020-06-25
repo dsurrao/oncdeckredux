@@ -1,9 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
 import { Observable } from 'rxjs';
 import * as fromSurgicalPathology from 'src/app/store/surgery/surgical-pathology.reducer';
+import * as fromAppointment from 'src/app/store/appointment/appointment.reducer';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
+import { Appointment } from 'src/app/models/appointment.model';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-view-surgical-pathology',
@@ -12,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewSurgicalPathologyComponent implements OnInit {
   surgicalPathology$: Observable<SurgicalPathology>;
+  appointment$: Observable<Appointment>;
   patientId: string;
 
   constructor(private store: Store,
@@ -23,9 +27,17 @@ export class ViewSurgicalPathologyComponent implements OnInit {
       "patientId");
     let surgicalPathologyId = this.route.snapshot.paramMap.get(
       "surgicalPathologyId");
+
     this.surgicalPathology$ = this.store.select(
       fromSurgicalPathology.selectSurgicalPathology,
       { id: surgicalPathologyId }
+    );
+
+    this.appointment$ = this.surgicalPathology$.pipe(
+      mergeMap(surgicalPathology => 
+        this.store.select(fromAppointment.selectAppointment, 
+          { id: surgicalPathology.appointmentId})
+      )
     );
   }
 

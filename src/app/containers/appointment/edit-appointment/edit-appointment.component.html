@@ -1,3 +1,4 @@
 <app-edit-appointment-template [appointment]="appointment$ | async" 
-    (onSave)="onSave($event)">
+    (onSaveEmitter)="onSave($event)"
+    (onCancelEmitter)="onCancel()">
 </app-edit-appointment-template>

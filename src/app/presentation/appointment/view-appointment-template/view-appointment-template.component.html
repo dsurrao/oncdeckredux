@@ -41,51 +41,44 @@
             <td class="title">Provider Type</td>
             <td>{{appointment.providerType}}</td>
         </tr>
+        <tr *ngIf="!isEmbedded">
+            <td colspan="2">
+                <div class="center-all">
+                    <section *ngIf="appointment.appointmentType == biopsyTypeEnum.FineNeedleAspiration 
+                        || appointment.appointmentType == biopsyTypeEnum.CoreNeedleBiopsy 
+                        || appointment.appointmentType == biopsyTypeEnum.IncisionalBiopsy 
+                        || appointment.appointmentType == biopsyTypeEnum.ExcisionalBiopsy">
+                        <section *ngIf="procedureId == null; else viewBiopsyBlock">
+                            <button mat-raised-button color="primary" [routerLink]=
+                                "['/patients', patientId, 'biopsies', 'new', {appointmentId: appointment.id}]">
+                                Enter Biopsy Report
+                            </button>
+                        </section>
+                        <ng-template #viewBiopsyBlock>
+                            <a [routerLink]="['/patients', patientId, 'biopsies', procedureId]">
+                                View Biopsy Report
+                            </a>
+                        </ng-template>
+                    </section>
+                    <section *ngIf="appointment.appointmentType == surgeryTypeEnum.Lumpectomy 
+                        || appointment.appointmentType == surgeryTypeEnum.ModifiedRadicalMastectomy 
+                        || appointment.appointmentType == surgeryTypeEnum.Other">
+                        <section *ngIf="procedureId == null; else viewSurgeryBlock">
+                            <button mat-raised-button color="primary" [routerLink]=
+                                "['/patients', patientId, 'surgical_pathologies', 'new', 
+                                {appointmentId: appointment.id}]">
+                                Enter Surgical Pathology Report
+                            </button>
+                        </section>
+                        <ng-template #viewSurgeryBlock>
+                            <a [routerLink]="['/patients', patientId, 'surgical_pathologies', procedureId]">
+                                View Surgical Pathology Report
+                            </a>
+                        </ng-template>
+                    </section>
+                </div>
+            </td>            
+        </tr>
     </tbody>
 </table>
 
-<section *ngIf="(appointment.appointmentType == biopsyTypeEnum.FineNeedleAspiration 
-    || appointment.appointmentType == biopsyTypeEnum.CoreNeedleBiopsy 
-    || appointment.appointmentType == biopsyTypeEnum.IncisionalBiopsy 
-    || appointment.appointmentType == biopsyTypeEnum.ExcisionalBiopsy)
-    && !isEmbedded
-    && procedureId == null">
-    <a [routerLink]=
-        "['/patients', patientId, 'biopsies', 'new', {appointmentId: appointment.id}]">
-        Enter Biopsy Report
-    </a>
-</section>
-
-<section *ngIf="(appointment.appointmentType == biopsyTypeEnum.FineNeedleAspiration 
-    || appointment.appointmentType == biopsyTypeEnum.CoreNeedleBiopsy 
-    || appointment.appointmentType == biopsyTypeEnum.IncisionalBiopsy 
-    || appointment.appointmentType == biopsyTypeEnum.ExcisionalBiopsy)
-    && !isEmbedded
-    && procedureId != null">
-    <a [routerLink]=
-        "['/patients', patientId, 'biopsies', procedureId]">
-        View Biopsy Report
-    </a>
-</section>
-
-<section *ngIf="(appointment.appointmentType == surgeryTypeEnum.Lumpectomy 
-    || appointment.appointmentType == surgeryTypeEnum.ModifiedRadicalMastectomy 
-    || appointment.appointmentType == surgeryTypeEnum.Other)
-    && !isEmbedded
-    && procedureId == null">
-    <a [routerLink]=
-        "['/patients', patientId, 'surgical_pathologies', 'new', {appointmentId: appointment.id}]">
-        Enter Surgical Pathology Report
-    </a>
-</section>
-
-<section *ngIf="(appointment.appointmentType == surgeryTypeEnum.Lumpectomy 
-    || appointment.appointmentType == surgeryTypeEnum.ModifiedRadicalMastectomy 
-    || appointment.appointmentType == surgeryTypeEnum.Other)
-    && !isEmbedded
-    && procedureId != null">
-    <a [routerLink]=
-        "['/patients', patientId, 'surgical_pathologies', procedureId]">
-        View Surgical Pathology Report
-    </a>
-</section>

@@ -8,6 +8,7 @@ import { Her2TestEnum } from 'src/app/models/enums/her2-test.enum';
 import { ReceptorStrengthEnum } from 'src/app/models/enums/receptor-strength.enum';
 import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
 import { ProcedureStatusEnum } from 'src/app/models/enums/procedure-status.enum';
+import { SurgicalMarginsEnum } from 'src/app/models/enums/surgical-margins.enum';
 
 @Component({
   selector: 'app-edit-surgical-pathology-template',
@@ -19,7 +20,10 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
   surgicalPathology: SurgicalPathology;
 
   @Output()
-  onSave = new EventEmitter<SurgicalPathology>();
+  onSubmitEmitter = new EventEmitter<SurgicalPathology>();
+
+  @Output()
+  onCancelEmitter = new EventEmitter();
 
   histologyFormGroup = this.fb.group({
     histology: [''],
@@ -52,12 +56,14 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
     lvi: ['']
   });
 
-  surgicalMarginsFormGroup = this.fb.group({
-    margin: [''],
-    side: ['']
-  });
+  // todo: add side
+  // surgicalMarginsFormGroup = this.fb.group({
+  //   margin: [''],
+  //   side: ['']
+  // });
 
   surgicalPathologyForm = this.fb.group({
+    id: [null],
     surgeryType: [''],
     reportDate: [''],
     status: [null],
@@ -66,7 +72,7 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
     histology: this.histologyFormGroup,
     receptors: this.receptorFormGroup,
     features: this.featuresFormGroup,
-    surgicalMargins: this.surgicalMarginsFormGroup
+    surgicalMargins: [null]
   });
 
   histologyEnum = HistologyEnum;
@@ -76,13 +82,19 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit {
   gradeEnum = GradeEnum;
   her2TestEnum = Her2TestEnum;
   procedureStatusEnum = ProcedureStatusEnum;
+  surgicalMarginsEnum = SurgicalMarginsEnum;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.surgicalPathologyForm.patchValue(this.surgicalPathology);
   }
 
   onSubmit(): void { 
-    this.onSave.emit(this.surgicalPathologyForm.value);
+    this.onSubmitEmitter.emit(this.surgicalPathologyForm.value);
+  }
+
+  onCancel(): void {
+    this.onCancelEmitter.emit();
   }
 }

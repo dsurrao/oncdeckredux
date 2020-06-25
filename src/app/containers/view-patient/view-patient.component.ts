@@ -46,7 +46,7 @@ export class ViewPatientComponent implements OnInit {
       fromPatient.selectPatient, { id: patientId }).pipe(
       mergeMap(patient =>
         this.store.select(fromBiopsy.selectBiopsiesSubset, 
-          { biopsyIds: patient.biopsies})
+          { biopsyIds: patient.biopsyIds})
       )
     );
 

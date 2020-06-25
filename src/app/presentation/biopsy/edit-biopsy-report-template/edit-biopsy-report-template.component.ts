@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { BiopsyTypeEnum } from '../../../models/enums/biopsy-type.enum';
 import { BiopsySiteEnum } from 'src/app/models/enums/biopsy-site.enum';
 import { HistologyEnum } from 'src/app/models/enums/histology.enum';
@@ -25,28 +25,27 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   @Output()
   onSaveBiopsy = new EventEmitter<Biopsy>();
 
-  /// initialize controls
   siteFormGroup = this.fb.group({
     site: [null],
-    siteOther: [{ value: null, disabled: true }],
-    side: [{ value: null, disabled: true }],
-    lymphNodeLocation: [{ value: null, disabled: true }],
-    lymphNodeLocationOther: [{ value: null, disabled: true }],
-    bone: [{ value: null, disabled: true }]
+    siteOther: [null],
+    side: [null],
+    lymphNodeLocation: [null],
+    lymphNodeLocationOther: [null],
+    bone: [null]
   });
 
   histologyFormGroup = this.fb.group({
     histology: [null],
-    histologyOther: [{ value: null, disabled: true }]
+    histologyOther: [null]
   });
 
   erReceptorFormGroup = this.fb.group({ 
     status: [null], 
-    strength: [{ value: null, disabled: true }] 
+    strength: [null] 
   });
   prReceptorFormGroup = this.fb.group({ 
     status: [null], 
-    strength: [{ value: null, disabled: true }] 
+    strength: [null] 
   });
   her2ReceptorFormGroup = this.fb.group({ 
     status: [null], 
@@ -65,9 +64,9 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   })
 
   biopsyForm = this.fb.group({
-    pathologyReportDate: [null],
-    type: [null],
-    status: [null],
+    pathologyReportDate: [null, Validators.required],
+    type: [null, Validators.required],
+    status: [null, Validators.required],
     statusReason: [null],
     site: this.siteFormGroup,
     histology: this.histologyFormGroup,
@@ -90,97 +89,129 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.siteFormGroup.controls['site'].valueChanges.subscribe(
-      e => {
-        this.siteFormGroup.controls['siteOther'].setValue(null);
-        this.siteFormGroup.controls['siteOther'].disable();
-        this.siteFormGroup.controls['bone'].setValue(null);
-        this.siteFormGroup.controls['bone'].disable();
-        this.siteFormGroup.controls['side'].setValue(null);
-        this.siteFormGroup.controls['side'].disable();
-        this.siteFormGroup.controls['lymphNodeLocation'].setValue(null);
-        this.siteFormGroup.controls['lymphNodeLocation'].disable();
-        this.siteFormGroup.controls['lymphNodeLocation'].setValue(null);
-        this.siteFormGroup.controls['lymphNodeLocationOther'].disable();
+  ngOnInit(): void {    
+    /// initialize controls
+    this.updateBiopsyFormStatusControls(this.biopsyForm.controls['status'].value);
+    this.updateSiteFormGroupControls(this.siteFormGroup.controls['site'].value);
+    this.updateLymphNodeLocationControls(null);
+    this.updateHistologyFormGroupControls(null);
+    this.updateErReceptorFormGroupControls(null);
+    this.updatePrReceptorFormGroupControls(null);
 
-        switch (e) {
-          case this.biopsySiteEnum.Other:
-            this.siteFormGroup.controls['siteOther'].enable();
-            break;
-          case this.biopsySiteEnum.Bone:
-            this.siteFormGroup.controls['bone'].enable();
-            break;
-          case this.biopsySiteEnum.Breast:
-            this.siteFormGroup.controls['side'].enable();
-            break;
-          case this.biopsySiteEnum.LymphNode:
-            this.siteFormGroup.controls['side'].enable();
-            this.siteFormGroup.controls['lymphNodeLocation'].enable();
-            break;
-          default:
-        }
-      }
+    /// listen for changes
+    this.biopsyForm.controls['status'].valueChanges.subscribe(
+      e => this.updateBiopsyFormStatusControls(e)
+    )
+
+    this.siteFormGroup.controls['site'].valueChanges.subscribe(
+      e => this.updateSiteFormGroupControls(e)
     );
 
     this.siteFormGroup.controls['lymphNodeLocation'].valueChanges.subscribe(
-      e => {        
-        switch (e) {
-          case this.lymphNodeLocationEnum.Other:
-            this.siteFormGroup.controls['lymphNodeLocationOther'].enable();
-            break;
-          default:
-            this.siteFormGroup.controls['lymphNodeLocationOther'].setValue(null);
-            this.siteFormGroup.controls['lymphNodeLocationOther'].disable();
-        }
-      }
+      e => this.updateLymphNodeLocationControls(e)
     );
 
     this.histologyFormGroup.controls['histology'].valueChanges.subscribe(
-      e => {
-        switch (e) {
-          case this.biopsyHistologyEnum.Other:
-            this.histologyFormGroup.controls['histologyOther'].enable();
-            break;
-          default:
-            this.histologyFormGroup.controls['histologyOther'].setValue(null);
-            this.histologyFormGroup.controls['histologyOther'].disable();
-        }
-      }
+      e => this.updateHistologyFormGroupControls(e)
     );
 
     this.erReceptorFormGroup.controls['status'].valueChanges.subscribe(
-      e => {
-        switch (e) {
-          case this.biopsyReceptorStatusEnum.Positive:
-            this.erReceptorFormGroup.controls['strength'].enable();
-            break;
-          default:
-            this.erReceptorFormGroup.controls['strength'].setValue(null);
-            this.erReceptorFormGroup.controls['strength'].disable();
-        }
-      }
+      e => this.updateErReceptorFormGroupControls(e)
     );
 
     this.prReceptorFormGroup.controls['status'].valueChanges.subscribe(
-      e => {
-        switch (e) {
-          case this.biopsyReceptorStatusEnum.Positive:
-            this.prReceptorFormGroup.controls['strength'].enable();
-            break;
-          default:
-            this.prReceptorFormGroup.controls['strength'].setValue(null);
-            this.prReceptorFormGroup.controls['strength'].disable();
-        }
-      }
+      e => this.updatePrReceptorFormGroupControls(e)
     );
 
-    if (this.biopsy != null) {
-      this.biopsyForm.patchValue(this.biopsy);
+    this.biopsyForm.patchValue(this.biopsy);
+  }
+
+  updateBiopsyFormStatusControls(status: any) {
+    switch(status) {
+      case ProcedureStatusEnum.NotDone:
+        this.biopsyForm.controls['statusReason'].enable();
+        break;
+      default:
+        this.biopsyForm.controls['statusReason'].setValue(null);
+        this.biopsyForm.controls['statusReason'].disable();
     }
   }
 
-  onBiopsyFormSubmit(): void {
+  updateSiteFormGroupControls(e: any) {
+    this.siteFormGroup.controls['siteOther'].setValue(null);
+    this.siteFormGroup.controls['siteOther'].disable();
+    this.siteFormGroup.controls['bone'].setValue(null);
+    this.siteFormGroup.controls['bone'].disable();
+    this.siteFormGroup.controls['side'].setValue(null);
+    this.siteFormGroup.controls['side'].disable();
+    this.siteFormGroup.controls['lymphNodeLocation'].setValue(null);
+    this.siteFormGroup.controls['lymphNodeLocation'].disable();
+    this.siteFormGroup.controls['lymphNodeLocation'].setValue(null);
+    this.siteFormGroup.controls['lymphNodeLocationOther'].disable();
+
+    switch (e) {
+      case this.biopsySiteEnum.Other:
+        this.siteFormGroup.controls['siteOther'].enable();
+        break;
+      case this.biopsySiteEnum.Bone:
+        this.siteFormGroup.controls['bone'].enable();
+        break;
+      case this.biopsySiteEnum.Breast:
+        this.siteFormGroup.controls['side'].enable();
+        break;
+      case this.biopsySiteEnum.LymphNode:
+        this.siteFormGroup.controls['side'].enable();
+        this.siteFormGroup.controls['lymphNodeLocation'].enable();
+        break;
+      default:
+    }
+  }
+
+  updateLymphNodeLocationControls(e: any) {
+    switch (e) {
+      case this.lymphNodeLocationEnum.Other:
+        this.siteFormGroup.controls['lymphNodeLocationOther'].enable();
+        break;
+      default:
+        this.siteFormGroup.controls['lymphNodeLocationOther'].setValue(null);
+        this.siteFormGroup.controls['lymphNodeLocationOther'].disable();
+    }
+  }
+
+  updateHistologyFormGroupControls(e: any) {
+    switch (e) {
+      case this.biopsyHistologyEnum.Other:
+        this.histologyFormGroup.controls['histologyOther'].enable();
+        break;
+      default:
+        this.histologyFormGroup.controls['histologyOther'].setValue(null);
+        this.histologyFormGroup.controls['histologyOther'].disable();
+    }
+  }
+
+  updateErReceptorFormGroupControls(e: any) {
+    switch (e) {
+      case this.biopsyReceptorStatusEnum.Positive:
+        this.erReceptorFormGroup.controls['strength'].enable();
+        break;
+      default:
+        this.erReceptorFormGroup.controls['strength'].setValue(null);
+        this.erReceptorFormGroup.controls['strength'].disable();
+    }
+  }
+
+  updatePrReceptorFormGroupControls(e: any) {
+    switch (e) {
+      case this.biopsyReceptorStatusEnum.Positive:
+        this.prReceptorFormGroup.controls['strength'].enable();
+        break;
+      default:
+        this.prReceptorFormGroup.controls['strength'].setValue(null);
+        this.prReceptorFormGroup.controls['strength'].disable();
+    }
+  }
+
+  onSubmit(): void {
     this.onSaveBiopsy.emit(this.biopsyForm.value);
   }
 }

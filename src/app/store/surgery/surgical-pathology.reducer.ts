@@ -80,5 +80,5 @@ export const selectSurgicalPathologiesSubset = createSelector(
 export const selectSurgicalPathologyByAppointment = createSelector(
   selectSurgicalPathologies,
   (surgicalPathologies: SurgicalPathology[], props: { appointmentId: string }) => 
-    surgicalPathologies.find(s => s.appointmentId = props.appointmentId)
+    surgicalPathologies.find(s => s.appointmentId == props.appointmentId)
 );

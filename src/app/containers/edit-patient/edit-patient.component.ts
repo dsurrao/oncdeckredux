@@ -24,10 +24,11 @@ export class EditPatientComponent implements OnInit {
   ngOnInit(): void {
     this.patientId = this.route.snapshot.paramMap.get('patientId');
     this.patient$ = this.store.pipe(
-      select(fromPatient.selectPatient, {id: this.patientId}));
+      select(fromPatient.selectPatient, {id: this.patientId})
+    );
   }
   
-  save(patient: Patient): void {
+  onSubmit(patient: Patient): void {
     /// todo: move this into service
     if (patient.id == '' || patient.id == null) {
       patient.id = uuidv4();
@@ -40,7 +41,7 @@ export class EditPatientComponent implements OnInit {
     this.store.dispatch(patientActions.upsertPatient({ patient: patient }));
   }
 
-  cancel(): void {
+  onCancel(): void {
     this.router.navigateByUrl('');
   }
 }

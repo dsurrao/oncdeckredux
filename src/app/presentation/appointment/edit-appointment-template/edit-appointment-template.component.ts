@@ -14,7 +14,10 @@ export class EditAppointmentTemplateComponent implements OnInit {
   appointment: Appointment;
 
   @Output()
-  onSave = new EventEmitter<Appointment>();
+  onSaveEmitter = new EventEmitter<Appointment>();
+
+  @Output()
+  onCancelEmitter = new EventEmitter();
 
   appointmentForm = this.fb.group({
     startDate: [''],
@@ -41,7 +44,11 @@ export class EditAppointmentTemplateComponent implements OnInit {
     if (this.appointment != null) {
       appointmentId = this.appointment.id;
     }
-    this.onSave.emit({...this.appointmentForm.value, 
+    this.onSaveEmitter.emit({...this.appointmentForm.value, 
       id: appointmentId});
+  }
+
+  onCancel(): void {
+    this.onCancelEmitter.emit();
   }
 }

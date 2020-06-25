@@ -3,7 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
 import { Appointment } from 'src/app/models/appointment.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as fromSurgicalPathology from 'src/app/store/surgery/surgical-pathology.reducer';
 import * as fromAppointment from 'src/app/store/appointment/appointment.reducer';
 import * as surgicalPathologyActions from 'src/app/store/surgery/surgical-pathology.actions';
@@ -20,17 +20,19 @@ export class EditSurgicalPathologyComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   appointmentId: string;
   patientId: string;
+  surgicalPathologyId: string;
 
-  constructor(private store: Store, private route: ActivatedRoute) {    
+  constructor(private store: Store, private route: ActivatedRoute,
+    private router: Router) {    
     this.appointmentId = this.route.snapshot.paramMap.get('appointmentId');
     this.patientId = this.route.snapshot.paramMap.get('patientId');
-    let surgicalPathologyId = this.route.snapshot.paramMap.get(
+    this.surgicalPathologyId = this.route.snapshot.paramMap.get(
       'surgicalPathologyId');
       
-    if (surgicalPathologyId != null) {
+    if (this.surgicalPathologyId != null) {
       this.surgicalPathology$ = this.store.select(
         fromSurgicalPathology.selectSurgicalPathology, 
-        { id: surgicalPathologyId });
+        { id: this.surgicalPathologyId });
 
       this.subscription = this.surgicalPathology$.subscribe(s => {
         this.appointmentId = s.appointmentId;
@@ -47,13 +49,23 @@ export class EditSurgicalPathologyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  onSave(surgicalPathology: SurgicalPathology) {
+  onSubmit(surgicalPathology: SurgicalPathology) {
     if (surgicalPathology.id == null) {
       surgicalPathology.id = uuidv4();
     }
     surgicalPathology.appointmentId = this.appointmentId;
     this.store.dispatch(surgicalPathologyActions.upsertSurgicalPathology(
       {patientId: this.patientId, surgicalPathology: surgicalPathology}));
+  }
+
+  onCancel() {
+    if (this.surgicalPathologyId != null) {
+      this.router.navigate(['patients', this.patientId, 'appointments', 
+        this.appointmentId]);
+    }
+    else {
+      this.router.navigate(['patients', this.patientId]);
+    }
   }
 
   ngOnDestroy(): void {

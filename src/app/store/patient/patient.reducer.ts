@@ -6,6 +6,7 @@ import * as PatientActions from './patient.actions';
 import * as BiopsyActions from '../biopsy/biopsy.actions';
 import * as AppointmentActions from '../appointment/appointment.actions';
 import * as SurgicalPathologyActions from '../surgery/surgical-pathology.actions';
+import { GenderEnum } from 'src/app/models/enums/gender.enum';
 
 export const patientsFeatureKey = 'patients';
 
@@ -19,10 +20,11 @@ export const initialState: State = adapter.getInitialState({
   // additional entity state properties
   entities: 
     {
-      "51": {id: "51", firstName: "Ya", lastName: "Le", gender: "F", 
-        dateOfBirth: "2000-02-02", biopsies: [], dateCreatedMs: Date.now()},
-      "52": {id: "52", firstName: "Jane", lastName: "Dia", gender: "F",
-      dateOfBirth: "2000-03-01", biopsies: [], dateCreatedMs: Date.now()}
+      "51": {id: "51", firstName: "Ya", lastName: "Le", gender: GenderEnum.Female, 
+        dateOfBirth: "2000-02-02", appointmentIds: ["appt1", "appt2"], 
+        dateCreatedMs: Date.now()},
+      "52": {id: "52", firstName: "Jane", lastName: "Dia", gender: GenderEnum.Female,
+      dateOfBirth: "2000-03-01", dateCreatedMs: Date.now()}
     },
     ids: ["51", "52"]
 });
@@ -63,10 +65,10 @@ export const reducer = createReducer(
     (state, action) => {
       // append biopsy id for specified patient
       const patient: Patient = _.cloneDeep(state.entities[action.patientId]);
-      if (patient.biopsies == null) {
-        patient.biopsies = [];
+      if (patient.biopsyIds == null) {
+        patient.biopsyIds = [];
       }
-      patient.biopsies.push(action.biopsy.id);
+      patient.biopsyIds.push(action.biopsy.id);
       return adapter.upsertOne(patient, state);
       //return {...state, entities: {...state.entities, [action.patientId]: patient}};
     }

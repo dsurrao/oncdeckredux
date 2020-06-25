@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Patient } from 'src/app/models/common/patient.model';
+import { FormBuilder, Validators } from '@angular/forms';
+import { GenderEnum } from 'src/app/models/enums/gender.enum';
 
 @Component({
   selector: 'app-edit-patient-template',
@@ -11,48 +13,35 @@ export class EditPatientTemplateComponent implements OnInit {
   patient: Patient;
 
   @Output()
-  onSave = new EventEmitter<Patient>();
+  onSubmitEmitter = new EventEmitter<Patient>();
 
   @Output()
-  onCancel = new EventEmitter();
+  onCancelEmitter = new EventEmitter();
 
-  id: string;
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  dateOfBirth: string;
-  gender: string;
-  dateCreatedMs: number;
+  patientForm = this.fb.group({
+    id: [null],
+    firstName: [null, Validators.required],
+    middleName: [null],
+    lastName: [null, Validators.required],
+    dateOfBirth: [null],
+    gender: [GenderEnum.Female, Validators.required],
+    dateCreatedMs: [null, Validators.required]
+  });
 
-  constructor() { 
-    this.id = '';
+  genderEnum = GenderEnum;
+
+  constructor(private fb: FormBuilder) { 
   }
 
   ngOnInit(): void {  
-    if (this.patient != null) {
-      this.id = this.patient.id;
-      this.firstName = this.patient.firstName;
-      this.middleName = this.patient.middleName;
-      this.lastName = this.patient.lastName;
-      this.dateOfBirth = this.patient.dateOfBirth;
-      this.gender = this.patient.gender;
-      this.dateCreatedMs = this.patient.dateCreatedMs;
-    }
+    this.patientForm.patchValue(this.patient);
   }
 
-  save() {
-    this.onSave.emit({
-      id: this.id,
-      firstName: this.firstName,
-      middleName: this.middleName,
-      lastName: this.lastName,
-      dateOfBirth: this.dateOfBirth,
-      gender: this.gender,
-      dateCreatedMs: this.dateCreatedMs
-    });
+  onSubmit() {
+    this.onSubmitEmitter.emit(this.patientForm.value);
   }
 
-  cancel() {
-    this.onCancel.emit();
+  onCancel() {
+    this.onCancelEmitter.emit();
   }
 }

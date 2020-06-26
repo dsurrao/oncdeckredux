@@ -36,27 +36,42 @@ export class ViewPatientComponent implements OnInit {
 
     this.appointments$ = this.store.select(
       fromPatient.selectPatient, { id: patientId }).pipe(
-        mergeMap(patient => 
-          this.store.select(fromAppointment.selectAppointmentsSubset,
-            { appointmentIds: patient.appointmentIds })
-        )
+        mergeMap(patient => {
+          if (patient.appointmentIds != null) {
+            return this.store.select(fromAppointment.selectAppointmentsSubset,
+              { appointmentIds: patient.appointmentIds });
+          }
+          else {
+            return [];
+          }
+        })
       );
 
     this.biopsies$ = this.store.select(
       fromPatient.selectPatient, { id: patientId }).pipe(
-      mergeMap(patient =>
-        this.store.select(fromBiopsy.selectBiopsiesSubset, 
-          { biopsyIds: patient.biopsyIds})
-      )
+      mergeMap(patient => {
+        if (patient.biopsyIds != null) {
+          return this.store.select(fromBiopsy.selectBiopsiesSubset, 
+            { biopsyIds: patient.biopsyIds});
+        }
+        else {
+          return [];
+        }
+      })
     );
 
     this.surgicalPathologies$ = this.store.select(
       fromPatient.selectPatient, { id: patientId }).pipe(
-      mergeMap(patient =>
-        this.store.select(
-          fromSurgicalPathology.selectSurgicalPathologiesSubset, 
-          { ids: patient.surgicalPathologyIds})
-      )
+      mergeMap(patient => {
+        if (patient.surgicalPathologyIds != null) {
+          return this.store.select(
+            fromSurgicalPathology.selectSurgicalPathologiesSubset, 
+            { ids: patient.surgicalPathologyIds});
+        }
+        else {
+          return [];
+        }
+      })
     );
   }
 }

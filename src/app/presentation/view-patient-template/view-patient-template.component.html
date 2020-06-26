@@ -7,14 +7,14 @@
     </h1>
 </div>
 
-<section class="container">
-    
+<section class="container">    
     <mat-card class="item">
         <mat-card-header>
             <mat-card-title>Appointments</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <div *ngIf="appointments.length > 0; else noAppointmentsBlock">
+            <div *ngIf="appointments != null && appointments.length > 0; 
+                else noAppointmentsBlock">
                 <app-view-appointment-template [appointment]="appointments[0]"
                     [patientId]="patient.id" [isEmbedded]="true">
                 </app-view-appointment-template>
@@ -32,7 +32,7 @@
             <mat-card-title>Biopsy Reports</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <div *ngIf="biopsies.length > 0; else noBiopsiesBlock">
+            <div *ngIf="biopsies != null && biopsies.length > 0; else noBiopsiesBlock">
                 <app-view-biopsy-template [patientId]="patient.id" 
                     [biopsy]="biopsies[0]" [isEmbedded]="true">
                 </app-view-biopsy-template>
@@ -48,7 +48,8 @@
             <mat-card-title>Surgical Pathology Reports</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <div *ngIf="surgicalPathologies.length > 0; else noSurgicalPathologiesBlock">
+            <div *ngIf="surgicalPathologies != null && surgicalPathologies.length > 0; 
+                else noSurgicalPathologiesBlock">
                 <app-view-surgical-pathology-template [patientId]="patient.id" 
                     [surgicalPathology]="surgicalPathologies[0]" [isEmbedded]="true">
                 </app-view-surgical-pathology-template>
@@ -66,7 +67,7 @@
             <mat-card-title>History</mat-card-title>
         </mat-card-header>
 
-        <div *ngIf="appointments.length > 0">
+        <div *ngIf="appointments != null && appointments.length > 0">
             <h2>Appointments</h2>
             <mat-action-list>
                 <mat-list-item *ngFor="let appointment of appointments; index as i; first as isFirst">
@@ -81,7 +82,7 @@
             </mat-action-list>
         </div>
 
-        <div *ngIf="biopsies.length > 0">
+        <div *ngIf="biopsies != null && biopsies.length > 0">
             <h2>Biopsy Reports</h2>
             <mat-action-list>
                 <mat-list-item *ngFor="let biopsy of biopsies; index as i; first as isFirst">
@@ -95,7 +96,7 @@
             </mat-action-list> 
         </div>
 
-        <div *ngIf="surgicalPathologies.length > 0">
+        <div *ngIf="surgicalPathologies != null && surgicalPathologies.length > 0">
             <h2>Surgical Pathology Reports</h2>
             <mat-action-list>
                 <mat-list-item *ngFor="let surgicalPathology of surgicalPathologies; index as i; first as isFirst">
@@ -110,5 +111,4 @@
             </mat-action-list> 
         </div>
     </mat-card>
-
 </section>

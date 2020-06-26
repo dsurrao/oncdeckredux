@@ -34,7 +34,9 @@ export class EditPatientTemplateComponent implements OnInit {
   }
 
   ngOnInit(): void {  
-    this.patientForm.patchValue(this.patient);
+    if (this.patient != null) {
+      this.patientForm.patchValue(this.patient);
+    }
   }
 
   onSubmit() {

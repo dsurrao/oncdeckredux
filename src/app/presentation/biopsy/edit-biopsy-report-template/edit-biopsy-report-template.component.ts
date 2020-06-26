@@ -123,7 +123,7 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
       e => this.updatePrReceptorFormGroupControls(e)
     );
 
-    if (this.biopsyForm != null) {
+    if (this.biopsy != null) {
       this.biopsyForm.patchValue(this.biopsy);
     }    
   }

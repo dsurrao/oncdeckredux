@@ -2,7 +2,8 @@
 <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="patient-full-width">
         <input matInput type="text" class="form-control" 
-            placeholder="First Name" formControlName="firstName" required/>
+            placeholder="First Name" formControlName="firstName" 
+            required/>
     </mat-form-field>
 
     <mat-form-field class="patient-full-width">
@@ -16,16 +17,20 @@
     </mat-form-field>
 
     <mat-radio-group formControlName="gender" required>
-        <mat-radio-button value="{{genderEnum.Female}}">{{genderEnum.Female}}</mat-radio-button>
-        <mat-radio-button value="{{genderEnum.Male}}">{{genderEnum.Male}}</mat-radio-button>
+        <mat-radio-button value="{{genderEnum.Female}}">
+            {{genderEnum.Female}}
+        </mat-radio-button>
+        <mat-radio-button value="{{genderEnum.Male}}">
+            {{genderEnum.Male}}
+        </mat-radio-button>
     </mat-radio-group>
 
     <mat-form-field class="patient-full-width">
         <input matInput type="date" placeholder="Date Of Birth" 
-            formControlName="dateOfBirth" required/>
+            formControlName="dateOfBirth"/>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit"
+    <button mat-raised-button color="primary" type="submit" 
         [disabled]="!patientForm.valid">
         Save
     </button>

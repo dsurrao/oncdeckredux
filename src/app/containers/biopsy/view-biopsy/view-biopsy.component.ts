@@ -26,13 +26,17 @@ export class ViewBiopsyComponent implements OnInit {
   ngOnInit(): void {
     let biopsyId = this.activatedRoute.snapshot.paramMap.get('biopsyId');
     this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId'); 
-    this.biopsy$ = this.store.select(fromBiopsy.selectBiopsy, 
-      { id: biopsyId });
 
-    this.appointment$ = this.biopsy$.pipe(
-      mergeMap(biopsy => 
-        this.store.select(fromAppointment.selectAppointment, { id: biopsy.appointmentId})
-      )
-    );
+    if (biopsyId != null) {
+      this.biopsy$ = this.store.select(fromBiopsy.selectBiopsy, 
+        { id: biopsyId });
+
+      this.appointment$ = this.biopsy$.pipe(
+        mergeMap(biopsy => 
+          this.store.select(fromAppointment.selectAppointment, 
+            { id: biopsy.appointmentId})
+        )
+      );
+    }
   }
 }

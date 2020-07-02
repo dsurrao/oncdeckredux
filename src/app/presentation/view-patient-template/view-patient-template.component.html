@@ -1,9 +1,9 @@
 <div style="padding: 10px">
     <h1>
-        {{patient.firstName}} {{patient.middleName}} {{patient.lastName}}
-                    {{patient.dateOfBirth}}, {{patient.gender}}
+        {{patient?.firstName}} {{patient?.middleName}} {{patient?.lastName}}
+                    {{patient?.dateOfBirth}}, {{patient?.gender}}
         <mat-icon aria-hidden="false" aria-label="Edit patient" 
-            routerLink="/patients/{{patient.id}}/edit">edit</mat-icon>
+            routerLink="/patients/{{patient?.id}}/edit">edit</mat-icon>
     </h1>
 </div>
 
@@ -16,7 +16,7 @@
             <div *ngIf="appointments != null && appointments.length > 0; 
                 else noAppointmentsBlock">
                 <app-view-appointment-template [appointment]="appointments[0]"
-                    [patientId]="patient.id" [isEmbedded]="true">
+                    [patientId]="patient?.id" [isEmbedded]="true">
                 </app-view-appointment-template>
             </div>
             <ng-template #noAppointmentsBlock>
@@ -33,7 +33,7 @@
         </mat-card-header>
         <mat-card-content>
             <div *ngIf="biopsies != null && biopsies.length > 0; else noBiopsiesBlock">
-                <app-view-biopsy-template [patientId]="patient.id" 
+                <app-view-biopsy-template [patientId]="patient?.id" 
                     [biopsy]="biopsies[0]" [isEmbedded]="true">
                 </app-view-biopsy-template>
             </div>
@@ -50,7 +50,7 @@
         <mat-card-content>
             <div *ngIf="surgicalPathologies != null && surgicalPathologies.length > 0; 
                 else noSurgicalPathologiesBlock">
-                <app-view-surgical-pathology-template [patientId]="patient.id" 
+                <app-view-surgical-pathology-template [patientId]="patient?.id" 
                     [surgicalPathology]="surgicalPathologies[0]" [isEmbedded]="true">
                 </app-view-surgical-pathology-template>
             </div>
@@ -72,7 +72,7 @@
             <mat-action-list>
                 <mat-list-item *ngFor="let appointment of appointments; index as i; first as isFirst">
                     <div>
-                        <a matLine routerLink="/patients/{{patient.id}}/appointments/{{appointment.id}}">
+                        <a matLine routerLink="/patients/{{patient?.id}}/appointments/{{appointment.id}}">
                             {{appointment.startDate}},
                             {{appointment.appointmentType}},
                             {{appointment.facility}}
@@ -87,7 +87,7 @@
             <mat-action-list>
                 <mat-list-item *ngFor="let biopsy of biopsies; index as i; first as isFirst">
                     <div>
-                        <a matLine routerLink="/patients/{{patient.id}}/biopsies/{{biopsy.id}}">
+                        <a matLine routerLink="/patients/{{patient?.id}}/biopsies/{{biopsy.id}}">
                             {{biopsy.site.site}},
                             {{biopsy.procedureDate}}
                         </a>
@@ -102,7 +102,7 @@
                 <mat-list-item *ngFor="let surgicalPathology of surgicalPathologies; index as i; first as isFirst">
                     <div>
                         <a matLine routerLink=
-                            "/patients/{{patient.id}}/surgical_pathologies/{{surgicalPathology.id}}">
+                            "/patients/{{patient?.id}}/surgical_pathologies/{{surgicalPathology.id}}">
                             {{surgicalPathology.surgeryType}},
                             {{surgicalPathology.reportDate}}
                         </a>

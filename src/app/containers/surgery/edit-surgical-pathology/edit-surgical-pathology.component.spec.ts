@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditSurgicalPathologyComponent } from './edit-surgical-pathology.component';
+import { Store, StoreModule } from '@ngrx/store';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EditSurgicalPathologyComponent', () => {
   let component: EditSurgicalPathologyComponent;
@@ -8,6 +10,7 @@ describe('EditSurgicalPathologyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ StoreModule.forRoot({}), RouterTestingModule ],
       declarations: [ EditSurgicalPathologyComponent ]
     })
     .compileComponents();

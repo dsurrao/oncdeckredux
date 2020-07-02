@@ -34,8 +34,8 @@ export class EditPatientComponent implements OnInit {
       patient.id = uuidv4();
     }
 
-    if (patient.dateCreatedMs == null) {
-      patient.dateCreatedMs = Date.now();
+    if (patient.dateCreated == null) {
+      patient.dateCreated = new Date().toISOString();
     }
     
     this.store.dispatch(patientActions.upsertPatient({ patient: patient }));

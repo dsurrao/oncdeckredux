@@ -13,7 +13,7 @@
             <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>add</mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu>
                 <button mat-menu-item 
                     routerLink="/patients/{{selectedPatient.id}}/appointments/new">
                     Appointment</button>
@@ -29,7 +29,7 @@
             <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>add</mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu>
                 <button mat-menu-item routerLink="/patients/new">Patient</button>
             </mat-menu>
         </ng-template>

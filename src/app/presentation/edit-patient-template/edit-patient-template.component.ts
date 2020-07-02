@@ -25,7 +25,7 @@ export class EditPatientTemplateComponent implements OnInit {
     lastName: [null, Validators.required],
     dateOfBirth: [null],
     gender: [null, Validators.required],
-    dateCreatedMs: [null]
+    dateCreated: [null]
   });
 
   genderEnum = GenderEnum;

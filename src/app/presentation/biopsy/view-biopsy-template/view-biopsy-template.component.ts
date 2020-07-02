@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
-import { Patient } from 'src/app/models/common/patient.model';
 
 @Component({
   selector: 'app-view-biopsy-template',

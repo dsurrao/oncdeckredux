@@ -4,10 +4,10 @@
             <th colspan="2">
                 Surgical Pathology Report
                 <span [ngSwitch]="isEmbedded">
-                    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}" 
+                    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology?.id}}" 
                         *ngSwitchCase="true">info
                     </mat-icon>
-                    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}/edit" 
+                    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology?.id}}/edit" 
                         *ngSwitchDefault>edit
                     </mat-icon>
                 </span>
@@ -17,68 +17,68 @@
     <tbody>
         <tr>
             <td class="title">Report Date</td>
-            <td>{{surgicalPathology.reportDate}}</td>
+            <td>{{surgicalPathology?.reportDate}}</td>
         </tr>
         <tr>
             <td class="title">Status</td>
-            <td>{{surgicalPathology.status}}</td>
+            <td>{{surgicalPathology?.status}}</td>
         </tr>
         <tr>
             <td class="title">Status Reason</td>
-            <td>{{surgicalPathology.statusReason}}</td>
+            <td>{{surgicalPathology?.statusReason}}</td>
         </tr>
         <tr>
             <td class="title">Surgery Type</td>
-            <td>{{surgicalPathology.surgeryType.type}}</td>
+            <td>{{surgicalPathology?.surgeryType.type}}</td>
         </tr>
         <tr>
             <td class="title">Surgery Type (Other)</td>
-            <td>{{surgicalPathology.surgeryType.typeOther}}</td>
+            <td>{{surgicalPathology?.surgeryType.typeOther}}</td>
         </tr>
         <tr>
             <td class="title">Lymph Node Dissection Type</td>
-            <td>{{surgicalPathology.lymphNodeDissectionType}}</td>
+            <td>{{surgicalPathology?.lymphNodeDissectionType}}</td>
         </tr>
         <tr>
             <td class="title">Histology</td>
-            <td>{{surgicalPathology.histology.histology}}</td>
+            <td>{{surgicalPathology?.histology.histology}}</td>
         </tr>
         <tr>
             <td class="title">Histology (Other)</td>
-            <td>{{surgicalPathology.histology.histologyOther}}</td>
+            <td>{{surgicalPathology?.histology.histologyOther}}</td>
         </tr>
         <tr>
             <td class="title">ER Receptor</td>
             <td>
-                {{surgicalPathology.receptors.erReceptor.status}}, 
-                {{surgicalPathology.receptors.erReceptor.strength}}
+                {{surgicalPathology?.receptors.erReceptor.status}}, 
+                {{surgicalPathology?.receptors.erReceptor.strength}}
             </td>
         </tr>
         <tr>
             <td class="title">PR Receptor</td>
             <td>
-                {{surgicalPathology.receptors.prReceptor.status}}, 
-                {{surgicalPathology.receptors.prReceptor.strength}}
+                {{surgicalPathology?.receptors.prReceptor.status}}, 
+                {{surgicalPathology?.receptors.prReceptor.strength}}
             </td>
         </tr>
         <tr>
             <td class="title">HER2 Receptor</td>
             <td>
-                {{surgicalPathology.receptors.her2Receptor.status}}, 
-                {{surgicalPathology.receptors.her2Receptor.test}}
+                {{surgicalPathology?.receptors.her2Receptor.status}}, 
+                {{surgicalPathology?.receptors.her2Receptor.test}}
             </td>
         </tr>
         <tr>
             <td class="title">Grade</td>
-            <td>{{surgicalPathology.features.grade}}</td>
+            <td>{{surgicalPathology?.features.grade}}</td>
         </tr>
         <tr>
             <td class="title">LVI</td>
-            <td>{{surgicalPathology.features.lvi}}</td>
+            <td>{{surgicalPathology?.features.lvi}}</td>
         </tr>
         <tr>
             <td class="title">Surgical Margins</td>
-            <td>{{surgicalPathology.surgicalMargins}}</td>
+            <td>{{surgicalPathology?.surgicalMargins}}</td>
         </tr>
     </tbody>
 </table>

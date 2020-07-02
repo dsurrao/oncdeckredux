@@ -7,6 +7,7 @@ import * as BiopsyActions from '../biopsy/biopsy.actions';
 import * as AppointmentActions from '../appointment/appointment.actions';
 import * as SurgicalPathologyActions from '../surgery/surgical-pathology.actions';
 import { GenderEnum } from 'src/app/models/enums/gender.enum';
+import * as mockData from 'src/app/store/mock-data';
 
 export const patientsFeatureKey = 'patients';
 
@@ -16,18 +17,9 @@ export interface State extends EntityState<Patient> {
 
 export const adapter: EntityAdapter<Patient> = createEntityAdapter<Patient>();
 
-export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
-  entities: 
-    {
-      "51": {id: "51", firstName: "Ya", lastName: "Le", gender: GenderEnum.Female, 
-        dateOfBirth: "2000-02-02", appointmentIds: ["appt1", "appt2"], 
-        dateCreatedMs: Date.now()},
-      "52": {id: "52", firstName: "Jane", lastName: "Dia", gender: GenderEnum.Female,
-      dateOfBirth: "2000-03-01", dateCreatedMs: Date.now()}
-    },
-    ids: ["51", "52"]
-});
+export const initialState: State = adapter.getInitialState(
+  mockData.patientState
+);
 
 export const reducer = createReducer(
   initialState,

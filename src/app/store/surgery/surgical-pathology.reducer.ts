@@ -2,7 +2,7 @@ import { Action, createReducer, on, createFeatureSelector, createSelector } from
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as SurgicalPathologyActions from './surgical-pathology.actions';
 import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
-import { isDataSource } from '@angular/cdk/collections';
+import * as mockData from 'src/app/store/mock-data';
 
 export const surgicalPathologiesFeatureKey = 'surgicalPathologies';
 
@@ -12,9 +12,9 @@ export interface State extends EntityState<SurgicalPathology> {
 
 export const adapter: EntityAdapter<SurgicalPathology> = createEntityAdapter<SurgicalPathology>();
 
-export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
-});
+export const initialState: State = adapter.getInitialState(
+  mockData.surgicalPathologyState
+);
 
 
 export const reducer = createReducer(

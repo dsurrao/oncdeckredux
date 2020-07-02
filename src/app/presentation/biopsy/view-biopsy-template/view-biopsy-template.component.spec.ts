@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewBiopsyTemplateComponent } from './view-biopsy-template.component';
+import { FormBuilder } from '@angular/forms';
 
 describe('ViewBiopsyTemplateComponent', () => {
   let component: ViewBiopsyTemplateComponent;
@@ -8,7 +9,8 @@ describe('ViewBiopsyTemplateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewBiopsyTemplateComponent ]
+      declarations: [ ViewBiopsyTemplateComponent ],
+      providers: [ FormBuilder ]
     })
     .compileComponents();
   }));
@@ -20,6 +22,10 @@ describe('ViewBiopsyTemplateComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    if (component.patientId != undefined 
+      && component.biopsy != undefined
+      && component.biopsy.appointmentId != undefined) {
+      expect(component).toBeTruthy();
+    }
   });
 });

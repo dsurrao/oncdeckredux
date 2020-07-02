@@ -1,17 +1,23 @@
 <h1>Edit Appointment</h1>
 
+<div style="color: red; padding: 15px" *ngIf="errors">
+    <div *ngFor="let error of errors">
+        {{error.field}}: {{error.message}}
+    </div>
+</div>
+
 <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
         <input matInput type="date" formControlName="startDate"
-            placeholder="Start Date"/>
+            placeholder="Start Date" required/>
     </mat-form-field>
 
     <mat-form-field>
         <input matInput type="text" formControlName="facility"
-            placeholder="Facility Name"/>
+            placeholder="Facility Name" required/>
     </mat-form-field>
 
-    <mat-radio-group formControlName="appointmentType">
+    <mat-radio-group formControlName="appointmentType" required>
         <mat-radio-button value="{{biopsyTypeEnum.FineNeedleAspiration}}">
             {{biopsyTypeEnum.FineNeedleAspiration}}
         </mat-radio-button>
@@ -34,7 +40,7 @@
 
     <mat-form-field>
         <input matInput type="text" formControlName="contactPerson"
-            placeholder="Contact Person"/>
+            placeholder="Contact Person" required/>
     </mat-form-field>
 
     <mat-form-field>
@@ -48,7 +54,8 @@
     </mat-form-field>
 
     <div>
-        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button color="primary" type="submit" 
+            [disabled]="!appointmentForm.valid">Submit</button>
         <button mat-button type="button" (click)="onCancel()">Cancel</button>
     </div>
 </form>

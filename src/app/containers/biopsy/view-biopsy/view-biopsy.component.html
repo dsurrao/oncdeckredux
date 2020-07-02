@@ -2,4 +2,5 @@
     [isEmbedded]="true">
 </app-view-appointment-template>
 <app-view-biopsy-template [patientId]="patientId" 
-    [biopsy]="biopsy$ | async"></app-view-biopsy-template>
+    [biopsy]="biopsy$ | async" *ngIf="patientId != null">
+</app-view-biopsy-template>

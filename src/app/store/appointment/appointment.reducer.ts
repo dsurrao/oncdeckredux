@@ -2,8 +2,7 @@ import { createReducer, on, createFeatureSelector, createSelector } from '@ngrx/
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as AppointmentActions from './appointment.actions';
 import { Appointment } from 'src/app/models/appointment.model';
-import { BiopsyTypeEnum } from 'src/app/models/enums/biopsy-type.enum';
-import { SurgeryTypeEnum } from 'src/app/models/enums/surgery-type.enum';
+import * as mockData from 'src/app/store/mock-data';
 
 export const appointmentsFeatureKey = 'appointments';
 
@@ -13,19 +12,9 @@ export interface State extends EntityState<Appointment> {
 
 export const adapter: EntityAdapter<Appointment> = createEntityAdapter<Appointment>();
 
-export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
-  entities: 
-    {
-      "appt1": {id: "appt1", startDate: "2020-06-24", facility: "MGH", 
-        contactPerson: "Greg", 
-        appointmentType: BiopsyTypeEnum.CoreNeedleBiopsy},
-      "appt2": {id: "appt2", startDate: "2020-06-25", facility: "MGH", 
-        contactPerson: "Greg", 
-        appointmentType: SurgeryTypeEnum.ModifiedRadicalMastectomy}
-    },
-    ids: ["appt1", "appt2"]
-});
+export const initialState: State = adapter.getInitialState(
+  mockData.appointmentState
+);
 
 export const reducer = createReducer(
   initialState,

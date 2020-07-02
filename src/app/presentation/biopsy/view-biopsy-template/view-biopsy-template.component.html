@@ -5,11 +5,11 @@
                 Biopsy
                 <span [ngSwitch]="!isEmbedded">
                     <mat-icon routerLink=
-                        "/patients/{{patientId}}/biopsies/{{biopsy.id}}/edit"
+                        "/patients/{{patientId}}/biopsies/{{biopsy?.id}}/edit"
                         *ngSwitchCase="true">edit
                     </mat-icon>
                     <mat-icon routerLink=
-                        "/patients/{{patientId}}/biopsies/{{biopsy.id}}"
+                        "/patients/{{patientId}}/biopsies/{{biopsy?.id}}"
                         *ngSwitchDefault>info
                     </mat-icon>                    
                 </span>
@@ -19,66 +19,66 @@
     <tbody>
         <tr>
             <td class="title">Pathology Report Date</td>
-            <td>{{biopsy.pathologyReportDate}}</td>
+            <td>{{biopsy?.pathologyReportDate}}</td>
         </tr>
         <tr>
             <td class="title">Status</td>
-            <td>{{biopsy.status}}</td>
+            <td>{{biopsy?.status}}</td>
         </tr>
         <tr>
             <td class="title">Status Reason</td>
-            <td>{{biopsy.statusReason}}</td>
+            <td>{{biopsy?.statusReason}}</td>
         </tr>
-        <tr *ngIf="biopsy.site != null && biopsy.site.site != null">
+        <tr *ngIf="biopsy?.site != null && biopsy?.site.site != null">
             <td class="title">Site</td>
             <td>
                 <div>
-                    {{biopsy.site.site}}
-                    <span *ngIf="biopsy.site.siteOther != null">
-                        , {{biopsy.site.siteOther}}
+                    {{biopsy?.site.site}}
+                    <span *ngIf="biopsy?.site.siteOther != null">
+                        , {{biopsy?.site.siteOther}}
                     </span>
                 </div>
-                <div *ngIf="biopsy.site.side != null">Side: {{biopsy.site.side}}</div>
-                <div *ngIf="biopsy.site.lymphNodeLocation != null">
-                    Lymph Node: {{biopsy.site.lymphNodeLocation}}
-                    <span *ngIf="biopsy.site.lymphNodeLocation != null">
-                        , {{biopsy.site.lymphNodeLocationOther}}
+                <div *ngIf="biopsy?.site.side != null">Side: {{biopsy?.site.side}}</div>
+                <div *ngIf="biopsy?.site.lymphNodeLocation != null">
+                    Lymph Node: {{biopsy?.site.lymphNodeLocation}}
+                    <span *ngIf="biopsy?.site.lymphNodeLocation != null">
+                        , {{biopsy?.site.lymphNodeLocationOther}}
                     </span>
                 </div>
-                <div *ngIf="biopsy.site.bone != null">Bone: {{biopsy.site.bone}}</div>
+                <div *ngIf="biopsy?.site.bone != null">Bone: {{biopsy?.site.bone}}</div>
             </td>
         </tr>
-        <tr *ngIf="biopsy.histology != null && biopsy.histology.histology != null">
+        <tr *ngIf="biopsy?.histology != null && biopsy?.histology.histology != null">
             <td class="title">Histology</td>
-            <td>{{biopsy.histology.histology}}
-                <span *ngIf="biopsy.histology.histologyOther != null">
-                    , {{biopsy.histology.histologyOther}}
+            <td>{{biopsy?.histology.histology}}
+                <span *ngIf="biopsy?.histology.histologyOther != null">
+                    , {{biopsy?.histology.histologyOther}}
                 </span>
             </td>
         </tr>
-        <tr *ngIf="biopsy.receptors != null && biopsy.receptors.erReceptor.strength != null">
+        <tr *ngIf="biopsy?.receptors != null && biopsy?.receptors.erReceptor.strength != null">
             <td class="title">Receptors</td>
             <td>
-                <div>ER: {{biopsy.receptors.erReceptor.status}}
-                    <span *ngIf="biopsy.receptors.erReceptor.strength != null"> 
-                        , {{biopsy.receptors.erReceptor.strength}}
+                <div>ER: {{biopsy?.receptors.erReceptor.status}}
+                    <span *ngIf="biopsy?.receptors.erReceptor.strength != null"> 
+                        , {{biopsy?.receptors.erReceptor.strength}}
                     </span>
                 </div>
-                <div>PR: {{biopsy.receptors.prReceptor.status}}, 
-                    <span *ngIf="biopsy.receptors.prReceptor.strength != null"> 
-                        , {{biopsy.receptors.prReceptor.strength}}
+                <div>PR: {{biopsy?.receptors.prReceptor.status}}, 
+                    <span *ngIf="biopsy?.receptors.prReceptor.strength != null"> 
+                        , {{biopsy?.receptors.prReceptor.strength}}
                     </span>
                 </div>
-                <div>HER2: {{biopsy.receptors.her2Receptor.status}}, 
-                    {{biopsy.receptors.her2Receptor.test}}
+                <div>HER2: {{biopsy?.receptors.her2Receptor.status}}, 
+                    {{biopsy?.receptors.her2Receptor.test}}
                 </div>
             </td>
         </tr>
-        <tr *ngIf="biopsy.features != null && biopsy.features.grade != null">
+        <tr *ngIf="biopsy?.features != null && biopsy?.features.grade != null">
             <td class="title">Features</td>
             <td>
-                <div>Grade: {{biopsy.features.grade}}</div>
-                <div>LVI: {{biopsy.features.lvi}}</div>
+                <div>Grade: {{biopsy?.features.grade}}</div>
+                <div>LVI: {{biopsy?.features.lvi}}</div>
             </td>
         </tr>
     </tbody>

@@ -28,17 +28,19 @@ export class ViewSurgicalPathologyComponent implements OnInit {
     let surgicalPathologyId = this.route.snapshot.paramMap.get(
       "surgicalPathologyId");
 
-    this.surgicalPathology$ = this.store.select(
-      fromSurgicalPathology.selectSurgicalPathology,
-      { id: surgicalPathologyId }
-    );
-
-    this.appointment$ = this.surgicalPathology$.pipe(
-      mergeMap(surgicalPathology => 
-        this.store.select(fromAppointment.selectAppointment, 
-          { id: surgicalPathology.appointmentId})
-      )
-    );
+    if (this.patientId != null && surgicalPathologyId != null) {
+      this.surgicalPathology$ = this.store.select(
+        fromSurgicalPathology.selectSurgicalPathology,
+        { id: surgicalPathologyId }
+      );
+  
+      this.appointment$ = this.surgicalPathology$.pipe(
+        mergeMap(surgicalPathology => 
+          this.store.select(fromAppointment.selectAppointment, 
+            { id: surgicalPathology.appointmentId})
+        )
+      );
+    }    
   }
 
 }

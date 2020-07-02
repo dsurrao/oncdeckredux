@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditBiopsyReportTemplateComponent } from './edit-biopsy-report-template.component';
+import { Store } from '@ngrx/store';
+import { FormBuilder } from '@angular/forms';
 
 describe('EditBiopsyReportTemplateComponent', () => {
   let component: EditBiopsyReportTemplateComponent;
@@ -8,7 +10,8 @@ describe('EditBiopsyReportTemplateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditBiopsyReportTemplateComponent ]
+      declarations: [ EditBiopsyReportTemplateComponent ],
+      providers: [ FormBuilder ]
     })
     .compileComponents();
   }));

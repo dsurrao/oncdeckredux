@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Appointment } from 'src/app/models/appointment.model';
 import { BiopsyTypeEnum } from 'src/app/models/enums/biopsy-type.enum';
 import { SurgeryTypeEnum } from 'src/app/models/enums/surgery-type.enum';
+import * as dateUtils from 'src/app/utilities/date-utilities';
 
 @Component({
   selector: 'app-view-appointment-template',
@@ -25,9 +26,16 @@ export class ViewAppointmentTemplateComponent implements OnInit {
   biopsyTypeEnum = BiopsyTypeEnum;
   surgeryTypeEnum = SurgeryTypeEnum;
 
+  startDateStr: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    if (this.appointment != null) {
+      this.startDateStr = dateUtils.getYyyymmddFromISOString(
+        this.appointment.startDate
+      );
+    }
   }
 
 }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditSurgicalPathologyTemplateComponent } from './edit-surgical-pathology-template.component';
+import { FormBuilder } from '@angular/forms';
 
 describe('EditSurgicalPathologyTemplateComponent', () => {
   let component: EditSurgicalPathologyTemplateComponent;
@@ -8,7 +9,8 @@ describe('EditSurgicalPathologyTemplateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditSurgicalPathologyTemplateComponent ]
+      declarations: [ EditSurgicalPathologyTemplateComponent ],
+      providers: [ FormBuilder ]
     })
     .compileComponents();
   }));

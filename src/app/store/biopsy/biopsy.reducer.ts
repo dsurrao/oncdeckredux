@@ -2,6 +2,7 @@ import { createReducer, on, createSelector, createFeatureSelector } from '@ngrx/
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Biopsy } from '../../models/biopsy/biopsy.model';
 import * as BiopsyActions from './biopsy.actions';
+import * as mockData from 'src/app/store/mock-data';
 
 export const biopsiesFeatureKey = 'biopsies';
 
@@ -11,9 +12,9 @@ export interface State extends EntityState<Biopsy> {
 
 export const adapter: EntityAdapter<Biopsy> = createEntityAdapter<Biopsy>();
 
-export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
-});
+export const initialState: State = adapter.getInitialState(
+  mockData.biopsyState
+);
 
 export const reducer = createReducer(
   initialState,

@@ -25,53 +25,55 @@ export class ViewPatientComponent implements OnInit {
   
   constructor(private store: Store,
     private router: Router,
-    private route: ActivatedRoute) {      
+    private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     let patientId = this.route.snapshot.paramMap.get('patientId');
 
-    this.patient$ = this.store.pipe(
-      select(fromPatient.selectPatient, { id: patientId }));
-
-    this.appointments$ = this.store.select(
-      fromPatient.selectPatient, { id: patientId }).pipe(
+    if (patientId != null) {
+      this.patient$ = this.store.pipe(
+        select(fromPatient.selectPatient, { id: patientId }));
+  
+      this.appointments$ = this.store.select(
+        fromPatient.selectPatient, { id: patientId }).pipe(
+          mergeMap(patient => {
+            if (patient.appointmentIds != null) {
+              return this.store.select(fromAppointment.selectAppointmentsSubset,
+                { appointmentIds: patient.appointmentIds });
+            }
+            else {
+              return [];
+            }
+          })
+        );
+  
+      this.biopsies$ = this.store.select(
+        fromPatient.selectPatient, { id: patientId }).pipe(
         mergeMap(patient => {
-          if (patient.appointmentIds != null) {
-            return this.store.select(fromAppointment.selectAppointmentsSubset,
-              { appointmentIds: patient.appointmentIds });
+          if (patient.biopsyIds != null) {
+            return this.store.select(fromBiopsy.selectBiopsiesSubset, 
+              { biopsyIds: patient.biopsyIds});
           }
           else {
             return [];
           }
         })
       );
-
-    this.biopsies$ = this.store.select(
-      fromPatient.selectPatient, { id: patientId }).pipe(
-      mergeMap(patient => {
-        if (patient.biopsyIds != null) {
-          return this.store.select(fromBiopsy.selectBiopsiesSubset, 
-            { biopsyIds: patient.biopsyIds});
-        }
-        else {
-          return [];
-        }
-      })
-    );
-
-    this.surgicalPathologies$ = this.store.select(
-      fromPatient.selectPatient, { id: patientId }).pipe(
-      mergeMap(patient => {
-        if (patient.surgicalPathologyIds != null) {
-          return this.store.select(
-            fromSurgicalPathology.selectSurgicalPathologiesSubset, 
-            { ids: patient.surgicalPathologyIds});
-        }
-        else {
-          return [];
-        }
-      })
-    );
+  
+      this.surgicalPathologies$ = this.store.select(
+        fromPatient.selectPatient, { id: patientId }).pipe(
+        mergeMap(patient => {
+          if (patient.surgicalPathologyIds != null) {
+            return this.store.select(
+              fromSurgicalPathology.selectSurgicalPathologiesSubset, 
+              { ids: patient.surgicalPathologyIds});
+          }
+          else {
+            return [];
+          }
+        })
+      );
+    }
   }
 }

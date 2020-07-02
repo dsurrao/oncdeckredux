@@ -5,11 +5,11 @@
                 Appointment
                 <span [ngSwitch]="!isEmbedded">
                     <mat-icon routerLink=
-                        "/patients/{{patientId}}/appointments/{{appointment.id}}/edit"
+                        "/patients/{{patientId}}/appointments/{{appointment?.id}}/edit"
                         *ngSwitchCase="true">edit
                     </mat-icon>
                     <mat-icon routerLink=
-                        "/patients/{{patientId}}/appointments/{{appointment.id}}"
+                        "/patients/{{patientId}}/appointments/{{appointment?.id}}"
                         *ngSwitchDefault>info
                     </mat-icon>                    
                 </span>
@@ -19,38 +19,38 @@
     <tbody>
         <tr>
             <td class="title">Start Date</td>
-            <td>{{appointment.startDate}}</td>
+            <td>{{startDateStr}}</td>
         </tr>
         <tr>
             <td class="title">Facility</td>
-            <td>{{appointment.facility}}</td>
+            <td>{{appointment?.facility}}</td>
         </tr>
         <tr>
             <td class="title">Contact Person</td>
-            <td>{{appointment.contactPerson}}</td>
+            <td>{{appointment?.contactPerson}}</td>
         </tr>
         <tr>
             <td class="title">Appointment Type</td>
-            <td>{{appointment.appointmentType}}</td>
+            <td>{{appointment?.appointmentType}}</td>
         </tr>
         <tr>
             <td class="title">Provider Name</td>
-            <td>{{appointment.providerName}}</td>
+            <td>{{appointment?.providerName}}</td>
         </tr>
         <tr>
             <td class="title">Provider Type</td>
-            <td>{{appointment.providerType}}</td>
+            <td>{{appointment?.providerType}}</td>
         </tr>
         <tr *ngIf="!isEmbedded">
             <td colspan="2">
                 <div class="center-all">
-                    <section *ngIf="appointment.appointmentType == biopsyTypeEnum.FineNeedleAspiration 
-                        || appointment.appointmentType == biopsyTypeEnum.CoreNeedleBiopsy 
-                        || appointment.appointmentType == biopsyTypeEnum.IncisionalBiopsy 
-                        || appointment.appointmentType == biopsyTypeEnum.ExcisionalBiopsy">
+                    <section *ngIf="appointment?.appointmentType == biopsyTypeEnum.FineNeedleAspiration 
+                        || appointment?.appointmentType == biopsyTypeEnum.CoreNeedleBiopsy 
+                        || appointment?.appointmentType == biopsyTypeEnum.IncisionalBiopsy 
+                        || appointment?.appointmentType == biopsyTypeEnum.ExcisionalBiopsy">
                         <section *ngIf="procedureId == null; else viewBiopsyBlock">
                             <button mat-raised-button color="primary" [routerLink]=
-                                "['/patients', patientId, 'biopsies', 'new', {appointmentId: appointment.id}]">
+                                "['/patients', patientId, 'biopsies', 'new', {appointmentId: appointment?.id}]">
                                 Enter Biopsy Report
                             </button>
                         </section>
@@ -60,13 +60,13 @@
                             </a>
                         </ng-template>
                     </section>
-                    <section *ngIf="appointment.appointmentType == surgeryTypeEnum.Lumpectomy 
-                        || appointment.appointmentType == surgeryTypeEnum.ModifiedRadicalMastectomy 
-                        || appointment.appointmentType == surgeryTypeEnum.Other">
+                    <section *ngIf="appointment?.appointmentType == surgeryTypeEnum.Lumpectomy 
+                        || appointment?.appointmentType == surgeryTypeEnum.ModifiedRadicalMastectomy 
+                        || appointment?.appointmentType == surgeryTypeEnum.Other">
                         <section *ngIf="procedureId == null; else viewSurgeryBlock">
                             <button mat-raised-button color="primary" [routerLink]=
                                 "['/patients', patientId, 'surgical_pathologies', 'new', 
-                                {appointmentId: appointment.id}]">
+                                {appointmentId: appointment?.id}]">
                                 Enter Surgical Pathology Report
                             </button>
                         </section>

@@ -4,5 +4,5 @@
 </app-view-appointment-template>
 <app-view-surgical-pathology-template
     [surgicalPathology]="surgicalPathology$ | async"
-    [patientId]="patientId">
+    [patientId]="patientId" *ngIf="patientId != null">
 </app-view-surgical-pathology-template>

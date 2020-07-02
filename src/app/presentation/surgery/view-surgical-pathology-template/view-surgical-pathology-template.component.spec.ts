@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewSurgicalPathologyTemplateComponent } from './view-surgical-pathology-template.component';
+import { Store } from '@ngrx/store';
 
 describe('ViewSurgicalPathologyTemplateComponent', () => {
   let component: ViewSurgicalPathologyTemplateComponent;
@@ -8,7 +9,8 @@ describe('ViewSurgicalPathologyTemplateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewSurgicalPathologyTemplateComponent ]
+      declarations: [ ViewSurgicalPathologyTemplateComponent ],
+      providers: [ Store ]
     })
     .compileComponents();
   }));
@@ -20,6 +22,8 @@ describe('ViewSurgicalPathologyTemplateComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    if (component.patientId && component.surgicalPathology) {
+      expect(component).toBeTruthy();
+    }
   });
 });

@@ -16,5 +16,5 @@ export interface Patient {
   appointmentIds?: string[];
   procedureIds?: string[];
   surgicalPathologyIds?: string[];  
-  dateCreatedMs: number;
+  dateCreated: string;
 }

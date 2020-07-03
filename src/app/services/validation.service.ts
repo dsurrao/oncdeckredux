@@ -17,12 +17,6 @@ export class ValidationService {
       validationResult.errors.push({ field: 'startDate', 
         message: 'is empty' });
     }
-    else if (dateUtilities.compareDates(appt.startDate, 
-      new Date().toISOString()) == -1) {
-      validationResult.isValid = false;
-      validationResult.errors.push({ field: 'startDate', 
-        message: 'is in the past' });
-    }
 
     if (!appt.facility) {
       validationResult.isValid = false;

@@ -1,7 +1,7 @@
 <div style="padding: 10px">
     <h1>
         {{patient?.firstName}} {{patient?.middleName}} {{patient?.lastName}}
-                    {{patient?.dateOfBirth}}, {{patient?.gender}}
+                    {{dateOfBirth}}, {{patient?.gender}}
         <mat-icon aria-hidden="false" aria-label="Edit patient" 
             routerLink="/patients/{{patient?.id}}/edit">edit</mat-icon>
     </h1>

@@ -57,3 +57,7 @@ td.title {
 .center-all {
     display: flex; justify-content: center
 }
+
+.validation-error {
+    color: red;
+}

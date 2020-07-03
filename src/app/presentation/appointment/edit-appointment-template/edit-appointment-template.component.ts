@@ -4,7 +4,6 @@ import { Appointment } from 'src/app/models/appointment.model';
 import { BiopsyTypeEnum } from 'src/app/models/enums/biopsy-type.enum';
 import { SurgeryTypeEnum } from 'src/app/models/enums/surgery-type.enum';
 import * as dateUtilities from 'src/app/utilities/date-utilities';
-import { ValidationService, ValidationResult } from 'src/app/services/validation.service';
 
 @Component({
   selector: 'app-edit-appointment-template',
@@ -23,9 +22,9 @@ export class EditAppointmentTemplateComponent implements OnInit {
 
   appointmentForm = this.fb.group({
     startDate: [null, Validators.required],
-    facility: [null, Validators.required],
+    facility: [null, [Validators.required, Validators.minLength(3)]],
     appointmentType: [null, Validators.required],
-    contactPerson: [null, Validators.required],
+    contactPerson: [null, [Validators.required, Validators.minLength(3)]],
     providerName: [null],
     providerType: [null]
   });
@@ -33,10 +32,11 @@ export class EditAppointmentTemplateComponent implements OnInit {
   biopsyTypeEnum = BiopsyTypeEnum;
   surgeryTypeEnum = SurgeryTypeEnum;
 
-  errors: any[];
+  get facility() { return this.appointmentForm.get('facility'); }
+  get contactPerson() { return this.appointmentForm.get('contactPerson'); }
+  get startDate() { return this.appointmentForm.get('startDate'); }
 
-  constructor(private fb: FormBuilder, 
-    private validationService: ValidationService) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     if (this.appointment != null) {
@@ -48,15 +48,7 @@ export class EditAppointmentTemplateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let validationResult: ValidationResult = 
-      this.validationService.validateAppointment(
-        this.appointmentForm.value);
-    if (validationResult.isValid) {
-      this.onSaveEmitter.emit(this.appointmentForm.value);
-    }
-    else {
-      this.errors = validationResult.errors;
-    }
+    this.onSaveEmitter.emit(this.appointmentForm.value);
   }
 
   onCancel(): void {

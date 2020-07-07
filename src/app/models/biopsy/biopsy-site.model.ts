@@ -7,6 +7,5 @@ export interface BiopsySite {
     side?: SideEnum,
     lymphNodeLocation?: LymphNodeLocationEnum,
     lymphNodeLocationOther?: string,
-    bone?: string,
     siteOther?: string
 }

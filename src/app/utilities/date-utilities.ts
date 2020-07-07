@@ -68,6 +68,16 @@ export const compareDates = (date1: string, date2: string): number => {
     throw 'Invalid input';
 }
 
+export const isFutureDate = (date: string): boolean => {
+    let futureDate: boolean = false;
+
+    if (compareDates(date, new Date().toISOString()) == 1) {
+        futureDate = true;
+    }
+
+    return futureDate;
+}
+
 const padZero = (num: number): string => {
     let paddedString: string = '';
 

@@ -88,8 +88,8 @@
                 <mat-list-item *ngFor="let biopsy of biopsies; index as i; first as isFirst">
                     <div>
                         <a matLine routerLink="/patients/{{patient?.id}}/biopsies/{{biopsy.id}}">
-                            {{biopsy.site.site}},
-                            {{biopsy.procedureDate}}
+                            {{biopsy.status}},
+                            {{biopsy.pathologyReportDate}}
                         </a>
                     </div>                   
                 </mat-list-item>

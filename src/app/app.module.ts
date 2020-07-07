@@ -5,6 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule, MatCard } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -85,6 +86,7 @@ import { EditSurgicalPathologyComponent } from './containers/surgery/edit-surgic
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,

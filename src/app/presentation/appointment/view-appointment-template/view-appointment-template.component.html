@@ -34,6 +34,10 @@
             <td>{{appointment?.appointmentType}}</td>
         </tr>
         <tr>
+            <td class="title">Appointment Type (Other)</td>
+            <td>{{appointment?.appointmentTypeOther}}</td>
+        </tr>
+        <tr>
             <td class="title">Provider Name</td>
             <td>{{appointment?.providerName}}</td>
         </tr>
@@ -46,8 +50,7 @@
                 <div class="center-all">
                     <section *ngIf="appointment?.appointmentType == biopsyTypeEnum.FineNeedleAspiration 
                         || appointment?.appointmentType == biopsyTypeEnum.CoreNeedleBiopsy 
-                        || appointment?.appointmentType == biopsyTypeEnum.IncisionalBiopsy 
-                        || appointment?.appointmentType == biopsyTypeEnum.ExcisionalBiopsy">
+                        || appointment?.appointmentType == biopsyTypeEnum.Other">
                         <section *ngIf="procedureId == null; else viewBiopsyBlock">
                             <button mat-raised-button color="primary" [routerLink]=
                                 "['/patients', patientId, 'biopsies', 'new', {appointmentId: appointment?.id}]">

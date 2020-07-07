@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
+import { FormBuilder, Validators, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { BiopsyTypeEnum } from '../../../models/enums/biopsy-type.enum';
 import { BiopsySiteEnum } from 'src/app/models/enums/biopsy-site.enum';
 import { HistologyEnum } from 'src/app/models/enums/histology.enum';
@@ -12,6 +13,7 @@ import { SideEnum } from 'src/app/models/enums/side.enum';
 import { LviStatusEnum } from 'src/app/models/enums/lvi-status.enum';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 import { ProcedureStatusEnum } from 'src/app/models/enums/procedure-status.enum';
+import * as biopsyValidation from 'src/app/utilities/biopsy-validation';
 
 @Component({
   selector: 'app-edit-biopsy-report-template',
@@ -19,6 +21,8 @@ import { ProcedureStatusEnum } from 'src/app/models/enums/procedure-status.enum'
   styleUrls: ['./edit-biopsy-report-template.component.css']
 })
 export class EditBiopsyReportTemplateComponent implements OnInit {
+  @ViewChild("dialogRef") dialogRef: TemplateRef<any>;
+
   @Input()
   biopsy: Biopsy;
 
@@ -30,8 +34,7 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
     siteOther: [null],
     side: [null],
     lymphNodeLocation: [null],
-    lymphNodeLocationOther: [null],
-    bone: [null]
+    lymphNodeLocationOther: [null]
   });
 
   histologyFormGroup = this.fb.group({
@@ -64,15 +67,16 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   })
 
   biopsyForm = this.fb.group({
-    pathologyReportDate: [null, Validators.required],
-    type: [null, Validators.required],
-    status: [null, Validators.required],
-    statusReason: [null],
-    site: this.siteFormGroup,
-    histology: this.histologyFormGroup,
-    receptors: this.receptorFormGroup,
-    features: this.featuresFormGroup
-  });
+      pathologyReportDate: [null],
+      status: [null, Validators.required],
+      statusReason: [null],
+      site: this.siteFormGroup,
+      histology: this.histologyFormGroup,
+      receptors: this.receptorFormGroup,
+      features: this.featuresFormGroup
+    },
+    { validators: biopsyFormValidator }
+  );
 
   /// references to the enum types
   biopsyTypeEnum = BiopsyTypeEnum;
@@ -87,7 +91,8 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   sideEnum = SideEnum;
   procedureStatusEnum = ProcedureStatusEnum;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {    
     /// initialize controls
@@ -99,6 +104,7 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
     this.updatePrReceptorFormGroupControls(null);
 
     /// listen for changes
+    /// todo: unsubcribe
     this.biopsyForm.controls['status'].valueChanges.subscribe(
       e => this.updateBiopsyFormStatusControls(e)
     )
@@ -142,8 +148,6 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   updateSiteFormGroupControls(e: any) {
     this.siteFormGroup.controls['siteOther'].setValue(null);
     this.siteFormGroup.controls['siteOther'].disable();
-    this.siteFormGroup.controls['bone'].setValue(null);
-    this.siteFormGroup.controls['bone'].disable();
     this.siteFormGroup.controls['side'].setValue(null);
     this.siteFormGroup.controls['side'].disable();
     this.siteFormGroup.controls['lymphNodeLocation'].setValue(null);
@@ -154,9 +158,6 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
     switch (e) {
       case this.biopsySiteEnum.Other:
         this.siteFormGroup.controls['siteOther'].enable();
-        break;
-      case this.biopsySiteEnum.Bone:
-        this.siteFormGroup.controls['bone'].enable();
         break;
       case this.biopsySiteEnum.Breast:
         this.siteFormGroup.controls['side'].enable();
@@ -214,6 +215,20 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.openDialog();
+  }
+
+  onConfirm(): void {
     this.onSaveBiopsy.emit(this.biopsyForm.value);
   }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(this.dialogRef);
+  }
 }
+
+export const biopsyFormValidator: ValidatorFn = (control: FormGroup): 
+  ValidationErrors | null => {
+  return biopsyValidation.validateBiopsy(control.value);
+}
+

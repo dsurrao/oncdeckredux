@@ -31,11 +31,8 @@
         <mat-radio-button value="{{biopsyTypeEnum.CoreNeedleBiopsy}}">
             {{biopsyTypeEnum.CoreNeedleBiopsy}}
         </mat-radio-button>
-        <mat-radio-button value="{{biopsyTypeEnum.IncisionalBiopsy}}">
-            {{biopsyTypeEnum.IncisionalBiopsy}}
-        </mat-radio-button>
-        <mat-radio-button value="{{biopsyTypeEnum.ExcisionalBiopsy}}">
-            {{biopsyTypeEnum.ExcisionalBiopsy}}
+        <mat-radio-button value="{{biopsyTypeEnum.Other}}">
+            {{biopsyTypeEnum.Other}}
         </mat-radio-button>
         <mat-radio-button value="{{surgeryTypeEnum.Lumpectomy}}">
             {{surgeryTypeEnum.Lumpectomy}}
@@ -43,7 +40,22 @@
         <mat-radio-button value="{{surgeryTypeEnum.ModifiedRadicalMastectomy}}">
             {{surgeryTypeEnum.ModifiedRadicalMastectomy}}
         </mat-radio-button>
+        <mat-radio-button value="{{surgeryTypeEnum.Other}}">
+            {{surgeryTypeEnum.Other}}
+        </mat-radio-button>
     </mat-radio-group>
+
+    <mat-form-field>
+        <input matInput type="text" formControlName="appointmentTypeOther"
+        placeholder="Other">
+        <div *ngIf="(appointmentType.value == surgeryTypeEnum.Other
+        || appointmentType.value == biopsyTypeEnum.Other)
+        && !appointmentTypeOther.value
+        && (appointmentTypeOther.dirty || appointmentTypeOther.touched)" 
+        class="validation-error">
+            Enter appointment type (Other)
+        </div>
+    </mat-form-field>
 
     <mat-form-field>
         <input matInput type="text" formControlName="contactPerson"
@@ -75,3 +87,15 @@
         <button mat-button type="button" (click)="onCancel()">Cancel</button>        
     </div>
 </form>
+
+<ng-template #dialogRef>
+    Is this correct?
+    <app-view-appointment-template [appointment]="this.appointmentForm.value"
+        [isEmbedded]="true">
+    </app-view-appointment-template>
+    <mat-dialog-actions align="end">
+        <button mat-dialog mat-dialog-close>Cancel</button>
+        <button mat-dialog [mat-dialog-close]="true" cdkFocusInitial
+            (click)="onConfirm()">Confirm</button>
+    </mat-dialog-actions>
+</ng-template>

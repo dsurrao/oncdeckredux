@@ -5,9 +5,9 @@
         <mat-step label="Report">
             <mat-form-field>
                 <input matInput type="date" formControlName="pathologyReportDate"
-                    placeholder="Pathology Report Date" required/>
+                    placeholder="Pathology Report Date"/>
             </mat-form-field>
-            <mat-radio-group formControlName="status">
+            <mat-radio-group formControlName="status" required>
                 <mat-radio-button value="{{procedureStatusEnum.Completed}}">
                     {{procedureStatusEnum.Completed}}
                 </mat-radio-button>
@@ -34,12 +34,6 @@
                     <mat-radio-button value="{{biopsySiteEnum.LymphNode}}">
                         {{biopsySiteEnum.LymphNode}}
                     </mat-radio-button>
-                    <mat-radio-button value="{{biopsySiteEnum.Bone}}">
-                        {{biopsySiteEnum.Bone}}
-                    </mat-radio-button>
-                    <mat-radio-button value="{{biopsySiteEnum.Liver}}">
-                        {{biopsySiteEnum.Liver}}
-                    </mat-radio-button>
                     <mat-radio-button value="{{biopsySiteEnum.SkinNodule}}">
                         {{biopsySiteEnum.SkinNodule}}
                     </mat-radio-button>
@@ -53,10 +47,6 @@
                 <mat-form-field>
                     <input matInput type="text" placeholder="Site (Other)" 
                         formControlName="siteOther"/>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <input matInput type="text" placeholder="Bone" formControlName="bone"/>
                 </mat-form-field>
 
                 <div class="spacer"></div>
@@ -285,12 +275,23 @@
 
         <mat-step label="Done">
             <div>
-                <!-- <button mat-button type="submit"
-                    [disabled]="!biopsyForm.valid">Submit</button> -->
-                <button mat-button type="submit">Submit</button>
+                <button mat-button type="submit"
+                    [disabled]="!biopsyForm.valid">Submit</button>
                 <button mat-button type="button">Cancel</button>
             </div>
         </mat-step>
 
     </mat-vertical-stepper>
 </form>
+
+<ng-template #dialogRef let-data>
+    Is this correct?
+    <app-view-biopsy-template [biopsy]="this.biopsyForm.value"
+        [isEmbedded]="true">
+    </app-view-biopsy-template>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial
+            (click)="onConfirm()">Confirm</button>
+    </mat-dialog-actions>
+</ng-template>

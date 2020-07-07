@@ -8,6 +8,7 @@ export interface Appointment {
     facility: string;
     contactPerson: string;
     appointmentType: BiopsyTypeEnum | SurgeryTypeEnum;
+    appointmentTypeOther: string;
     providerName?: string;
     providerType?: ProviderTypeEnum;
 }

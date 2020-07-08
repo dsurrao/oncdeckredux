@@ -4,11 +4,12 @@ import * as dateUtilities from 'src/app/utilities/date-utilities';
 import { BiopsySiteEnum } from '../models/enums/biopsy-site.enum';
 import { LymphNodeLocationEnum } from '../models/enums/lymph-node-location-enum';
 import { ValidationErrors } from '@angular/forms';
+import { HistologyEnum } from '../models/enums/histology.enum';
 
 // todo: add validation against related appointment
 export const validateBiopsy = (biopsy: Biopsy):
     ValidationErrors => {
-    let validationErrors = null;
+    let validationErrors: ValidationErrors = null;
 
     switch (biopsy.status) {
         case ProcedureStatusEnum.NotDone:
@@ -88,7 +89,25 @@ export const validateBiopsy = (biopsy: Biopsy):
                             break;
                     }
                 }
+            }
 
+            if (!biopsy.histology) {
+                validationErrors = { 'histology': 'is empty' };
+            }
+            else if (!biopsy.histology.histology) {
+                validationErrors = { 'histology': 'is empty' };
+            }
+            else {
+                if (biopsy.histology.histology == HistologyEnum.Other) {
+                    if (!biopsy.histology.histologyOther) {
+                        validationErrors = { 'histologyOther': 'is empty' };
+                    }
+                }
+                else {
+                    if (biopsy.histology.histologyOther) {
+                        validationErrors = { 'histologyOther': 'should be empty' };
+                    }
+                }
             }
 
             break;

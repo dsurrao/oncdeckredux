@@ -56,16 +56,16 @@
                 </span>
             </td>
         </tr>
-        <tr *ngIf="biopsy?.receptors != null && biopsy?.receptors.erReceptor.strength != null">
+        <tr *ngIf="biopsy?.receptors">
             <td class="title">Receptors</td>
             <td>
                 <div>ER: {{biopsy?.receptors.erReceptor.status}}
-                    <span *ngIf="biopsy?.receptors.erReceptor.strength != null"> 
+                    <span *ngIf="biopsy?.receptors.erReceptor.strength"> 
                         , {{biopsy?.receptors.erReceptor.strength}}
                     </span>
                 </div>
                 <div>PR: {{biopsy?.receptors.prReceptor.status}}, 
-                    <span *ngIf="biopsy?.receptors.prReceptor.strength != null"> 
+                    <span *ngIf="biopsy?.receptors.prReceptor.strength"> 
                         , {{biopsy?.receptors.prReceptor.strength}}
                     </span>
                 </div>
@@ -74,7 +74,7 @@
                 </div>
             </td>
         </tr>
-        <tr *ngIf="biopsy?.features != null && biopsy?.features.grade != null">
+        <tr *ngIf="biopsy?.features && biopsy?.features.grade">
             <td class="title">Features</td>
             <td>
                 <div>Grade: {{biopsy?.features.grade}}</div>

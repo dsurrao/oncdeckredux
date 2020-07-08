@@ -43,15 +43,15 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   });
 
   erReceptorFormGroup = this.fb.group({ 
-    status: [null], 
+    status: [ReceptorStatusEnum.Unknown], 
     strength: [null] 
   });
   prReceptorFormGroup = this.fb.group({ 
-    status: [null], 
+    status: [ReceptorStatusEnum.Unknown], 
     strength: [null] 
   });
   her2ReceptorFormGroup = this.fb.group({ 
-    status: [null], 
+    status: [ReceptorStatusEnum.Unknown], 
     test: [null]
   });
 
@@ -62,8 +62,8 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   });
 
   featuresFormGroup = this.fb.group({
-    grade: [null],
-    lvi: [null]
+    grade: [GradeEnum.NoGradeGiven],
+    lvi: [LviStatusEnum.NotDetermined]
   })
 
   biopsyForm = this.fb.group({

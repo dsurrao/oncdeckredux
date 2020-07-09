@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BiopsyTypeEnum } from '../../../models/enums/biopsy-type.enum';
@@ -14,13 +14,14 @@ import { LviStatusEnum } from 'src/app/models/enums/lvi-status.enum';
 import { Biopsy } from 'src/app/models/biopsy/biopsy.model';
 import { ProcedureStatusEnum } from 'src/app/models/enums/procedure-status.enum';
 import * as biopsyValidation from 'src/app/utilities/biopsy-validation';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-biopsy-report-template',
   templateUrl: './edit-biopsy-report-template.component.html',
   styleUrls: ['./edit-biopsy-report-template.component.css']
 })
-export class EditBiopsyReportTemplateComponent implements OnInit {
+export class EditBiopsyReportTemplateComponent implements OnInit, OnDestroy {
   @ViewChild("dialogRef") dialogRef: TemplateRef<any>;
 
   @Input()
@@ -43,15 +44,15 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   });
 
   erReceptorFormGroup = this.fb.group({ 
-    status: [ReceptorStatusEnum.Unknown], 
+    status: [null], 
     strength: [null] 
   });
   prReceptorFormGroup = this.fb.group({ 
-    status: [ReceptorStatusEnum.Unknown], 
+    status: [null], 
     strength: [null] 
   });
   her2ReceptorFormGroup = this.fb.group({ 
-    status: [ReceptorStatusEnum.Unknown], 
+    status: [null], 
     test: [null]
   });
 
@@ -62,8 +63,8 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   });
 
   featuresFormGroup = this.fb.group({
-    grade: [GradeEnum.NoGradeGiven],
-    lvi: [LviStatusEnum.NotDetermined]
+    grade: [null],
+    lvi: [null]
   })
 
   biopsyForm = this.fb.group({
@@ -91,8 +92,10 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   sideEnum = SideEnum;
   procedureStatusEnum = ProcedureStatusEnum;
 
-  constructor(private fb: FormBuilder,
-    public dialog: MatDialog) { }
+  validationErrors: string;
+  formSubscription: Subscription;
+
+  constructor(private fb: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {    
     /// initialize controls
@@ -105,9 +108,9 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
 
     /// listen for changes
     /// todo: unsubcribe
-    this.biopsyForm.controls['status'].valueChanges.subscribe(
-      e => this.updateBiopsyFormStatusControls(e)
-    )
+    // this.biopsyForm.controls['status'].valueChanges.subscribe(
+    //   e => this.updateBiopsyFormStatusControls(e)
+    // )
 
     this.siteFormGroup.controls['site'].valueChanges.subscribe(
       e => this.updateSiteFormGroupControls(e)
@@ -131,7 +134,20 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
 
     if (this.biopsy != null) {
       this.biopsyForm.patchValue(this.biopsy);
-    }    
+    }
+
+    this.formSubscription = this.biopsyForm.valueChanges
+      .subscribe(formValue => {
+        if (this.biopsyForm.status == "INVALID") {
+            Object.keys(this.biopsyForm.errors).forEach(key => {
+            this.validationErrors = key + ': ' 
+              + this.biopsyForm.errors[key];
+          })
+        }
+        else {
+          this.validationErrors = null;
+        }
+    });
   }
 
   updateBiopsyFormStatusControls(status: any) {
@@ -225,10 +241,13 @@ export class EditBiopsyReportTemplateComponent implements OnInit {
   openDialog(): void {
     let dialogRef = this.dialog.open(this.dialogRef);
   }
+
+  ngOnDestroy(): void {
+    this.formSubscription.unsubscribe();
+  }
 }
 
-export const biopsyFormValidator: ValidatorFn = (control: FormGroup): 
+const biopsyFormValidator: ValidatorFn = (control: FormGroup): 
   ValidationErrors | null => {
-  return biopsyValidation.validateBiopsy(control.value);
+  return (biopsyValidation.validateBiopsy(control.value));
 }
-

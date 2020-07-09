@@ -7,11 +7,10 @@ import { ProcedureStatusEnum } from '../enums/procedure-status.enum';
 
 export interface SurgicalPathology {
     id: string;
-    appointmentId?: string;
+    appointmentId: string;
     status: ProcedureStatusEnum;
     statusReason?: string;
-    reportDate: string;
-    surgeryType?: SurgeryType
+    reportDate?: string;
     lymphNodeDissectionType?: string;
     histology?: Histology;
     receptors?: Receptors;

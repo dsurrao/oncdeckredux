@@ -6,7 +6,7 @@ import { ProcedureStatusEnum } from '../enums/procedure-status.enum';
 
 export interface Biopsy {
   id: string;
-  appointmentId?: string;
+  appointmentId: string;
   status: ProcedureStatusEnum;
   statusReason?: string;
   pathologyReportDate?: string;

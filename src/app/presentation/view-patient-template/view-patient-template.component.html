@@ -89,6 +89,7 @@
                     <div>
                         <a matLine routerLink="/patients/{{patient?.id}}/biopsies/{{biopsy.id}}">
                             {{biopsy.status}},
+                            {{biopsy.site?.site}},
                             {{biopsy.pathologyReportDate}}
                         </a>
                     </div>                   
@@ -103,8 +104,9 @@
                     <div>
                         <a matLine routerLink=
                             "/patients/{{patient?.id}}/surgical_pathologies/{{surgicalPathology.id}}">
-                            {{surgicalPathology.surgeryType}},
-                            {{surgicalPathology.reportDate}}
+                            {{surgicalPathology.status}},
+                            {{surgicalPathology.reportDate}},
+                            {{surgicalPathology.histology.histology}}
                         </a>
                     </div>
                 </mat-list-item>

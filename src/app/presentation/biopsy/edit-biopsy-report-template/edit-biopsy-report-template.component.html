@@ -1,12 +1,14 @@
 <h1>Edit biopsy</h1>
 
 <form [formGroup]="biopsyForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="validationErrors && 
+        (biopsyForm.dirty || biopsyForm.touched)" 
+        class="validation-error">
+        {{validationErrors}}
+    </div>
+
     <mat-vertical-stepper>
         <mat-step label="Report">
-            <mat-form-field>
-                <input matInput type="date" formControlName="pathologyReportDate"
-                    placeholder="Pathology Report Date"/>
-            </mat-form-field>
             <mat-radio-group formControlName="status" required>
                 <mat-radio-button value="{{procedureStatusEnum.Completed}}">
                     {{procedureStatusEnum.Completed}}
@@ -15,10 +17,17 @@
                     {{procedureStatusEnum.NotDone}}
                 </mat-radio-button>
             </mat-radio-group>
+
             <mat-form-field>
                 <input matInput type="text" formControlName="statusReason"
                     placeholder="Status Reason"/>
             </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="date" formControlName="pathologyReportDate"
+                    placeholder="Pathology Report Date"/>
+            </mat-form-field>
+            
             <div>
                 <button mat-button matStepperPrevious type="button">Back</button>
                 <button mat-button matStepperNext type="button">Next</button>
@@ -284,8 +293,9 @@
 
         <mat-step label="Done">
             <div>
-                <button mat-button type="submit"
+                <button mat-raised-button type="submit" color="primary"
                     [disabled]="!biopsyForm.valid">Submit</button>
+                <button mat-button type="reset">Reset</button>
                 <button mat-button type="button">Cancel</button>
             </div>
         </mat-step>
@@ -293,7 +303,7 @@
     </mat-vertical-stepper>
 </form>
 
-<ng-template #dialogRef let-data>
+<ng-template #dialogRef>
     Is this correct?
     <app-view-biopsy-template [biopsy]="this.biopsyForm.value"
         [isEmbedded]="true">

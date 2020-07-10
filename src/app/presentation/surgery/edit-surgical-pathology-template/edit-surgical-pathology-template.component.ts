@@ -92,6 +92,11 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit, OnDestroy
 
   validationErrors: string;
   formSubscription: Subscription;
+  formStatusSubscription: Subscription;
+  histologySubscription: Subscription;
+  erSubscription: Subscription;
+  prSubscription: Subscription;
+  her2Subscription: Subscription;
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) { }
 
@@ -111,6 +116,66 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit, OnDestroy
         else {
           this.validationErrors = null;
         }
+    });
+
+    this.formStatusSubscription = this.surgicalPathologyForm.controls['status']
+    .valueChanges.subscribe(value => {
+      if (value == ProcedureStatusEnum.NotDone) {
+        this.surgicalPathologyForm.controls['reportDate'].setValue(null);
+        this.surgicalPathologyForm.controls['lymphNodeDissectionType'].setValue(null);
+        this.surgicalPathologyForm.controls['surgicalMargins'].setValue(null);
+        this.histologyFormGroup.reset();
+        this.receptorFormGroup.reset();
+        this.featuresFormGroup.reset();
+      }
+    });
+
+    this.histologySubscription = this.histologyFormGroup.controls[
+      'histology'].valueChanges.subscribe(value => {
+        let histologyOtherCtrl = this.histologyFormGroup.controls['histologyOther'];
+        if (value == HistologyEnum.Other) {
+          histologyOtherCtrl.enable();
+        }
+        else {
+          histologyOtherCtrl.setValue(null);
+          histologyOtherCtrl.disable();
+        }
+    });
+
+    this.erSubscription = this.erReceptorFormGroup.controls['status']
+    .valueChanges.subscribe(value => {
+      let strengthCtrl = this.erReceptorFormGroup.controls['strength'];
+      if (value != ReceptorStatusEnum.Positive) {
+        strengthCtrl.setValue(null);
+        strengthCtrl.disable();
+      }
+      else {
+        strengthCtrl.enable();
+      }
+    });
+
+    this.prSubscription = this.prReceptorFormGroup.controls['status']
+    .valueChanges.subscribe(value => {
+      let strengthCtrl = this.prReceptorFormGroup.controls['strength'];
+      if (value != ReceptorStatusEnum.Positive) {
+        strengthCtrl.setValue(null);
+        strengthCtrl.disable();
+      }
+      else {
+        strengthCtrl.enable();
+      }
+    });
+
+    this.her2Subscription = this.her2ReceptorFormGroup.controls['status']
+    .valueChanges.subscribe(value => {
+      let testCtrl = this.her2ReceptorFormGroup.controls['test'];
+      if (value == ReceptorStatusEnum.Unknown) {
+        testCtrl.setValue(null);
+        testCtrl.disable();
+      }
+      else {
+        testCtrl.enable();
+      }
     });
   }
 
@@ -132,6 +197,11 @@ export class EditSurgicalPathologyTemplateComponent implements OnInit, OnDestroy
 
   ngOnDestroy(): void {
     this.formSubscription.unsubscribe();
+    this.formStatusSubscription.unsubscribe();
+    this.histologySubscription.unsubscribe();
+    this.erSubscription.unsubscribe();
+    this.prSubscription.unsubscribe();
+    this.her2Subscription.unsubscribe();
   }
 }
 

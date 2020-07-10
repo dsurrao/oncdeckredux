@@ -32,7 +32,6 @@ export const validateSurgicalPathology = (sp: SurgicalPathology):
                     else if (sp.lymphNodeDissectionType) {
                         errors = { 'lymphNodeDissectionType': 'should be empty' };
                     }
-                    //todo: validate receptor positive value against strength
                     else if (
                         (sp.receptors.erReceptor.status 
                             && sp.receptors.erReceptor.status != ReceptorStatusEnum.Unknown)
@@ -62,6 +61,34 @@ export const validateSurgicalPathology = (sp: SurgicalPathology):
                     }
                     else if (!sp.status) {
                         errors = { 'status': 'is empty' };
+                    }
+
+                    if (sp.receptors.erReceptor.status == ReceptorStatusEnum.Positive) {
+                        if (!sp.receptors.erReceptor.strength) {
+                            errors = { 'ER strength': 'is empty' };
+                        }
+                    }
+                    else if (sp.receptors.erReceptor.strength) {
+                        errors = { 'ER strength': 'should be empty' };
+                    }
+
+                    if (sp.receptors.prReceptor.status == ReceptorStatusEnum.Positive) {
+                        if (!sp.receptors.prReceptor.strength) {
+                            errors = { 'PR strength': 'is empty' };
+                        }
+                    }
+                    else if (sp.receptors.prReceptor.strength) {
+                        errors = { 'PR strength': 'should be empty' };
+                    }
+
+                    if (sp.receptors.her2Receptor.status == ReceptorStatusEnum.Positive
+                        || sp.receptors.her2Receptor.status == ReceptorStatusEnum.Negative) {
+                        if (!sp.receptors.her2Receptor.test) {
+                            errors = { 'HER2 test': 'is empty' };
+                        }
+                    }
+                    else if (sp.receptors.her2Receptor.test) {
+                        errors = { 'HER2 test': 'should be empty' };
                     }
 
                     break;

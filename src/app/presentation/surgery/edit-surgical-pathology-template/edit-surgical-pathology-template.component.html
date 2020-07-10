@@ -63,10 +63,12 @@
                         {{histologyEnum.Other}}
                     </mat-radio-button>
                 </mat-radio-group>
-                <mat-form-field>
-                    <input matInput type="text" placeholder="Histology (Other)" 
-                        formControlName="histologyOther"/>
-                </mat-form-field>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Histology (Other)" 
+                            formControlName="histologyOther"/>
+                    </mat-form-field>
+                </div>
                 <div>
                     <button mat-button matStepperPrevious type="button">Back</button>
                     <button mat-button matStepperNext type="button">Next</button>
@@ -251,7 +253,7 @@
                     <mat-radio-button value="Left" >
                         Left
                     </mat-radio-button>
-                    <mat-radio-button value="Rigth" >
+                    <mat-radio-button value="Right" >
                         Right
                     </mat-radio-button>
                 </mat-radio-group> -->

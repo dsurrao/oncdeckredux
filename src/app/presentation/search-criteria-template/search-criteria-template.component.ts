@@ -6,30 +6,23 @@ import { PatientSearchCriteria } from 'src/app/models/common/patient-search-crit
   templateUrl: './search-criteria-template.component.html',
   styleUrls: ['./search-criteria-template.component.css']
 })
-export class SearchCriteriaTemplateComponent implements OnChanges {
+export class SearchCriteriaTemplateComponent {
   @Input()
   searchCriteria: PatientSearchCriteria;
 
   @Output()
   onSaveSearchCriteria = new EventEmitter<PatientSearchCriteria>();
 
-  scheduledBiopsiesOnly: boolean;
+  scheduledAppointment: boolean;
 
   constructor() { 
-    this.scheduledBiopsiesOnly = false;
-  }
-
-  ngOnChanges(): void {
-    if (this.searchCriteria != null 
-        && this.searchCriteria.biopsies != null) {
-      this.scheduledBiopsiesOnly = this.searchCriteria.biopsies.isScheduled;
-    }
+    this.scheduledAppointment = false;
   }
 
   save(): void {
     this.searchCriteria = {
-      biopsies: {
-        isScheduled: this.scheduledBiopsiesOnly
+      appointment: {
+        isScheduled: this.scheduledAppointment
       }
     };
 

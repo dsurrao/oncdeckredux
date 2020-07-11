@@ -1,15 +1,9 @@
 export interface PatientSearchCriteria {
-    demog?: {
-        name?: string,
-        ageLower?: number
-        ageUpper?: number
-    },
-    biopsies?: {
-        isScheduled?: boolean,
-        completedInPastYear?: boolean
-    },
-    surgeries?: {
-        isScheduled?: boolean,
-        completedInPastYear?: boolean
-    }
+    appointment?: {
+        /*
+            true: get patients with scheduled appts
+            false: get all patients
+        */
+        isScheduled: boolean 
+    }    
 }

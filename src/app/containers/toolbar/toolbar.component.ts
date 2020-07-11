@@ -27,10 +27,13 @@ export class ToolbarComponent implements OnInit {
     this.selectedPatient$ = this.router.events.pipe(
       filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd),
       mergeMap((e: RouterEvent) => {
+          // Negative lookahead assertion: x(?!y)
+          // Matches "x" only if "x" is not followed by "y". 
           let matches = e.url.match(/patients\/((?!new)[\w-]+)/i);
           if (matches != null) {
             let patientId = matches[1];
-            return this.store.select(fromPatient.selectPatient, { id: patientId});
+            return this.store.select(fromPatient.selectPatient, 
+              { id: patientId });
           }
           else {
             return of(null);
@@ -43,7 +46,8 @@ export class ToolbarComponent implements OnInit {
   }
 
   saveSearchCriteria(searchCriteria: PatientSearchCriteria) {
-    this.store.dispatch(searchCriteriaActions.updateSearchCriteria({ data: searchCriteria}));
+    this.store.dispatch(searchCriteriaActions.updateSearchCriteria(
+      { data: searchCriteria}));
   }
 
 }

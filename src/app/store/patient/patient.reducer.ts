@@ -57,32 +57,50 @@ export const reducer = createReducer(
     (state, action) => {
       // append biopsy id for specified patient
       const patient: Patient = _.cloneDeep(state.entities[action.patientId]);
+
       if (patient.biopsyIds == null) {
         patient.biopsyIds = [];
       }
-      patient.biopsyIds.push(action.biopsy.id);
+
+      if (patient.biopsyIds.length == 0 
+        || patient.biopsyIds.indexOf(action.biopsy.id) == -1) {
+        patient.biopsyIds.push(action.biopsy.id);
+      }
+
       return adapter.upsertOne(patient, state);
-      //return {...state, entities: {...state.entities, [action.patientId]: patient}};
     }
   ),
   on(AppointmentActions.upsertAppointment,
     (state, action) => {
       // append appointment id for specified patient
       let patient: Patient = _.cloneDeep(state.entities[action.patientId]);
+      
       if (patient.appointmentIds == null) {
         patient.appointmentIds = [];
       }
-      patient.appointmentIds.push(action.appointment.id);
+      
+      if (patient.appointmentIds.length == 0 
+        || patient.appointmentIds.indexOf(action.appointment.id) == -1) {
+        patient.appointmentIds.push(action.appointment.id);
+      }
+
       return adapter.upsertOne(patient, state);
     }
   ),
   on(SurgicalPathologyActions.upsertSurgicalPathology,
     (state, action) => {
       let patient: Patient = _.cloneDeep(state.entities[action.patientId]);
+
       if (patient.surgicalPathologyIds == null) {
         patient.surgicalPathologyIds = [];
       }
-      patient.surgicalPathologyIds.push(action.surgicalPathology.id);
+      
+      if (patient.surgicalPathologyIds.length == 0 
+        || patient.surgicalPathologyIds.indexOf(
+        action.surgicalPathology.id) == -1) {
+        patient.surgicalPathologyIds.push(action.surgicalPathology.id);
+      }
+
       return adapter.upsertOne(patient, state);
     }
   )

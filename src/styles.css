@@ -38,8 +38,9 @@ table { width: 100%; font-size: larger; }
     height: 20px;
 }
 
-mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
+mat-radio-button {
+    display: block !important;
+    padding: 7px;
 }
 
 .showInline {

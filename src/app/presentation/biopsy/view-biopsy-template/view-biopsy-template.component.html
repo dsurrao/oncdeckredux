@@ -1,36 +1,33 @@
-<table class="full-width">
-    <thead>
-        <tr>
-            <th colspan="2">
-                Biopsy
-                <span [ngSwitch]="!isEmbedded">
-                    <mat-icon routerLink=
-                        "/patients/{{patientId}}/biopsies/{{biopsy?.id}}/edit"
-                        *ngSwitchCase="true">edit
-                    </mat-icon>
-                    <mat-icon routerLink=
-                        "/patients/{{patientId}}/biopsies/{{biopsy?.id}}"
-                        *ngSwitchDefault>info
-                    </mat-icon>                    
-                </span>
-            </th>
-        </tr>
-    </thead>
+<table class="{{tableClass}}">
     <tbody>
-        <tr>
-            <td class="title-centered">Pathology Report Date</td>
-            <td>{{biopsy?.pathologyReportDate}}</td>
+        <tr *ngIf="biopsy?.pathologyReportDate">
+            <td class="{{columnClass}}">Pathology Report Date</td>
+            <td>
+                {{biopsy?.pathologyReportDate}}
+            </td>
         </tr>
         <tr>
-            <td class="title-centered">Status</td>
-            <td>{{biopsy?.status}}</td>
+            <td class="{{columnClass}}">Status</td>
+            <td>
+                <div [ngSwitch]="isEmbedded">
+                    <span *ngSwitchCase="true">
+                        <a routerLink="/patients/{{patientId}}/biopsies/{{biopsy.id}}">
+                            {{biopsy?.status}}
+                        </a>
+                    </span>
+                    <span *ngSwitchCaseDefault>
+                        {{biopsy?.status}}
+                    </span>
+                </div>
+                
+            </td>
         </tr>
-        <tr>
-            <td class="title-centered">Status Reason</td>
+        <tr *ngIf="biopsy?.statusReason">
+            <td class="{{columnClass}}">Status Reason</td>
             <td>{{biopsy?.statusReason}}</td>
         </tr>
         <tr *ngIf="biopsy?.site != null && biopsy?.site.site != null">
-            <td class="title-centered">Site</td>
+            <td class="{{columnClass}}">Site</td>
             <td>
                 <div>
                     {{biopsy?.site.site}}
@@ -49,7 +46,7 @@
             </td>
         </tr>
         <tr *ngIf="biopsy?.histology != null && biopsy?.histology.histology != null">
-            <td class="title-centered">Histology</td>
+            <td class="{{columnClass}}">Histology</td>
             <td>{{biopsy?.histology.histology}}
                 <span *ngIf="biopsy?.histology.histologyOther != null">
                     , {{biopsy?.histology.histologyOther}}
@@ -57,25 +54,28 @@
             </td>
         </tr>
         <tr *ngIf="biopsy?.receptors">
-            <td class="title-centered">Receptors</td>
+            <td class="{{columnClass}}">Receptors</td>
             <td>
-                <div>ER: {{biopsy?.receptors.erReceptor.status}}
+                <div *ngIf="biopsy?.receptors.erReceptor.status">
+                    ER: {{biopsy?.receptors.erReceptor.status}}
                     <span *ngIf="biopsy?.receptors.erReceptor.strength"> 
                         , {{biopsy?.receptors.erReceptor.strength}}
                     </span>
                 </div>
-                <div>PR: {{biopsy?.receptors.prReceptor.status}}, 
+                <div *ngIf="biopsy?.receptors.prReceptor.status">
+                    PR: {{biopsy?.receptors.prReceptor.status}}, 
                     <span *ngIf="biopsy?.receptors.prReceptor.strength"> 
                         , {{biopsy?.receptors.prReceptor.strength}}
                     </span>
                 </div>
-                <div>HER2: {{biopsy?.receptors.her2Receptor.status}}, 
+                <div *ngIf="biopsy?.receptors.her2Receptor.status">
+                    HER2: {{biopsy?.receptors.her2Receptor.status}}, 
                     {{biopsy?.receptors.her2Receptor.test}}
                 </div>
             </td>
         </tr>
         <tr *ngIf="biopsy?.features && biopsy?.features.grade">
-            <td class="title-centered">Features</td>
+            <td class="{{columnClass}}">Features</td>
             <td>
                 <div>Grade: {{biopsy?.features.grade}}</div>
                 <div>LVI: {{biopsy?.features.lvi}}</div>

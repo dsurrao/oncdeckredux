@@ -3,42 +3,52 @@
         <tr>
             <th colspan="2">
                 <span *ngIf="!isEmbedded">
-                    Appointment
+                    <h2 style="display: inline">Appointment</h2>
                     <mat-icon routerLink=
                         "/patients/{{patientId}}/appointments/{{appointment?.id}}/edit">
                         edit
-                    </mat-icon>                
+                    </mat-icon>
                 </span>
             </th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class="{{columnAlignmentClass}}">Start Date</td>
-            <td>{{startDateStr}}</td>
+            <td class="{{columnClass}}">Start Date</td>
+            <td>
+                <div [ngSwitch]="isEmbedded">
+                    <a routerLink="/patients/{{patientId}}/appointments/{{appointment?.id}}"
+                        *ngSwitchCase="true">
+                        {{startDateStr}}
+                    </a>
+                    <span *ngSwitchDefault>
+                        {{startDateStr}}
+                    </span>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td class="{{columnAlignmentClass}}">Facility</td>
+            <td class="{{columnClass}}">Facility</td>
             <td>{{appointment?.facility}}</td>
         </tr>
         <tr>
-            <td class="{{columnAlignmentClass}}">Contact Person</td>
+            <td class="{{columnClass}}">Contact Person</td>
             <td>{{appointment?.contactPerson}}</td>
         </tr>
         <tr>
-            <td class="{{columnAlignmentClass}}">Appointment Type</td>
+            <td class="{{columnClass}}">Appointment Type</td>
             <td>{{appointment?.appointmentType}}</td>
         </tr>
-        <tr>
-            <td class="{{columnAlignmentClass}}">Appointment Type (Other)</td>
+        <tr *ngIf="appointment?.appointmentTypeOther">
+            <td class="{{columnClass}}">Appointment Type (Other)</td>
             <td>{{appointment?.appointmentTypeOther}}</td>
         </tr>
-        <tr>
-            <td class="{{columnAlignmentClass}}">Provider Name</td>
+        <tr *ngIf="appointment?.providerName">
+            <td class="{{columnClass}}">Provider Name</td>
             <td>{{appointment?.providerName}}</td>
         </tr>
-        <tr>
-            <td class="{{columnAlignmentClass}}">Provider Type</td>
+        <tr *ngIf="appointment?.providerType">
+            <td class="{{columnClass}}">Provider Type</td>
             <td>{{appointment?.providerType}}</td>
         </tr>
 

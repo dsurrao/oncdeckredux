@@ -1,11 +1,13 @@
 <h1>Edit Surgical Pathology Report</h1>
+
 <app-view-appointment-template 
     [appointment]="appointment$ | async"
     [patientId]="patientId"
     [isEmbedded]="true"
     tableClass=""
-    columnAlignmentClass="title-left-aligned"> 
+    columnClass="title-left-aligned"> 
 </app-view-appointment-template>
+
 <app-edit-surgical-pathology-template
     [surgicalPathology]="surgicalPathology$ | async"
     (onSubmitEmitter)="onSubmit($event)"

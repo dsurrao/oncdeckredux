@@ -16,6 +16,12 @@ export class ViewBiopsyTemplateComponent implements OnInit {
   @Input()
   isEmbedded: boolean;
 
+  @Input()
+  tableClass = "full-width";
+
+  @Input()
+  columnClass = "title-centered";
+
   constructor() { }
 
   ngOnInit(): void {

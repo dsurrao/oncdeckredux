@@ -14,8 +14,4 @@ export class PatientListTemplateComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  deletePatient(patient: Patient) {
-    window.alert("delete ?");
-  }
 }

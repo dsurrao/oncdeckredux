@@ -1,75 +1,73 @@
-<table class="full-width">
-    <thead>
-        <tr>
-            <th colspan="2">
-                Surgical Pathology Report
-                <span [ngSwitch]="isEmbedded">
-                    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology?.id}}" 
-                        *ngSwitchCase="true">info
-                    </mat-icon>
-                    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology?.id}}/edit" 
-                        *ngSwitchDefault>edit
-                    </mat-icon>
-                </span>
-            </th>
-        </tr>
-    </thead>
+<table class="{{tableClass}}">
     <tbody>
-        <tr>
-            <td class="title-centered">Report Date</td>
-            <td>{{surgicalPathology?.reportDate}}</td>
+        <tr *ngIf="surgicalPathology?.reportDate">
+            <td class="{{columnClass}}">Report Date</td>
+            <td>
+                {{surgicalPathology?.reportDate}}
+            </td>
         </tr>
         <tr>
-            <td class="title-centered">Status</td>
-            <td>{{surgicalPathology?.status}}</td>
+            <td class="{{columnClass}}">Status</td>
+            <td>
+                <div [ngSwitch]="isEmbedded">
+                    <span *ngSwitchCase="true">
+                        <a routerLink="/patients/{{patientId}}/surgical_pathologies/{{surgicalPathology.id}}">
+                            {{surgicalPathology?.status}}
+                        </a>
+                    </span>
+                    <span *ngSwitchCaseDefault>
+                        {{surgicalPathology?.status}}
+                    </span>
+                </div>
+            </td>
         </tr>
-        <tr>
-            <td class="title-centered">Status Reason</td>
+        <tr *ngIf="surgicalPathology?.statusReason">
+            <td class="{{columnClass}}">Status Reason</td>
             <td>{{surgicalPathology?.statusReason}}</td>
         </tr>
-        <tr>
-            <td class="title-centered">Lymph Node Dissection Type</td>
+        <tr *ngIf="surgicalPathology?.lymphNodeDissectionType">
+            <td class="{{columnClass}}">Lymph Node Dissection Type</td>
             <td>{{surgicalPathology?.lymphNodeDissectionType}}</td>
         </tr>
-        <tr>
-            <td class="title-centered">Histology</td>
+        <tr *ngIf="surgicalPathology?.histology.histology">
+            <td class="{{columnClass}}">Histology</td>
             <td>{{surgicalPathology?.histology.histology}}</td>
         </tr>
-        <tr>
-            <td class="title-centered">Histology (Other)</td>
+        <tr *ngIf="surgicalPathology?.histology.histologyOther">
+            <td class="{{columnClass}}">Histology (Other)</td>
             <td>{{surgicalPathology?.histology.histologyOther}}</td>
         </tr>
-        <tr>
-            <td class="title-centered">ER Receptor</td>
+        <tr *ngIf="surgicalPathology?.receptors.erReceptor.status">
+            <td class="{{columnClass}}">ER Receptor</td>
             <td>
                 {{surgicalPathology?.receptors.erReceptor.status}}, 
                 {{surgicalPathology?.receptors.erReceptor.strength}}
             </td>
         </tr>
-        <tr>
-            <td class="title-centered">PR Receptor</td>
+        <tr *ngIf="surgicalPathology?.receptors.prReceptor.status">
+            <td class="{{columnClass}}">PR Receptor</td>
             <td>
                 {{surgicalPathology?.receptors.prReceptor.status}}, 
                 {{surgicalPathology?.receptors.prReceptor.strength}}
             </td>
         </tr>
-        <tr>
-            <td class="title-centered">HER2 Receptor</td>
+        <tr *ngIf="surgicalPathology?.receptors.her2Receptor.status">
+            <td class="{{columnClass}}">HER2 Receptor</td>
             <td>
                 {{surgicalPathology?.receptors.her2Receptor.status}}, 
                 {{surgicalPathology?.receptors.her2Receptor.test}}
             </td>
         </tr>
-        <tr>
-            <td class="title-centered">Grade</td>
+        <tr *ngIf="surgicalPathology?.features.grade">
+            <td class="{{columnClass}}">Grade</td>
             <td>{{surgicalPathology?.features.grade}}</td>
         </tr>
-        <tr>
-            <td class="title-centered">LVI</td>
+        <tr *ngIf="surgicalPathology?.features.lvi">
+            <td class="{{columnClass}}">LVI</td>
             <td>{{surgicalPathology?.features.lvi}}</td>
         </tr>
-        <tr>
-            <td class="title-centered">Surgical Margins</td>
+        <tr *ngIf="surgicalPathology?.features.surgicalMargins">
+            <td class="{{columnClass}}">Surgical Margins</td>
             <td>{{surgicalPathology?.surgicalMargins}}</td>
         </tr>
     </tbody>

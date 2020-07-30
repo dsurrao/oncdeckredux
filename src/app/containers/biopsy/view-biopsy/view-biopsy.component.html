@@ -1,6 +1,20 @@
-<app-view-appointment-template [appointment]="appointment$ | async"
+<div style="text-align: center">
+    <h1 style="display:inline">
+        Biopsy Report        
+    </h1>
+    <mat-icon routerLink="/patients/{{patientId}}/biopsies/{{(biopsy$ | async)?.id}}/edit">
+        edit
+    </mat-icon>
+</div>
+
+<app-view-appointment-template 
+    [patientId]="patientId" 
+    [appointment]="appointment$ | async"
     [isEmbedded]="true">
 </app-view-appointment-template>
-<app-view-biopsy-template [patientId]="patientId" 
-    [biopsy]="biopsy$ | async" *ngIf="patientId != null">
+
+<app-view-biopsy-template 
+    [patientId]="patientId" 
+    [biopsy]="biopsy$ | async" 
+    *ngIf="patientId != null">
 </app-view-biopsy-template>

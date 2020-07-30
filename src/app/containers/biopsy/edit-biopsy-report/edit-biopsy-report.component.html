@@ -1,11 +1,15 @@
-<h1>Edit biopsy</h1>
+<div style="text-align:center">
+    <h1>Edit Biopsy Report</h1>
+</div>
+
 <app-view-appointment-template
     [appointment]="appointment$ | async"
     [patientId]="patientId"
     [isEmbedded]="true"
     tableClass=""
-    columnAlignmentClass="title-left-aligned">    
+    columnClass="title-left-aligned">    
 </app-view-appointment-template>
+
 <app-edit-biopsy-report-template 
     [biopsy]="biopsy$ | async"
     (onSaveBiopsy)="saveBiopsy($event)"

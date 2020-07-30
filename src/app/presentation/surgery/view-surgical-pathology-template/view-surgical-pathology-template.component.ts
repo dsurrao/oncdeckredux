@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SurgicalPathology } from 'src/app/models/surgery/surgical-pathology.model';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { Appointment } from 'src/app/models/appointment.model';
 
 @Component({
   selector: 'app-view-surgical-pathology-template',
@@ -12,10 +12,19 @@ export class ViewSurgicalPathologyTemplateComponent implements OnInit {
   surgicalPathology: SurgicalPathology;
 
   @Input()
+  appointment: Appointment;
+
+  @Input()
   patientId: string;
 
   @Input()
   isEmbedded: boolean;
+
+  @Input()
+  tableClass: string = "full-width";
+
+  @Input()
+  columnClass: string = "title-centered";
 
   constructor() { }
 

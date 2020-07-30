@@ -1,8 +1,20 @@
-<app-view-appointment-template
+<div style="text-align: center">
+    <h1 style="display:inline">
+        Surgical Pathology Report
+    </h1>
+    <mat-icon routerLink="/patients/{{patientId}}/surgical_pathologies/{{(surgicalPathology$ | async)?.id}}/edit">
+        edit
+    </mat-icon>
+</div>
+
+<app-view-appointment-template 
     [appointment]="appointment$ | async"
-    [isEmbedded]="true">
+    [patientId]="patientId"
+    [isEmbedded]="true"> 
 </app-view-appointment-template>
+
 <app-view-surgical-pathology-template
     [surgicalPathology]="surgicalPathology$ | async"
+    [appointment]="appointment$ | async"
     [patientId]="patientId" *ngIf="patientId != null">
 </app-view-surgical-pathology-template>

@@ -1,4 +1,4 @@
-<table>
+<table class="full-width">
     <thead>
         <tr>
             <th colspan="2">
@@ -18,19 +18,19 @@
     </thead>
     <tbody>
         <tr>
-            <td class="title">Pathology Report Date</td>
+            <td class="title-centered">Pathology Report Date</td>
             <td>{{biopsy?.pathologyReportDate}}</td>
         </tr>
         <tr>
-            <td class="title">Status</td>
+            <td class="title-centered">Status</td>
             <td>{{biopsy?.status}}</td>
         </tr>
         <tr>
-            <td class="title">Status Reason</td>
+            <td class="title-centered">Status Reason</td>
             <td>{{biopsy?.statusReason}}</td>
         </tr>
         <tr *ngIf="biopsy?.site != null && biopsy?.site.site != null">
-            <td class="title">Site</td>
+            <td class="title-centered">Site</td>
             <td>
                 <div>
                     {{biopsy?.site.site}}
@@ -49,7 +49,7 @@
             </td>
         </tr>
         <tr *ngIf="biopsy?.histology != null && biopsy?.histology.histology != null">
-            <td class="title">Histology</td>
+            <td class="title-centered">Histology</td>
             <td>{{biopsy?.histology.histology}}
                 <span *ngIf="biopsy?.histology.histologyOther != null">
                     , {{biopsy?.histology.histologyOther}}
@@ -57,7 +57,7 @@
             </td>
         </tr>
         <tr *ngIf="biopsy?.receptors">
-            <td class="title">Receptors</td>
+            <td class="title-centered">Receptors</td>
             <td>
                 <div>ER: {{biopsy?.receptors.erReceptor.status}}
                     <span *ngIf="biopsy?.receptors.erReceptor.strength"> 
@@ -75,7 +75,7 @@
             </td>
         </tr>
         <tr *ngIf="biopsy?.features && biopsy?.features.grade">
-            <td class="title">Features</td>
+            <td class="title-centered">Features</td>
             <td>
                 <div>Grade: {{biopsy?.features.grade}}</div>
                 <div>LVI: {{biopsy?.features.lvi}}</div>

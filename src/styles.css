@@ -1,9 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
     font-size: larger;}
-table { width: 100%; font-size: larger; }
+
+table { font-size: larger; }
+
+table.full-width { font-size: larger; width: 100%; }
+
+td.title-centered {
+    text-align: end; width: 50%; font-weight: bold;
+}
+
+td.title-left-aligned {
+    font-weight: bold;
+}
 
 .example-fill-remaining-space {
     /* This fills the remaining space, by using flexbox. 
@@ -49,10 +61,6 @@ mat-radio-button {
 
 .hide {
     display: none;
-}
-
-td.title {
-    text-align: end; width: 50%; font-weight: bold;
 }
 
 .center-all {

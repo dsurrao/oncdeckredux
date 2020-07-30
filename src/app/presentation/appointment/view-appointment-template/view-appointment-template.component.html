@@ -1,50 +1,48 @@
-<table>
+<table class={{tableClass}}>
     <thead>
         <tr>
             <th colspan="2">
-                Appointment
-                <span [ngSwitch]="!isEmbedded">
+                <span *ngIf="!isEmbedded">
+                    Appointment
                     <mat-icon routerLink=
-                        "/patients/{{patientId}}/appointments/{{appointment?.id}}/edit"
-                        *ngSwitchCase="true">edit
-                    </mat-icon>
-                    <mat-icon routerLink=
-                        "/patients/{{patientId}}/appointments/{{appointment?.id}}"
-                        *ngSwitchDefault>info
-                    </mat-icon>                    
+                        "/patients/{{patientId}}/appointments/{{appointment?.id}}/edit">
+                        edit
+                    </mat-icon>                
                 </span>
             </th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class="title">Start Date</td>
+            <td class="{{columnAlignmentClass}}">Start Date</td>
             <td>{{startDateStr}}</td>
         </tr>
         <tr>
-            <td class="title">Facility</td>
+            <td class="{{columnAlignmentClass}}">Facility</td>
             <td>{{appointment?.facility}}</td>
         </tr>
         <tr>
-            <td class="title">Contact Person</td>
+            <td class="{{columnAlignmentClass}}">Contact Person</td>
             <td>{{appointment?.contactPerson}}</td>
         </tr>
         <tr>
-            <td class="title">Appointment Type</td>
+            <td class="{{columnAlignmentClass}}">Appointment Type</td>
             <td>{{appointment?.appointmentType}}</td>
         </tr>
         <tr>
-            <td class="title">Appointment Type (Other)</td>
+            <td class="{{columnAlignmentClass}}">Appointment Type (Other)</td>
             <td>{{appointment?.appointmentTypeOther}}</td>
         </tr>
         <tr>
-            <td class="title">Provider Name</td>
+            <td class="{{columnAlignmentClass}}">Provider Name</td>
             <td>{{appointment?.providerName}}</td>
         </tr>
         <tr>
-            <td class="title">Provider Type</td>
+            <td class="{{columnAlignmentClass}}">Provider Type</td>
             <td>{{appointment?.providerType}}</td>
         </tr>
+
+        <!-- show actionable options only if this view is not embedded -->
         <tr *ngIf="!isEmbedded">
             <td colspan="2">
                 <div class="center-all">

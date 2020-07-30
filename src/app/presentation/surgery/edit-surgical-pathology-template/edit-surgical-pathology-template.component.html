@@ -1,5 +1,3 @@
-<h1>Surgical Pathology Report</h1>
-
 <form [formGroup]="surgicalPathologyForm" (ngSubmit)="onSubmit()">
     <div *ngIf="validationErrors && 
         (surgicalPathologyForm.dirty || surgicalPathologyForm.touched)" 

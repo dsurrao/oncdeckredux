@@ -43,6 +43,7 @@
         </a>
     </mat-toolbar>
 
+    <!--determine which side nav menu to show depending on context-->
     <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"

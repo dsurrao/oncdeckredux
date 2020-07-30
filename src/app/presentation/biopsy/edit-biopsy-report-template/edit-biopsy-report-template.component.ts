@@ -30,6 +30,9 @@ export class EditBiopsyReportTemplateComponent implements OnInit, OnDestroy {
   @Output()
   onSaveBiopsy = new EventEmitter<Biopsy>();
 
+  @Output()
+  onCancelEmitter = new EventEmitter();
+
   siteFormGroup = this.fb.group({
     site: [null],
     siteOther: [null],
@@ -108,9 +111,10 @@ export class EditBiopsyReportTemplateComponent implements OnInit, OnDestroy {
 
     /// listen for changes
     /// todo: unsubcribe
-    // this.biopsyForm.controls['status'].valueChanges.subscribe(
-    //   e => this.updateBiopsyFormStatusControls(e)
-    // )
+    
+    this.biopsyForm.controls['status'].valueChanges.subscribe(
+      e => this.updateBiopsyFormStatusControls(e)
+    )
 
     this.siteFormGroup.controls['site'].valueChanges.subscribe(
       e => this.updateSiteFormGroupControls(e)
@@ -232,6 +236,10 @@ export class EditBiopsyReportTemplateComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.openDialog();
+  }
+
+  onCancel(): void {
+    this.onCancelEmitter.emit();
   }
 
   onConfirm(): void {

@@ -23,6 +23,12 @@ export class ViewAppointmentTemplateComponent implements OnInit {
   @Input()
   procedureId: string = null; 
 
+  @Input()
+  tableClass: string = "full-width";
+
+  @Input()
+  columnAlignmentClass: string = "title-centered";
+
   biopsyTypeEnum = BiopsyTypeEnum;
   surgeryTypeEnum = SurgeryTypeEnum;
 

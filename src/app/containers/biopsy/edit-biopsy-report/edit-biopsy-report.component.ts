@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {v4 as uuidv4 } from 'uuid';
 import * as fromBiopsy from 'src/app/store/biopsy/biopsy.reducer';
 import * as fromAppointment from 'src/app/store/appointment/appointment.reducer';
@@ -22,7 +22,8 @@ export class EditBiopsyReportComponent implements OnInit, OnDestroy {
   appointmentId: string;
   biopsySubscription: Subscription;
 
-  constructor(private store: Store, private route: ActivatedRoute) { }
+  constructor(private store: Store, private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.patientId = this.route.snapshot.paramMap.get('patientId');
@@ -57,6 +58,16 @@ export class EditBiopsyReportComponent implements OnInit, OnDestroy {
     
     this.store.dispatch(biopsyActions.upsertBiopsy({ patientId: this.patientId, 
       biopsy: biopsy }));
+  }
+
+  onCancel() {
+    if (this.biopsyId != null) {
+      this.router.navigate(['patients', this.patientId, 'appointments', 
+        this.appointmentId]);
+    }
+    else {
+      this.router.navigate(['patients', this.patientId]);
+    }
   }
 
   ngOnDestroy(): void {

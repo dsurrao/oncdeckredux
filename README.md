@@ -29,3 +29,4 @@ Ngrx: https://ngrx.io (see also Redux docs: https://redux.js.org/)
 
 Rxjs: https://rxjs.dev
 
+Unit testing: https://angular.io/guide/testing

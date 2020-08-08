@@ -23,7 +23,7 @@ Site: https://dsurrao.github.io/oncdeckredux/
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Serving pwa branch locally
-'ng serve` does not work with service workers so we have to run an external http server
+`ng serve` does not work with service workers so we have to run an external http server
 
 `brew install http-server`
 

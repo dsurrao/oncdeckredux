@@ -71,8 +71,8 @@
             <h2>Appointments</h2>
             <mat-action-list>
                 <mat-list-item *ngFor="let appointment of appointments; index as i; first as isFirst">
-                    <div>
-                        <a matLine routerLink="/patients/{{patient?.id}}/appointments/{{appointment.id}}">
+                    <div style="word-break: break-all;">
+                        <a routerLink="/patients/{{patient?.id}}/appointments/{{appointment.id}}">
                             {{appointment.startDate}},
                             {{appointment.appointmentType}},
                             {{appointment.facility}}

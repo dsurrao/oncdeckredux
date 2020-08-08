@@ -49,6 +49,7 @@ import { EditAppointmentComponent } from './containers/appointment/edit-appointm
 import { ViewAppointmentComponent } from './containers/appointment/view-appointment/view-appointment.component';
 import { ViewSurgicalPathologyComponent } from './containers/surgery/view-surgical-pathology/view-surgical-pathology.component';
 import { EditSurgicalPathologyComponent } from './containers/surgery/edit-surgical-pathology/edit-surgical-pathology.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { EditSurgicalPathologyComponent } from './containers/surgery/edit-surgic
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([PatientEffects])
+    EffectsModule.forRoot([PatientEffects]),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     Title

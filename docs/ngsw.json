@@ -1,0 +1,80 @@
+{
+  "configVersion": 1,
+  "timestamp": 1596905881655,
+  "index": "/oncdeckredux/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/oncdeckredux/favicon.ico",
+        "/oncdeckredux/index.html",
+        "/oncdeckredux/main-es2015.db6d7a9417bf7950861d.js",
+        "/oncdeckredux/main-es5.db6d7a9417bf7950861d.js",
+        "/oncdeckredux/manifest.webmanifest",
+        "/oncdeckredux/polyfills-es2015.bbb42ff2e1c488ff52d5.js",
+        "/oncdeckredux/polyfills-es5.0e4e1968447fab48e788.js",
+        "/oncdeckredux/runtime-es2015.c9afb3256f2870e161de.js",
+        "/oncdeckredux/runtime-es5.c9afb3256f2870e161de.js",
+        "/oncdeckredux/styles.28a26c9ac5118e179898.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/oncdeckredux/assets/icons/icon-128x128.png",
+        "/oncdeckredux/assets/icons/icon-144x144.png",
+        "/oncdeckredux/assets/icons/icon-152x152.png",
+        "/oncdeckredux/assets/icons/icon-192x192.png",
+        "/oncdeckredux/assets/icons/icon-384x384.png",
+        "/oncdeckredux/assets/icons/icon-512x512.png",
+        "/oncdeckredux/assets/icons/icon-72x72.png",
+        "/oncdeckredux/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/oncdeckredux/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/oncdeckredux/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/oncdeckredux/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/oncdeckredux/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/oncdeckredux/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/oncdeckredux/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/oncdeckredux/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/oncdeckredux/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/oncdeckredux/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/oncdeckredux/index.html": "6f274fb41e58d07a0cb3336f0c603addcc100d27",
+    "/oncdeckredux/main-es2015.db6d7a9417bf7950861d.js": "4bde45289b3258ec06d060dfbea94e047bdb6600",
+    "/oncdeckredux/main-es5.db6d7a9417bf7950861d.js": "064e58d0f8c0b73ae161624c968a5034c73ce577",
+    "/oncdeckredux/manifest.webmanifest": "1381f69863c4e5c05d614f2238325c84fc09b2c8",
+    "/oncdeckredux/polyfills-es2015.bbb42ff2e1c488ff52d5.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
+    "/oncdeckredux/polyfills-es5.0e4e1968447fab48e788.js": "e51a1de4f016cd689dbdbef51043dec9518c4111",
+    "/oncdeckredux/runtime-es2015.c9afb3256f2870e161de.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/oncdeckredux/runtime-es5.c9afb3256f2870e161de.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/oncdeckredux/styles.28a26c9ac5118e179898.css": "33f463d45e733bed0f1a859931546002f41a4889"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}

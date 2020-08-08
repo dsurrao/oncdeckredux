@@ -17,10 +17,19 @@ ng build --prod --output-path docs --base-href /oncdeckredux/
 
 Site: https://dsurrao.github.io/oncdeckredux/
 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Serving pwa branch locally
+'ng serve` does not work with service workers so we have to run an external http server
+
+`brew install http-server`
+
+`ng build --prod`
+
+`http-server -p 8080 -c-1 dist/oncdeckredux`
 
 ## Technologies used and their documentation
 Angular: https://angular.io
